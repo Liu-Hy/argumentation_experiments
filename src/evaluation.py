@@ -296,18 +296,42 @@ def _micro_aggregate(per_essay: Dict[str, Dict]) -> Dict:
 
 
 def _macro_average(per_essay: Dict[str, Dict]) -> Dict:
-    """Average per-essay F1 scores."""
+    """Average per-essay F1 scores.
+
+    For attack metrics, essays where tp=fp=fn=0 (no gold attacks AND no
+    predicted attacks) are excluded from the average, since the metric is
+    undefined — not zero — in that case.  The count of included essays is
+    reported for transparency.
+    """
     if not per_essay:
         return {}
     arg_f1s = [m["argument"]["f1"] for m in per_essay.values()]
     sup_f1s = [m["relation"]["support"]["f1"] for m in per_essay.values()]
-    att_f1s = [m["relation"]["attack"]["f1"] for m in per_essay.values()]
-    rel_macro_f1s = [m["relation"]["macro"]["f1"] for m in per_essay.values()]
+
+    # Attack F1: only over essays where at least one gold or predicted attack
+    att_f1s = []
+    for m in per_essay.values():
+        a = m["relation"]["attack"]
+        if a["tp"] + a["fp"] + a["fn"] > 0:
+            att_f1s.append(a["f1"])
+
+    # Relation macro F1: average of support and attack F1 per essay, but
+    # only include attack term when it's defined
+    rel_macro_f1s = []
+    for m in per_essay.values():
+        a = m["relation"]["attack"]
+        sf1 = m["relation"]["support"]["f1"]
+        if a["tp"] + a["fp"] + a["fn"] > 0:
+            rel_macro_f1s.append((sf1 + a["f1"]) / 2)
+        else:
+            # Only support is defined for this essay
+            rel_macro_f1s.append(sf1)
 
     return {
         "argument_f1": float(np.mean(arg_f1s)),
         "support_f1": float(np.mean(sup_f1s)),
-        "attack_f1": float(np.mean(att_f1s)),
+        "attack_f1": float(np.mean(att_f1s)) if att_f1s else 0.0,
+        "attack_f1_n_essays": len(att_f1s),
         "relation_macro_f1": float(np.mean(rel_macro_f1s)),
     }
 
@@ -317,7 +341,11 @@ def _bootstrap_cis(
     n_resamples: int = 10000,
     seed: int = 42,
 ) -> Dict:
-    """Bootstrap 95% confidence intervals for macro-average F1 scores."""
+    """Bootstrap 95% confidence intervals for macro-average F1 scores.
+
+    For attack and relation_macro metrics, uses the same exclusion logic
+    as _macro_average (skip essays where attack tp=fp=fn=0).
+    """
     if not per_essay:
         return {}
     rng = np.random.RandomState(seed)
@@ -336,12 +364,22 @@ def _bootstrap_cis(
         samples["support_f1"].append(
             float(np.mean([m["relation"]["support"]["f1"] for m in resampled]))
         )
+
+        # Attack: exclude essays where the metric is undefined
+        att_vals = []
+        rel_macro_vals = []
+        for m in resampled:
+            a = m["relation"]["attack"]
+            sf1 = m["relation"]["support"]["f1"]
+            if a["tp"] + a["fp"] + a["fn"] > 0:
+                att_vals.append(a["f1"])
+                rel_macro_vals.append((sf1 + a["f1"]) / 2)
+            else:
+                rel_macro_vals.append(sf1)
         samples["attack_f1"].append(
-            float(np.mean([m["relation"]["attack"]["f1"] for m in resampled]))
+            float(np.mean(att_vals)) if att_vals else 0.0
         )
-        samples["relation_macro_f1"].append(
-            float(np.mean([m["relation"]["macro"]["f1"] for m in resampled]))
-        )
+        samples["relation_macro_f1"].append(float(np.mean(rel_macro_vals)))
 
     cis = {}
     for k in keys:
@@ -403,7 +441,6 @@ def format_results(results: Dict) -> str:
     for k, label in [
         ("argument_f1", "Argument span F1"),
         ("support_f1", "Support rel F1"),
-        ("attack_f1", "Attack rel F1"),
         ("relation_macro_f1", "Relation macro F1"),
     ]:
         ci = cis.get(k, {})
@@ -411,6 +448,14 @@ def format_results(results: Dict) -> str:
             f"  {label:22s}: {macro[k]:.3f}  "
             f"[{ci.get('ci_lower', 0):.3f}, {ci.get('ci_upper', 0):.3f}]"
         )
+    # Attack F1 with note about how many essays are included
+    att_n = macro.get("attack_f1_n_essays", "?")
+    ci = cis.get("attack_f1", {})
+    lines.append(
+        f"  {'Attack rel F1':22s}: {macro['attack_f1']:.3f}  "
+        f"[{ci.get('ci_lower', 0):.3f}, {ci.get('ci_upper', 0):.3f}]  "
+        f"(over {att_n} essays with attacks)"
+    )
 
     lines.append("=" * 72)
     return "\n".join(lines)

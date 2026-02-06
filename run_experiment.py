@@ -146,12 +146,31 @@ def run_essay(
         resp1: LLMResponse = client.generate(msgs1, model_key)
         step1_output = resp1.content
 
+        # Parse step 1 to check if we got any arguments
+        pred_baf, stats = _parse_pipe_output(step1_output, None, essay_text)
+
+        if len(pred_baf.arguments) == 0:
+            # Skip step 2 if step 1 yielded nothing (saves an API call)
+            return {
+                "essay_id": essay_id,
+                "method": method,
+                "model": model_key,
+                "step1_raw": resp1.content,
+                "step2_raw": "",
+                "step1_usage": resp1.usage,
+                "step2_usage": {},
+                "latency_s": resp1.latency_s,
+                "pred_baf": pred_baf.to_dict(),
+                "parse_stats": stats.to_dict(),
+                "parse_success": False,
+            }
+
         # Step 2: predict relations
         msgs2 = build_messages(method, essay_text, examples, step1_output=step1_output)
         resp2: LLMResponse = client.generate(msgs2, model_key)
 
         # Parse combined result
-        pred_baf = _parse_pipe_output(step1_output, resp2.content, essay_text)
+        pred_baf, stats = _parse_pipe_output(step1_output, resp2.content, essay_text)
 
         return {
             "essay_id": essay_id,
@@ -163,13 +182,14 @@ def run_essay(
             "step2_usage": resp2.usage,
             "latency_s": resp1.latency_s + resp2.latency_s,
             "pred_baf": pred_baf.to_dict(),
+            "parse_stats": stats.to_dict(),
             "parse_success": len(pred_baf.arguments) > 0,
         }
 
     elif is_gold:
         msgs = build_messages(method, essay_text, examples, gold_baf=gold_baf)
         resp: LLMResponse = client.generate(msgs, model_key)
-        pred_baf = parse_relations_only(resp.content, gold_baf)
+        pred_baf, stats = parse_relations_only(resp.content, gold_baf)
 
         return {
             "essay_id": essay_id,
@@ -179,14 +199,15 @@ def run_essay(
             "usage": resp.usage,
             "latency_s": resp.latency_s,
             "pred_baf": pred_baf.to_dict(),
-            "parse_success": True,  # gold args always present
+            "parse_stats": stats.to_dict(),
+            "parse_success": stats.json_extracted,
         }
 
     else:
         # E2E methods
         msgs = build_messages(method, essay_text, examples)
         resp: LLMResponse = client.generate(msgs, model_key)
-        pred_baf = parse_llm_output(resp.content, essay_text)
+        pred_baf, stats = parse_llm_output(resp.content, essay_text)
 
         return {
             "essay_id": essay_id,
@@ -196,28 +217,48 @@ def run_essay(
             "usage": resp.usage,
             "latency_s": resp.latency_s,
             "pred_baf": pred_baf.to_dict(),
+            "parse_stats": stats.to_dict(),
             "parse_success": len(pred_baf.arguments) > 0,
         }
 
 
-def _parse_pipe_output(step1_raw: str, step2_raw: str, essay_text: str) -> BAF:
-    """Combine pipeline step outputs into a single BAF."""
-    from src.output_parser import _extract_json, _parse_arguments, _parse_relations
+def _parse_pipe_output(
+    step1_raw: str, step2_raw: Optional[str], essay_text: str
+) -> tuple:
+    """Combine pipeline step outputs into a single BAF.
+
+    Returns (BAF, ParseStats).  If step2_raw is None (step 2 not yet run),
+    returns arguments only.
+    """
+    from src.output_parser import (
+        ParseStats, _extract_json, _parse_arguments, _parse_relations,
+    )
+
+    stats = ParseStats()
 
     # Parse step 1: arguments
     data1 = _extract_json(step1_raw)
     if data1 is None:
-        return BAF()
-    arguments = _parse_arguments(data1.get("arguments", []), essay_text)
+        return BAF(), stats
+
+    stats.json_extracted = True
+    raw_args = data1.get("arguments", [])
+    stats.args_in_json = len(raw_args)
+    arguments = _parse_arguments(raw_args, essay_text, stats)
     arg_ids = {a.id for a in arguments}
+
+    if step2_raw is None:
+        return BAF(arguments=arguments, relations=[]), stats
 
     # Parse step 2: relations
     data2 = _extract_json(step2_raw)
     if data2 is None:
-        return BAF(arguments=arguments, relations=[])
-    relations = _parse_relations(data2.get("relations", []), arg_ids)
+        return BAF(arguments=arguments, relations=[]), stats
+    raw_rels = data2.get("relations", [])
+    stats.rels_in_json = len(raw_rels)
+    relations = _parse_relations(raw_rels, arg_ids, stats)
 
-    return BAF(arguments=arguments, relations=relations)
+    return BAF(arguments=arguments, relations=relations), stats
 
 
 # ---------------------------------------------------------------------------
