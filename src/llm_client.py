@@ -3,11 +3,12 @@
 All models are accessed through OpenRouter's OpenAI-compatible API,
 so only one API key and one billing account are needed.
 
-Set the OPENROUTER_API_KEY environment variable before use.
+Set OPENROUTER_API_KEY via environment variable or a .env file.
 """
 
 from __future__ import annotations
 
+import difflib
 import logging
 import os
 import time
@@ -36,31 +37,88 @@ class ModelConfig:
 # OpenRouter model IDs follow the pattern "provider/model-name".
 # Browse https://openrouter.ai/models for the full catalogue.
 MODELS: Dict[str, ModelConfig] = {
-    "gpt-4o": ModelConfig(
-        name="GPT-4o",
-        model_id="openai/gpt-4o",
+    # --- Primary experiment models ---
+    "gpt-5-mini": ModelConfig(
+        name="GPT-5 mini",
+        model_id="openai/gpt-5-mini",
     ),
-    "gpt-4o-mini": ModelConfig(
-        name="GPT-4o-mini",
-        model_id="openai/gpt-4o-mini",
+    "gpt-5-nano": ModelConfig(
+        name="GPT-5 nano",
+        model_id="openai/gpt-5-nano",
     ),
-    "o3-mini": ModelConfig(
-        name="o3-mini",
-        model_id="openai/o3-mini",
+    "claude-haiku-4.5": ModelConfig(
+        name="Claude Haiku 4.5",
+        model_id="anthropic/claude-haiku-4.5",
     ),
-    "claude-3.5-sonnet": ModelConfig(
-        name="Claude 3.5 Sonnet",
-        model_id="anthropic/claude-3.5-sonnet",
+    "gemini-3-flash-preview": ModelConfig(
+        name="Gemini 3 Flash Preview",
+        model_id="google/gemini-3-flash-preview",
     ),
-    "deepseek-v3": ModelConfig(
-        name="DeepSeek-V3",
-        model_id="deepseek/deepseek-chat",
+    "gemini-2.5-flash-lite": ModelConfig(
+        name="Gemini 2.5 Flash Lite",
+        model_id="google/gemini-2.5-flash-lite",
     ),
-    "deepseek-r1": ModelConfig(
-        name="DeepSeek-R1",
-        model_id="deepseek/deepseek-r1",
+    "kimi-k2.5": ModelConfig(
+        name="Kimi K2.5",
+        model_id="moonshotai/kimi-k2.5",
+    ),
+    "deepseek-v3.2": ModelConfig(
+        name="DeepSeek V3.2",
+        model_id="deepseek/deepseek-v3.2",
+    ),
+    "minimax-m2.1": ModelConfig(
+        name="MiniMax M2.1",
+        model_id="minimax/minimax-m2.1",
+    ),
+    "grok-4.1-fast": ModelConfig(
+        name="Grok 4.1 Fast",
+        model_id="x-ai/grok-4.1-fast",
+    ),
+    "qwen3-235b": ModelConfig(
+        name="Qwen 3 235B A22B",
+        model_id="qwen/qwen3-235b-a22b-2507",
     ),
 }
+
+
+def suggest_model(user_input: str) -> List[str]:
+    """Suggest model keys that are close to user_input (fuzzy matching)."""
+    all_keys = list(MODELS.keys())
+    all_ids = [m.model_id for m in MODELS.values()]
+    all_names = [m.name.lower() for m in MODELS.values()]
+
+    # Check exact match first
+    low = user_input.lower().strip()
+    if low in MODELS:
+        return [low]
+
+    # Check if user typed an OpenRouter model_id directly
+    for key, cfg in MODELS.items():
+        if low == cfg.model_id.lower():
+            return [key]
+
+    # Fuzzy match against keys, model_ids, and display names
+    candidates = []
+    for key in all_keys:
+        ratio = difflib.SequenceMatcher(None, low, key.lower()).ratio()
+        if ratio > 0.5:
+            candidates.append((ratio, key))
+    for key, cfg in MODELS.items():
+        ratio = difflib.SequenceMatcher(None, low, cfg.model_id.lower()).ratio()
+        if ratio > 0.5:
+            candidates.append((ratio, key))
+        ratio = difflib.SequenceMatcher(None, low, cfg.name.lower()).ratio()
+        if ratio > 0.5:
+            candidates.append((ratio, key))
+
+    # Deduplicate and sort by score
+    seen = set()
+    unique = []
+    for score, key in sorted(candidates, reverse=True):
+        if key not in seen:
+            seen.add(key)
+            unique.append(key)
+    return unique[:5]
 
 
 # ---------------------------------------------------------------------------
@@ -77,6 +135,30 @@ class LLMResponse:
     usage: Dict = field(default_factory=dict)
     latency_s: float = 0.0
     raw: Optional[dict] = None
+
+
+# ---------------------------------------------------------------------------
+# .env loading
+# ---------------------------------------------------------------------------
+
+
+def _load_dotenv():
+    """Load .env file from the project directory if present."""
+    # Walk up from this file to find .env
+    d = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    env_path = os.path.join(d, ".env")
+    if not os.path.exists(env_path):
+        return
+    with open(env_path) as f:
+        for line in f:
+            line = line.strip()
+            if not line or line.startswith("#") or "=" not in line:
+                continue
+            key, _, value = line.partition("=")
+            key = key.strip()
+            value = value.strip().strip("'\"")
+            if key and key not in os.environ:
+                os.environ[key] = value
 
 
 # ---------------------------------------------------------------------------
@@ -98,12 +180,16 @@ class LLMClient:
 
     def _get_client(self):
         if self._client is None:
+            _load_dotenv()  # load .env if present
+
             from openai import OpenAI
 
             api_key = os.environ.get("OPENROUTER_API_KEY", "")
             if not api_key:
                 raise EnvironmentError(
-                    "OPENROUTER_API_KEY environment variable is not set. "
+                    "OPENROUTER_API_KEY is not set. Either:\n"
+                    "  1. export OPENROUTER_API_KEY='sk-or-...'\n"
+                    "  2. Put it in a .env file in the project root.\n"
                     "Get your key at https://openrouter.ai/keys"
                 )
             self._client = OpenAI(
@@ -116,13 +202,38 @@ class LLMClient:
             )
         return self._client
 
+    def check_model(self, model_key: str) -> bool:
+        """Verify a model is reachable on OpenRouter with a minimal request."""
+        if model_key not in MODELS:
+            return False
+        config = MODELS[model_key]
+        try:
+            client = self._get_client()
+            response = client.chat.completions.create(
+                model=config.model_id,
+                messages=[{"role": "user", "content": "Say OK."}],
+                max_tokens=16,
+                temperature=0.0,
+            )
+            # Some models return empty content for trivial prompts;
+            # a successful HTTP response (no exception) is enough.
+            return response.choices is not None and len(response.choices) > 0
+        except Exception as e:
+            logger.warning(f"Model check failed for {model_key}: {e}")
+            return False
+
     def generate(
         self, messages: List[Dict[str, str]], model_key: str
     ) -> LLMResponse:
         """Send messages to the specified model via OpenRouter."""
         if model_key not in MODELS:
+            suggestions = suggest_model(model_key)
+            hint = ""
+            if suggestions:
+                hint = f" Did you mean: {', '.join(suggestions)}?"
             raise ValueError(
-                f"Unknown model '{model_key}'. Available: {list(MODELS.keys())}"
+                f"Unknown model '{model_key}'.{hint}\n"
+                f"Available models: {', '.join(MODELS.keys())}"
             )
         config = MODELS[model_key]
 

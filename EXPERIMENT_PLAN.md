@@ -73,26 +73,27 @@ The same 3 examples are used across all test essays and all few-shot methods (fi
 
 | Key | Name | OpenRouter Model ID | Category |
 |-----|------|---------------------|----------|
-| `gpt-4o` | GPT-4o | `openai/gpt-4o` | Frontier proprietary |
-| `claude-3.5-sonnet` | Claude 3.5 Sonnet | `anthropic/claude-3.5-sonnet` | Frontier proprietary |
-| `deepseek-v3` | DeepSeek-V3 | `deepseek/deepseek-chat` | Strong open-source |
-| `o3-mini` | o3-mini | `openai/o3-mini` | Reasoning-specialised |
+| `gpt-5-mini` | GPT-5 mini | `openai/gpt-5-mini` | Proprietary |
+| `gpt-5-nano` | GPT-5 nano | `openai/gpt-5-nano` | Proprietary |
+| `claude-haiku-4.5` | Claude Haiku 4.5 | `anthropic/claude-haiku-4.5` | Proprietary |
+| `gemini-3-flash-preview` | Gemini 3 Flash Preview | `google/gemini-3-flash-preview` | Proprietary |
+| `gemini-2.5-flash-lite` | Gemini 2.5 Flash Lite | `google/gemini-2.5-flash-lite` | Proprietary |
+| `kimi-k2.5` | Kimi K2.5 | `moonshotai/kimi-k2.5` | Open-source |
+| `deepseek-v3.2` | DeepSeek V3.2 | `deepseek/deepseek-v3.2` | Open-source |
+| `minimax-m2.1` | MiniMax M2.1 | `minimax/minimax-m2.1` | Open-source |
+| `grok-4.1-fast` | Grok 4.1 Fast | `x-ai/grok-4.1-fast` | Proprietary |
+| `qwen3-235b` | Qwen 3 235B A22B | `qwen/qwen3-235b-a22b-2507` | Open-source |
 
 All accessed through **OpenRouter** (single API key, single billing account).
-
-**Optional extensions** (if budget allows):
-
-- `gpt-4o-mini` / cost-efficient tier for cost-performance analysis.
-- `deepseek-r1` as a second reasoning-specialised model.
 
 **Configuration**: temperature = 0 (deterministic), max_tokens = 4096.
 
 ### 5.1 Experiment Matrix
 
-4 models × 5 core methods = **20 conditions**, each evaluated on 80 test essays.
-Plus 4 models × 2 gold-arg variants = **8 diagnostic conditions**.
+10 models × 5 core methods = **50 conditions**, each evaluated on 80 test essays.
+Plus 10 models × 2 gold-arg variants = **20 diagnostic conditions**.
 
-Total API calls: ~1,600 for core experiments (pipeline methods require 2 calls per essay), ~640 for diagnostic. Estimated cost at typical OpenRouter rates: modest (essays are short, ~300-500 words each).
+Total API calls: ~4,000 for core experiments (pipeline methods require 2 calls per essay), ~1,600 for diagnostic. Estimated cost at typical OpenRouter rates: modest (essays are short, ~300-500 words each).
 
 ## 6. Evaluation
 

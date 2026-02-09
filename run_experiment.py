@@ -400,8 +400,8 @@ def main():
     )
     parser.add_argument(
         "--model",
-        choices=list(MODELS.keys()),
-        help="Model to run",
+        type=str,
+        help="Model to run (use --list to see available models)",
     )
     parser.add_argument(
         "--method",
@@ -419,19 +419,51 @@ def main():
         action="store_true",
         help="List available models and methods",
     )
+    parser.add_argument(
+        "--check",
+        action="store_true",
+        help="Verify API key and model availability before running",
+    )
     args = parser.parse_args()
 
     if args.list:
         print("Available models:")
         for k, v in MODELS.items():
-            print(f"  {k:20s} {v.name} ({v.model_id})")
+            print(f"  {k:25s} {v.name:25s} ({v.model_id})")
         print("\nAvailable methods:")
         for k, v in prompts.METHODS.items():
             print(f"  {k:15s} {v}")
         return
 
+    if args.check:
+        print("Pre-flight check...")
+        from src.llm_client import suggest_model
+        client = LLMClient()
+        models_to_check = [args.model] if args.model else list(MODELS.keys())
+        for mk in models_to_check:
+            if mk not in MODELS:
+                suggestions = suggest_model(mk)
+                hint = f"  Did you mean: {', '.join(suggestions)}?" if suggestions else ""
+                print(f"  {mk:25s} UNKNOWN MODEL{hint}")
+                continue
+            cfg = MODELS[mk]
+            ok = client.check_model(mk)
+            status = "OK" if ok else "FAILED"
+            print(f"  {mk:25s} {cfg.model_id:45s} {status}")
+        return
+
     if not args.model:
         parser.error("--model is required (use --list to see options)")
+
+    # Validate model key with helpful suggestions on typo
+    if args.model not in MODELS:
+        from src.llm_client import suggest_model
+        suggestions = suggest_model(args.model)
+        msg = f"Unknown model '{args.model}'."
+        if suggestions:
+            msg += f"\n  Did you mean one of: {', '.join(suggestions)}?"
+        msg += f"\n  Use --list to see all available models."
+        parser.error(msg)
 
     # Resolve method groups
     if args.method == "all":
