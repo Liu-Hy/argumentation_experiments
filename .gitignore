@@ -21,6 +21,10 @@ venv/
 .DS_Store
 Thumbs.db
 
+# Review transcripts
+answer_colleague_1.md
+answer_colleague_2.md
+
 # Environment
 .env
 /test/
