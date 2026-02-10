@@ -23,3 +23,7 @@ Thumbs.db
 
 # Environment
 .env
+/test/
+/results/
+/test.7z
+/CAIL2023/
