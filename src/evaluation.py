@@ -135,23 +135,33 @@ def compute_relation_metrics(
     for r in gold_baf.relations:
         gold_counts[r.type] = gold_counts.get(r.type, 0) + 1
 
-    # Evaluate predicted relations
+    # Evaluate predicted relations.
+    # Track which gold relations and predicted relation keys have been used
+    # to prevent duplicate predictions from inflating TP.
     tp_by_type: Dict[str, int] = {"support": 0, "attack": 0}
     fp_by_type: Dict[str, int] = {"support": 0, "attack": 0}
+    used_gold: set = set()
+    seen_pred: set = set()
 
     for r in pred_baf.relations:
         rtype = r.type
         if rtype not in tp_by_type:
-            # Unknown relation type treated as FP under both types?
-            # Safest: count it as a generic FP
             fp_by_type.setdefault(rtype, 0)
             fp_by_type[rtype] += 1
             continue
 
+        pred_key = (r.source, r.target, rtype)
+        if pred_key in seen_pred:
+            fp_by_type[rtype] += 1
+            continue
+        seen_pred.add(pred_key)
+
         gold_src = arg_matching.get(r.source)
         gold_tgt = arg_matching.get(r.target)
-        if gold_src and gold_tgt and (gold_src, gold_tgt, rtype) in gold_rel_set:
+        gold_key = (gold_src, gold_tgt, rtype)
+        if gold_src and gold_tgt and gold_key in gold_rel_set and gold_key not in used_gold:
             tp_by_type[rtype] += 1
+            used_gold.add(gold_key)
         else:
             fp_by_type[rtype] += 1
 

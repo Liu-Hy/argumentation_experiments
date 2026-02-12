@@ -75,8 +75,11 @@ The same 3 examples are used across all test essays and all few-shot methods (fi
 |-----|------|---------------------|----------|
 | `gpt-5-mini` | GPT-5 mini | `openai/gpt-5-mini` | Proprietary |
 | `gpt-5-nano` | GPT-5 nano | `openai/gpt-5-nano` | Proprietary |
+| `gpt-5.2` | GPT-5.2 | `openai/gpt-5.2` | Proprietary |
 | `claude-haiku-4.5` | Claude Haiku 4.5 | `anthropic/claude-haiku-4.5` | Proprietary |
+| `claude-sonnet-4.5` | Claude Sonnet 4.5 | `anthropic/claude-sonnet-4.5` | Proprietary |
 | `gemini-3-flash-preview` | Gemini 3 Flash Preview | `google/gemini-3-flash-preview` | Proprietary |
+| `gemini-3-pro-preview` | Gemini 3 Pro Preview | `google/gemini-3-pro-preview` | Proprietary |
 | `gemini-2.5-flash-lite` | Gemini 2.5 Flash Lite | `google/gemini-2.5-flash-lite` | Proprietary |
 | `kimi-k2.5` | Kimi K2.5 | `moonshotai/kimi-k2.5` | Open-source |
 | `deepseek-v3.2` | DeepSeek V3.2 | `deepseek/deepseek-v3.2` | Open-source |
@@ -86,14 +89,14 @@ The same 3 examples are used across all test essays and all few-shot methods (fi
 
 All accessed through **OpenRouter** (single API key, single billing account).
 
-**Configuration**: temperature = 0 (deterministic), max_tokens = 4096.
+**Configuration**: temperature = 0 (deterministic), max_tokens = 4096. Exception: GPT-5.2 is a reasoning model that does not support the temperature parameter; it uses adaptive reasoning with its model default.
 
 ### 5.1 Experiment Matrix
 
-10 models × 5 core methods = **50 conditions**, each evaluated on 80 test essays.
-Plus 10 models × 2 gold-arg variants = **20 diagnostic conditions**.
+13 models × 5 core methods = **65 conditions**, each evaluated on 80 test essays.
+Plus 13 models × 2 gold-arg variants = **26 diagnostic conditions**.
 
-Total API calls: ~4,000 for core experiments (pipeline methods require 2 calls per essay), ~1,600 for diagnostic. Estimated cost at typical OpenRouter rates: modest (essays are short, ~300-500 words each).
+Total API calls: ~5,200 for core experiments (pipeline methods require 2 calls per essay), ~2,080 for diagnostic. Estimated cost at typical OpenRouter rates: modest (essays are short, ~300-500 words each). The SOTA frontier models (GPT-5.2, Claude Sonnet 4.5, Gemini 3 Pro) have higher per-token costs but total volume remains low.
 
 ## 6. Evaluation
 
@@ -136,6 +139,37 @@ Computed metrics:
 
 - **Parse success rate**: % of LLM outputs that yield valid JSON conforming to the expected schema and containing at least one argument.
 - **Latency and token usage**: logged per call for cost analysis.
+
+#### Neural Evaluation Metrics (Reference-Free)
+
+The span-based metrics above require a gold-annotated BAF. To support evaluation of free-text argument generation (where no gold BAF exists), we additionally compute **reference-free neural metrics** that compare a generated BAF against its source essay only.
+
+These metrics run as a separate post-processing step on saved results (see `run_neural_eval.py`) and are designed to:
+
+1. Run alongside span-based metrics on the current benchmark (for correlation analysis / validation).
+2. Later generalize to evaluating free-text AFs on unannotated texts.
+
+**BERTScore AF-Coverage** — Token-level semantic overlap between AF content and essay:
+
+- The AF's argument texts are concatenated (sorted by ID, newline-separated) and compared against the essay text using BERTScore (`microsoft/deberta-xlarge-mnli`, `rescale_with_baseline=True`).
+- `bertscore_precision` (**Faithfulness**): what fraction of AF content tokens are grounded in the essay.
+- `bertscore_recall` (**Coverage**): what fraction of essay content tokens are captured in the AF.
+- `bertscore_f1`: harmonic mean.
+- A per-argument variant computes BERTScore(arg.text, essay) individually and averages precision, avoiding truncation issues.
+
+**NLI AF-Faithfulness** — Whether the essay entails the claims made by the AF:
+
+- The AF is serialized into **statements**, each checked via NLI (`microsoft/deberta-v2-xlarge-mnli`):
+  - *Argument statements*: raw argument text → `NLI(premise=essay, hypothesis=arg.text)`.
+  - *Relation statements*: `"{source.text}. This supports/challenges the argument that {target.text}"` → `NLI(premise=essay, hypothesis=statement)`.
+- `nli_faithfulness_mean`: mean P(entailment) over all statements (primary metric).
+- `nli_argument_faithfulness`: mean over argument statements only.
+- `nli_relation_groundedness`: mean over relation statements only.
+- Also reported: min, std, fraction above 0.5.
+
+**Gold Ceiling**: Both metrics are also computed on the gold BAF for each essay, providing an interpretable ceiling reference and revealing inherent metric limitations (e.g., gold BERTScore-recall < 1.0 since essays contain non-argumentative text).
+
+**Known Limitations**: NLI entailment is stricter than argumentative support — a thesis the essay builds toward but never states explicitly may score low. Relation statements require the NLI model to do meta-reasoning about argumentative structure, which may be noisy. The gold ceiling comparison and correlation analysis with span-based metrics will quantify these limitations.
 
 ## 7. Experimental Procedure
 

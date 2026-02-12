@@ -10,15 +10,23 @@ A Python framework for running and evaluating LLM-based Bipolar Argumentation Fr
 numpy>=1.24
 scipy>=1.10
 openai>=1.0
+bert-score>=0.3.13
+transformers>=4.30.0
+torch>=2.0.0
 ```
 
 - `numpy`: numerical operations, bootstrap resampling.
 - `scipy`: Hungarian algorithm for optimal span matching (`linear_sum_assignment`). A greedy fallback is provided if scipy is unavailable.
 - `openai`: OpenAI-compatible SDK, used to call OpenRouter's API endpoint.
+- `bert-score`: BERTScore computation for AF-coverage metrics.
+- `transformers`: model loading for NLI-based faithfulness metrics.
+- `torch`: deep learning backend for BERTScore and NLI inference.
 
 No `anthropic` SDK needed — OpenRouter translates OpenAI-format messages for all providers (including Anthropic models).
 
 Install: `pip install -r requirements.txt`
+
+**Note**: `bert-score`, `transformers`, and `torch` are only required for the neural evaluation step (`run_neural_eval.py`). The main experiment runner (`run_experiment.py`) does not depend on them.
 
 ## 3. Project Structure
 
@@ -34,11 +42,13 @@ argumentation_experiments/
 │   ├── __init__.py
 │   ├── baf.py                       # Core data structures
 │   ├── data_loader.py               # Dataset parsing
-│   ├── evaluation.py                # Metrics computation
+│   ├── evaluation.py                # Metrics computation (span-based)
+│   ├── neural_metrics.py            # Neural metrics (BERTScore, NLI)
 │   ├── output_parser.py             # LLM output → BAF
 │   ├── prompts.py                   # Prompt templates
 │   └── llm_client.py                # OpenRouter API client
-├── run_experiment.py                # CLI entry point
+├── run_experiment.py                # CLI entry point (LLM experiments)
+├── run_neural_eval.py               # CLI entry point (neural evaluation)
 ├── requirements.txt
 ├── EXPERIMENT_PLAN.md               # Research design
 └── IMPLEMENTATION_PLAN.md           # This file
@@ -50,7 +60,9 @@ Output directories (created automatically at runtime):
 results/
 ├── raw/{model}/{method}/            # Per-essay JSON (raw LLM output + parsed BAF)
 │   └── essay001.json ... essay402.json
-├── metrics/                         # Aggregated evaluation results
+├── metrics/                         # Aggregated span-based evaluation results
+│   └── {model}_{method}.json
+├── neural_metrics/                  # Aggregated neural evaluation results
 │   └── {model}_{method}.json
 └── meta/                            # Experiment metadata
     └── fewshot_examples.json
@@ -159,16 +171,23 @@ All LLM calls go through **OpenRouter** (`https://openrouter.ai/api/v1`), which 
 
 **Setup:** set `OPENROUTER_API_KEY` environment variable. Get a key at https://openrouter.ai/keys.
 
-**Model registry** (`MODELS` dict): maps short keys to `ModelConfig(name, model_id, max_tokens, temperature)`. Pre-configured models:
+**Model registry** (`MODELS` dict): maps short keys to `ModelConfig(name, model_id, max_tokens, temperature)`. The `temperature` field is `Optional[float]`: set to `None` for reasoning models (e.g., GPT-5.2) that do not support the parameter; the API call omits it in that case. Pre-configured models:
 
-| Key | OpenRouter model ID |
-|-----|---------------------|
-| `gpt-4o` | `openai/gpt-4o` |
-| `gpt-4o-mini` | `openai/gpt-4o-mini` |
-| `o3-mini` | `openai/o3-mini` |
-| `claude-3.5-sonnet` | `anthropic/claude-3.5-sonnet` |
-| `deepseek-v3` | `deepseek/deepseek-chat` |
-| `deepseek-r1` | `deepseek/deepseek-r1` |
+| Key | OpenRouter model ID | Notes |
+|-----|---------------------|-------|
+| `gpt-5-mini` | `openai/gpt-5-mini` | |
+| `gpt-5-nano` | `openai/gpt-5-nano` | |
+| `gpt-5.2` | `openai/gpt-5.2` | Reasoning model; `temperature=None` |
+| `claude-haiku-4.5` | `anthropic/claude-haiku-4.5` | |
+| `claude-sonnet-4.5` | `anthropic/claude-sonnet-4.5` | SOTA frontier |
+| `gemini-3-flash-preview` | `google/gemini-3-flash-preview` | |
+| `gemini-3-pro-preview` | `google/gemini-3-pro-preview` | SOTA frontier |
+| `gemini-2.5-flash-lite` | `google/gemini-2.5-flash-lite` | |
+| `kimi-k2.5` | `moonshotai/kimi-k2.5` | |
+| `deepseek-v3.2` | `deepseek/deepseek-v3.2` | |
+| `minimax-m2.1` | `minimax/minimax-m2.1` | |
+| `grok-4.1-fast` | `x-ai/grok-4.1-fast` | |
+| `qwen3-235b` | `qwen/qwen3-235b-a22b-2507` | |
 
 **To add a model:** add an entry to the `MODELS` dict with the OpenRouter model ID (browse https://openrouter.ai/models).
 
@@ -213,6 +232,66 @@ python run_experiment.py --model gpt-4o --dataset /path/to/PersuasiveEssaysV2
 **Pipeline methods** execute step 1 first, then feed its raw output into step 2. Parse errors in step 1 propagate naturally (an empty argument list means step 2 has nothing to work with).
 
 **Resume mode** (`--resume`): checks for existing result files before making API calls. Allows re-running after interruptions without re-processing completed essays.
+
+### 4.8 `src/neural_metrics.py` — Neural Evaluation Metrics
+
+Reference-free neural metrics that compare a generated BAF against its source essay. Runs as a post-processing step — no GPU dependency for the main experiment loop.
+
+**Serialization functions:**
+
+- `serialize_arguments(baf) -> str`: Concatenates argument texts sorted by ID (natural sort: a2 < a10), newline-separated. Used as the BERTScore candidate.
+- `serialize_af_statements(baf) -> list[str]`: Returns individual statement strings for NLI. Argument statements (raw text) followed by relation statements (`"{source.text}. This supports/challenges the argument that {target.text}"`).
+
+**Model loading:**
+
+- `_get_nli_model(model_name, device)`: Lazy singleton loader for NLI model (tokenizer + model). Loaded on first use, cached for subsequent calls. Avoids loading both models simultaneously.
+
+**Metric functions:**
+
+- `bertscore_af_coverage(baf, essay_text, ...)`: BERTScore between concatenated argument texts and essay. Returns precision (faithfulness), recall (coverage), F1, and per-argument precision variant. Uses `microsoft/deberta-xlarge-mnli` with `rescale_with_baseline=True`.
+- `nli_af_faithfulness(baf, essay_text, ...)`: NLI-based faithfulness. Serializes AF into statements, computes P(entailment) for each against the essay. Returns overall mean, argument-only mean, relation-only mean, min, std, fraction above 0.5. Uses `microsoft/deberta-v2-xlarge-mnli`.
+
+**Aggregation:**
+
+- `evaluate_essay_neural(pred_baf, gold_baf, essay_text, ...)`: Combined evaluation for one essay. Evaluates both prediction and gold (ceiling).
+- `evaluate_dataset_neural(predictions, golds, essay_texts, ...)`: Dataset-level aggregation with bootstrap 95% CIs. Same resampling pattern as `_bootstrap_cis` in `evaluation.py`.
+
+**Edge cases:**
+
+- Empty BAF (no arguments): returns all-zero metrics without errors.
+- Missing predictions: treated as empty BAF.
+- Arguments with IDs referenced in relations but not present in argument list: relation statements are silently skipped.
+
+### 4.9 `run_neural_eval.py` — Neural Evaluation CLI
+
+Post-hoc neural evaluation of saved BAF extraction results. Reads per-essay JSONs from `results/raw/` and writes aggregated neural metrics to `results/neural_metrics/`.
+
+**CLI interface:**
+
+```bash
+# Evaluate one (model, method) pair
+python run_neural_eval.py --model gemini-3-flash-preview --method zs_e2e
+
+# Evaluate all saved results
+python run_neural_eval.py --all
+
+# List available results
+python run_neural_eval.py --list
+
+# Force CPU
+python run_neural_eval.py --model gemini-3-flash-preview --method fs_e2e --device cpu
+```
+
+**Data flow:**
+
+1. Load dataset via `load_persuasive_essays()` + `get_split("test")`.
+2. Discover/load saved predictions from `results/raw/{model}/{method}/`.
+3. Reconstruct predicted BAFs via `BAF.from_dict(data["pred_baf"])`.
+4. Call `evaluate_dataset_neural()` with predictions, golds, and essay texts.
+5. Save results to `results/neural_metrics/{model}_{method}.json`.
+6. Print formatted summary table.
+
+**Device auto-detection:** defaults to CUDA if available, falls back to CPU.
 
 ## 5. Output Format
 

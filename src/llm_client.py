@@ -31,7 +31,7 @@ class ModelConfig:
     name: str  # display name
     model_id: str  # OpenRouter model identifier (provider/model)
     max_tokens: int = 4096
-    temperature: float = 0.0
+    temperature: Optional[float] = 0.0  # None = model default (for reasoning models)
 
 
 # OpenRouter model IDs follow the pattern "provider/model-name".
@@ -77,6 +77,20 @@ MODELS: Dict[str, ModelConfig] = {
     "qwen3-235b": ModelConfig(
         name="Qwen 3 235B A22B",
         model_id="qwen/qwen3-235b-a22b-2507",
+    ),
+    # --- SOTA frontier models ---
+    "gpt-5.2": ModelConfig(
+        name="GPT-5.2",
+        model_id="openai/gpt-5.2",
+        temperature=None,  # reasoning model; does not support temperature
+    ),
+    "claude-sonnet-4.5": ModelConfig(
+        name="Claude Sonnet 4.5",
+        model_id="anthropic/claude-sonnet-4.5",
+    ),
+    "gemini-3-pro-preview": ModelConfig(
+        name="Gemini 3 Pro Preview",
+        model_id="google/gemini-3-pro-preview",
     ),
 }
 
@@ -258,13 +272,16 @@ class LLMClient:
     ) -> LLMResponse:
         client = self._get_client()
 
-        t0 = time.time()
-        response = client.chat.completions.create(
+        kwargs = dict(
             model=config.model_id,
             messages=messages,
             max_tokens=config.max_tokens,
-            temperature=config.temperature,
         )
+        if config.temperature is not None:
+            kwargs["temperature"] = config.temperature
+
+        t0 = time.time()
+        response = client.chat.completions.create(**kwargs)
         latency = time.time() - t0
 
         content = response.choices[0].message.content or ""
