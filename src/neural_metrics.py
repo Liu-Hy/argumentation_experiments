@@ -95,6 +95,44 @@ def serialize_af_statements(baf: BAF) -> List[str]:
 # Lazy model loading (singletons)
 # ---------------------------------------------------------------------------
 
+_bertscore_cache: Dict[str, object] = {}
+
+
+def _get_bertscore_scorer(
+    model_type: str = "microsoft/deberta-xlarge-mnli",
+    device: str = "cpu",
+) -> object:
+    """Load and cache a BERTScorer instance.
+
+    Uses the class-based API so we can patch the tokenizer's model_max_length
+    after loading — DeBERTa sets this to an absurdly large value that overflows
+    the fast tokenizer's truncation routine.
+    """
+    cache_key = f"{model_type}:{device}"
+    if cache_key in _bertscore_cache:
+        return _bertscore_cache[cache_key]
+
+    from bert_score import BERTScorer
+
+    logger.info(f"Loading BERTScore model: {model_type} on {device}")
+    scorer = BERTScorer(
+        model_type=model_type,
+        lang="en",
+        device=device,
+        rescale_with_baseline=True,
+    )
+
+    # Fix DeBERTa tokenizer overflow: model_max_length can be ~1e30, causing
+    # OverflowError in the Rust-based fast tokenizer.  Clamp to the model's
+    # actual max_position_embeddings.
+    if hasattr(scorer._tokenizer, "model_max_length") and scorer._tokenizer.model_max_length > 1_000_000:
+        max_pos = getattr(scorer._model.config, "max_position_embeddings", 512)
+        scorer._tokenizer.model_max_length = max_pos
+
+    _bertscore_cache[cache_key] = scorer
+    return scorer
+
+
 _nli_cache: Dict[str, Tuple] = {}
 
 
@@ -146,8 +184,6 @@ def bertscore_af_coverage(
         bertscore_f1         — Balance
         bertscore_per_arg_precision — Mean per-argument BERTScore precision
     """
-    from bert_score import score as bert_score_fn
-
     arg_text = serialize_arguments(baf)
 
     # Empty BAF: return zeros
@@ -159,16 +195,13 @@ def bertscore_af_coverage(
             "bertscore_per_arg_precision": 0.0,
         }
 
+    scorer = _get_bertscore_scorer(model_type, device)
+
     # Concatenated BERTScore: candidate=arg_text, reference=essay
-    P, R, F1 = bert_score_fn(
+    P, R, F1 = scorer.score(
         [arg_text],
         [essay_text],
-        model_type=model_type,
-        lang="en",
-        device=device,
         batch_size=batch_size,
-        rescale_with_baseline=True,
-        verbose=False,
     )
 
     # Per-argument variant: BERTScore(arg.text, essay) for each argument
@@ -176,15 +209,10 @@ def bertscore_af_coverage(
     arg_texts = [a.text for a in sorted_args]
     essay_refs = [essay_text] * len(arg_texts)
 
-    Pa, _Ra, _Fa = bert_score_fn(
+    Pa, _Ra, _Fa = scorer.score(
         arg_texts,
         essay_refs,
-        model_type=model_type,
-        lang="en",
-        device=device,
         batch_size=batch_size,
-        rescale_with_baseline=True,
-        verbose=False,
     )
 
     return {
