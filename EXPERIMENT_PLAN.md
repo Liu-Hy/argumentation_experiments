@@ -133,7 +133,6 @@ Computed metrics:
 
 - **Micro-aggregated**: pool TP/FP/FN across all 80 test essays, then compute P/R/F1. Gives more weight to essays with more annotations.
 - **Macro-averaged**: compute F1 per essay, then average across essays. Gives equal weight to each essay.
-- **Bootstrap 95% CIs**: 10,000 bootstrap resamples over the 80 test essays for macro-averaged F1. Reports [2.5th, 97.5th percentile] intervals.
 
 #### Practical Metrics
 
@@ -189,7 +188,7 @@ For each (model, method) combination:
 4. Parse output: extract JSON, fuzzy-match quoted text to essay character offsets.
 5. Save raw LLM output + parsed BAF per essay.
 6. Compute all metrics.
-7. Save aggregate results with bootstrap CIs.
+7. Save aggregate results.
 
 Pipeline methods execute two sequential API calls per essay (step 1 output feeds into step 2). Errors in step 1 propagate naturally.
 

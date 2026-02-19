@@ -4,7 +4,7 @@ This project evaluates how well current LLMs can extract bipolar argumentation f
 
 We use the [Argument Annotated Essays v2](https://tudatalib.ulb.tu-darmstadt.de/handle/tudatalib/2422) dataset (402 essays, ~6k arguments, ~3.8k relations) and test 10 LLMs via OpenRouter across five prompting strategies that vary along two axes: task decomposition (end-to-end vs. two-step pipeline) and prompting style (zero-shot vs. few-shot), plus chain-of-thought reasoning. A gold-argument diagnostic condition isolates relation extraction performance from span identification errors.
 
-Evaluation uses character-level IoU span matching with Hungarian alignment, and reports macro-averaged F1 separately for support and attack relations, with bootstrap confidence intervals.
+Evaluation uses character-level IoU span matching with Hungarian alignment, and reports macro-averaged F1 separately for support and attack relations.
 
 ## Usage
 

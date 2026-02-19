@@ -373,7 +373,7 @@ def evaluate_essay_neural(
 
 
 # ---------------------------------------------------------------------------
-# Dataset-level aggregation with bootstrap CIs
+# Dataset-level aggregation
 # ---------------------------------------------------------------------------
 
 # Metric keys to aggregate
@@ -389,40 +389,6 @@ _METRIC_KEYS = [
 ]
 
 
-def _bootstrap_neural_cis(
-    per_essay: Dict[str, Dict],
-    metric_keys: List[str],
-    prefix: str = "pred",
-    n_resamples: int = 10000,
-    seed: int = 42,
-) -> Dict:
-    """Bootstrap 95% CIs for neural metric macro-averages."""
-    if not per_essay:
-        return {}
-
-    rng = np.random.RandomState(seed)
-    essay_ids = list(per_essay.keys())
-    n = len(essay_ids)
-
-    samples: Dict[str, List[float]] = {k: [] for k in metric_keys}
-
-    for _ in range(n_resamples):
-        indices = rng.randint(0, n, size=n)
-        for k in metric_keys:
-            vals = [per_essay[essay_ids[i]][prefix][k] for i in indices]
-            samples[k].append(float(np.mean(vals)))
-
-    cis = {}
-    for k in metric_keys:
-        arr = np.array(samples[k])
-        cis[k] = {
-            "mean": float(np.mean(arr)),
-            "ci_lower": float(np.percentile(arr, 2.5)),
-            "ci_upper": float(np.percentile(arr, 97.5)),
-        }
-    return cis
-
-
 def evaluate_dataset_neural(
     predictions: Dict[str, BAF],
     golds: Dict[str, BAF],
@@ -431,8 +397,6 @@ def evaluate_dataset_neural(
     nli_model: str = "microsoft/deberta-v2-xlarge-mnli",
     device: str = "cpu",
     batch_size: int = 16,
-    bootstrap_n: int = 10000,
-    bootstrap_seed: int = 42,
 ) -> Dict:
     """Aggregate neural evaluation across all essays.
 
@@ -480,12 +444,6 @@ def evaluate_dataset_neural(
         macro_pred[k] = float(np.mean(pred_vals)) if pred_vals else 0.0
         macro_gold[k] = float(np.mean(gold_vals)) if gold_vals else 0.0
 
-    # Bootstrap CIs for prediction metrics
-    cis = _bootstrap_neural_cis(
-        per_essay, _METRIC_KEYS, prefix="pred",
-        n_resamples=bootstrap_n, seed=bootstrap_seed,
-    )
-
     return {
         "config": {
             "nli_model": nli_model,
@@ -494,7 +452,6 @@ def evaluate_dataset_neural(
         },
         "macro": macro_pred,
         "gold_ceiling": macro_gold,
-        "bootstrap_95ci": cis,
         "per_essay": {
             eid: per_essay[eid]["pred"] for eid in per_essay
         },

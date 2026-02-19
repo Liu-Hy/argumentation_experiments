@@ -210,7 +210,7 @@ def evaluate_essay(
 
 
 # ---------------------------------------------------------------------------
-# Dataset-level evaluation with bootstrap CIs
+# Dataset-level evaluation
 # ---------------------------------------------------------------------------
 
 
@@ -218,12 +218,10 @@ def evaluate_dataset(
     predictions: Dict[str, BAF],
     golds: Dict[str, BAF],
     iou_threshold: float = 0.5,
-    bootstrap_n: int = 10000,
-    bootstrap_seed: int = 42,
 ) -> Dict:
     """Aggregate evaluation across all essays.
 
-    Returns per-essay results, micro-aggregated metrics, and bootstrap 95% CIs.
+    Returns per-essay results, micro-aggregated metrics, and macro-averaged metrics.
     """
     per_essay: Dict[str, Dict] = {}
     for essay_id, gold_baf in golds.items():
@@ -259,14 +257,10 @@ def evaluate_dataset(
     # ---- Macro-average of per-essay F1 scores ----
     macro = _macro_average(per_essay)
 
-    # ---- Bootstrap 95% CIs on macro-average F1 ----
-    cis = _bootstrap_cis(per_essay, bootstrap_n, bootstrap_seed)
-
     return {
         "per_essay": per_essay,
         "micro": micro,
         "macro": macro,
-        "bootstrap_95ci": cis,
         "n_essays": len(golds),
         "n_predicted": len(predictions),
     }
@@ -346,62 +340,6 @@ def _macro_average(per_essay: Dict[str, Dict]) -> Dict:
     }
 
 
-def _bootstrap_cis(
-    per_essay: Dict[str, Dict],
-    n_resamples: int = 10000,
-    seed: int = 42,
-) -> Dict:
-    """Bootstrap 95% confidence intervals for macro-average F1 scores.
-
-    For attack and relation_macro metrics, uses the same exclusion logic
-    as _macro_average (skip essays where attack tp=fp=fn=0).
-    """
-    if not per_essay:
-        return {}
-    rng = np.random.RandomState(seed)
-    essay_ids = list(per_essay.keys())
-    n = len(essay_ids)
-
-    keys = ["argument_f1", "support_f1", "attack_f1", "relation_macro_f1"]
-    samples: Dict[str, List[float]] = {k: [] for k in keys}
-
-    for _ in range(n_resamples):
-        indices = rng.randint(0, n, size=n)
-        resampled = [per_essay[essay_ids[i]] for i in indices]
-        samples["argument_f1"].append(
-            float(np.mean([m["argument"]["f1"] for m in resampled]))
-        )
-        samples["support_f1"].append(
-            float(np.mean([m["relation"]["support"]["f1"] for m in resampled]))
-        )
-
-        # Attack: exclude essays where the metric is undefined
-        att_vals = []
-        rel_macro_vals = []
-        for m in resampled:
-            a = m["relation"]["attack"]
-            sf1 = m["relation"]["support"]["f1"]
-            if a["tp"] + a["fp"] + a["fn"] > 0:
-                att_vals.append(a["f1"])
-                rel_macro_vals.append((sf1 + a["f1"]) / 2)
-            else:
-                rel_macro_vals.append(sf1)
-        samples["attack_f1"].append(
-            float(np.mean(att_vals)) if att_vals else 0.0
-        )
-        samples["relation_macro_f1"].append(float(np.mean(rel_macro_vals)))
-
-    cis = {}
-    for k in keys:
-        arr = np.array(samples[k])
-        cis[k] = {
-            "mean": float(np.mean(arr)),
-            "ci_lower": float(np.percentile(arr, 2.5)),
-            "ci_upper": float(np.percentile(arr, 97.5)),
-        }
-    return cis
-
-
 # ---------------------------------------------------------------------------
 # Pretty-print results
 # ---------------------------------------------------------------------------
@@ -416,7 +354,6 @@ def format_results(results: Dict) -> str:
 
     micro = results["micro"]
     macro = results["macro"]
-    cis = results["bootstrap_95ci"]
 
     lines.append(
         f"  Essays evaluated: {results['n_essays']}  "
@@ -453,17 +390,13 @@ def format_results(results: Dict) -> str:
         ("support_f1", "Support rel F1"),
         ("relation_macro_f1", "Relation macro F1"),
     ]:
-        ci = cis.get(k, {})
         lines.append(
-            f"  {label:22s}: {macro[k]:.3f}  "
-            f"[{ci.get('ci_lower', 0):.3f}, {ci.get('ci_upper', 0):.3f}]"
+            f"  {label:22s}: {macro[k]:.3f}"
         )
     # Attack F1 with note about how many essays are included
     att_n = macro.get("attack_f1_n_essays", "?")
-    ci = cis.get("attack_f1", {})
     lines.append(
         f"  {'Attack rel F1':22s}: {macro['attack_f1']:.3f}  "
-        f"[{ci.get('ci_lower', 0):.3f}, {ci.get('ci_upper', 0):.3f}]  "
         f"(over {att_n} essays with attacks)"
     )
 

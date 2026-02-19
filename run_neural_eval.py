@@ -128,7 +128,6 @@ def format_neural_results(results: Dict) -> str:
 
     macro = results["macro"]
     gold = results["gold_ceiling"]
-    cis = results["bootstrap_95ci"]
 
     lines.append("--- BERTScore AF-Coverage ---")
     for k, label in [
@@ -137,10 +136,8 @@ def format_neural_results(results: Dict) -> str:
         ("bertscore_f1", "F1"),
         ("bertscore_per_arg_precision", "Per-arg precision"),
     ]:
-        ci = cis.get(k, {})
         lines.append(
             f"  {label:26s}: {macro[k]:.3f}  "
-            f"[{ci.get('ci_lower', 0):.3f}, {ci.get('ci_upper', 0):.3f}]  "
             f"(gold ceiling: {gold[k]:.3f})"
         )
 
@@ -152,10 +149,8 @@ def format_neural_results(results: Dict) -> str:
         ("nli_relation_groundedness", "Relation groundedness"),
         ("nli_faithfulness_frac_above_50", "Frac above 0.5"),
     ]:
-        ci = cis.get(k, {})
         lines.append(
             f"  {label:26s}: {macro[k]:.3f}  "
-            f"[{ci.get('ci_lower', 0):.3f}, {ci.get('ci_upper', 0):.3f}]  "
             f"(gold ceiling: {gold[k]:.3f})"
         )
 

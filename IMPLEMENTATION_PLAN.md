@@ -15,7 +15,7 @@ transformers>=4.30.0
 torch>=2.0.0
 ```
 
-- `numpy`: numerical operations, bootstrap resampling.
+- `numpy`: numerical operations.
 - `scipy`: Hungarian algorithm for optimal span matching (`linear_sum_assignment`). A greedy fallback is provided if scipy is unavailable.
 - `openai`: OpenAI-compatible SDK, used to call OpenRouter's API endpoint.
 - `bert-score`: BERTScore computation for AF-coverage metrics.
@@ -107,7 +107,7 @@ Fully dataset-agnostic. Takes predicted and gold `BAF` objects as input.
 
 **Dataset-level evaluation:**
 
-- `evaluate_dataset(predictions, golds, ...)`: Computes micro-aggregated metrics (pooled TP/FP/FN), macro-averaged metrics (per-essay F1 averaged), and bootstrap 95% confidence intervals (10,000 resamples, seeded).
+- `evaluate_dataset(predictions, golds, ...)`: Computes micro-aggregated metrics (pooled TP/FP/FN) and macro-averaged metrics (per-essay F1 averaged).
 - `format_results(results)`: Pretty-prints a summary table to stdout.
 
 **Relation evaluation criterion:** a predicted relation is a true positive iff both its source and target arguments match gold arguments (via the span matching) AND the relation type matches.
@@ -254,7 +254,7 @@ Reference-free neural metrics that compare a generated BAF against its source es
 **Aggregation:**
 
 - `evaluate_essay_neural(pred_baf, gold_baf, essay_text, ...)`: Combined evaluation for one essay. Evaluates both prediction and gold (ceiling).
-- `evaluate_dataset_neural(predictions, golds, essay_texts, ...)`: Dataset-level aggregation with bootstrap 95% CIs. Same resampling pattern as `_bootstrap_cis` in `evaluation.py`.
+- `evaluate_dataset_neural(predictions, golds, essay_texts, ...)`: Dataset-level aggregation of neural metrics across essays.
 
 **Edge cases:**
 
@@ -333,10 +333,6 @@ Pipeline methods additionally include `step1_raw`, `step2_raw`, `step1_usage`, `
     "support_f1": 0.59,
     "attack_f1": 0.09,
     "relation_macro_f1": 0.34
-  },
-  "bootstrap_95ci": {
-    "argument_f1": {"mean": 0.79, "ci_lower": 0.75, "ci_upper": 0.83},
-    "relation_macro_f1": {"mean": 0.34, "ci_lower": 0.28, "ci_upper": 0.40}
   },
   "parse_success_rate": 0.975,
   "per_essay_summary": {
