@@ -21,6 +21,27 @@ Usage:
 
     # Resume from a partial run (skips essays with existing results)
     python run_experiment.py --model gpt-4o --method zs_e2e --resume
+
+    # --- Sensitivity experiments ---
+
+    # Evaluate on validation split (40 held-out training essays)
+    python run_experiment.py --model claude-haiku-4.5 --method fs_e2e --split val
+
+    # Test a prompt variant on validation set
+    python run_experiment.py --model claude-haiku-4.5 --method fs_e2e \\
+        --split val --prompt-variant enhanced
+
+    # Change number of few-shot examples
+    python run_experiment.py --model claude-haiku-4.5 --method fs_e2e \\
+        --split val --n-examples 5
+
+    # Use a random example set (for sensitivity analysis)
+    python run_experiment.py --model claude-haiku-4.5 --method fs_e2e \\
+        --split val --example-seed 42
+
+    # Tag to distinguish multiple runs (auto-generated if not provided)
+    python run_experiment.py --model claude-haiku-4.5 --method fs_e2e \\
+        --tag run2
 """
 
 from __future__ import annotations
@@ -38,9 +59,11 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from src.baf import BAF
 from src.data_loader import (
+    create_val_split,
     get_split,
     load_persuasive_essays,
     select_fewshot_examples,
+    select_fewshot_examples_random,
 )
 from src.evaluation import evaluate_dataset, format_results
 from src.llm_client import LLMClient, MODELS, LLMResponse
@@ -65,20 +88,28 @@ ALL_METHODS = E2E_METHODS + PIPE_METHODS + GOLD_METHODS
 # ---------------------------------------------------------------------------
 
 
-def _results_dir(base: str, model_key: str, method: str) -> str:
-    d = os.path.join(base, "results", "raw", model_key, method)
+def _results_dir(base: str, model_key: str, method: str, split: str = "test") -> str:
+    if split == "val":
+        d = os.path.join(base, "results_val", "raw", model_key, method)
+    else:
+        d = os.path.join(base, "results", "raw", model_key, method)
     os.makedirs(d, exist_ok=True)
     return d
 
 
-def _save_raw(base: str, model_key: str, method: str, essay_id: str, data: dict):
-    d = _results_dir(base, model_key, method)
+def _save_raw(base: str, model_key: str, method: str, essay_id: str, data: dict,
+              split: str = "test"):
+    d = _results_dir(base, model_key, method, split)
     with open(os.path.join(d, f"{essay_id}.json"), "w") as f:
         json.dump(data, f, indent=2)
 
 
-def _load_raw(base: str, model_key: str, method: str, essay_id: str) -> Optional[dict]:
-    path = os.path.join(base, "results", "raw", model_key, method, f"{essay_id}.json")
+def _load_raw(base: str, model_key: str, method: str, essay_id: str,
+              split: str = "test") -> Optional[dict]:
+    if split == "val":
+        path = os.path.join(base, "results_val", "raw", model_key, method, f"{essay_id}.json")
+    else:
+        path = os.path.join(base, "results", "raw", model_key, method, f"{essay_id}.json")
     if os.path.exists(path):
         with open(path) as f:
             return json.load(f)
@@ -96,28 +127,29 @@ def build_messages(
     examples: List[Dict],
     gold_baf: Optional[BAF] = None,
     step1_output: Optional[str] = None,
+    variant: str = "default",
 ) -> List[Dict[str, str]]:
     """Build the prompt messages for a given method."""
     if method == "zs_e2e":
-        return prompts.zs_e2e(essay_text)
+        return prompts.zs_e2e(essay_text, variant=variant)
     elif method == "fs_e2e":
-        return prompts.fs_e2e(essay_text, examples)
+        return prompts.fs_e2e(essay_text, examples, variant=variant)
     elif method == "fs_cot_e2e":
-        return prompts.fs_cot_e2e(essay_text, examples)
+        return prompts.fs_cot_e2e(essay_text, examples, variant=variant)
     elif method == "zs_pipe":
         if step1_output is None:
-            return prompts.zs_pipe_step1(essay_text)
+            return prompts.zs_pipe_step1(essay_text, variant=variant)
         else:
-            return prompts.zs_pipe_step2(essay_text, step1_output)
+            return prompts.zs_pipe_step2(essay_text, step1_output, variant=variant)
     elif method == "fs_pipe":
         if step1_output is None:
-            return prompts.fs_pipe_step1(essay_text, examples)
+            return prompts.fs_pipe_step1(essay_text, examples, variant=variant)
         else:
-            return prompts.fs_pipe_step2(essay_text, step1_output, examples)
+            return prompts.fs_pipe_step2(essay_text, step1_output, examples, variant=variant)
     elif method == "gold_zs":
-        return prompts.gold_arg_relations(essay_text, gold_baf, examples=None)
+        return prompts.gold_arg_relations(essay_text, gold_baf, examples=None, variant=variant)
     elif method == "gold_fs":
-        return prompts.gold_arg_relations(essay_text, gold_baf, examples=examples)
+        return prompts.gold_arg_relations(essay_text, gold_baf, examples=examples, variant=variant)
     else:
         raise ValueError(f"Unknown method: {method}")
 
@@ -135,6 +167,7 @@ def run_essay(
     essay_text: str,
     gold_baf: BAF,
     examples: List[Dict],
+    variant: str = "default",
 ) -> Dict:
     """Run one method on one essay.  Returns a result dict."""
     is_pipe = method in PIPE_METHODS
@@ -142,7 +175,7 @@ def run_essay(
 
     if is_pipe:
         # Step 1: identify arguments
-        msgs1 = build_messages(method, essay_text, examples)
+        msgs1 = build_messages(method, essay_text, examples, variant=variant)
         resp1: LLMResponse = client.generate(msgs1, model_key)
         step1_output = resp1.content
 
@@ -166,7 +199,8 @@ def run_essay(
             }
 
         # Step 2: predict relations
-        msgs2 = build_messages(method, essay_text, examples, step1_output=step1_output)
+        msgs2 = build_messages(method, essay_text, examples,
+                               step1_output=step1_output, variant=variant)
         resp2: LLMResponse = client.generate(msgs2, model_key)
 
         # Parse combined result
@@ -187,7 +221,8 @@ def run_essay(
         }
 
     elif is_gold:
-        msgs = build_messages(method, essay_text, examples, gold_baf=gold_baf)
+        msgs = build_messages(method, essay_text, examples, gold_baf=gold_baf,
+                              variant=variant)
         resp: LLMResponse = client.generate(msgs, model_key)
         pred_baf, stats = parse_relations_only(resp.content, gold_baf)
 
@@ -205,7 +240,7 @@ def run_essay(
 
     else:
         # E2E methods
-        msgs = build_messages(method, essay_text, examples)
+        msgs = build_messages(method, essay_text, examples, variant=variant)
         resp: LLMResponse = client.generate(msgs, model_key)
         pred_baf, stats = parse_llm_output(resp.content, essay_text)
 
@@ -262,6 +297,37 @@ def _parse_pipe_output(
 
 
 # ---------------------------------------------------------------------------
+# Tag computation
+# ---------------------------------------------------------------------------
+
+
+def _compute_tag(args) -> Optional[str]:
+    """Auto-generate a result tag from non-default experimental settings.
+
+    Returns None if all settings are at their defaults (standard run).
+    """
+    if args.tag is not None:
+        return args.tag
+
+    parts = []
+    if args.prompt_variant != "default":
+        parts.append(f"pv_{args.prompt_variant}")
+    if args.n_examples != 3:
+        parts.append(f"n{args.n_examples}")
+    if args.example_seed is not None:
+        parts.append(f"seed{args.example_seed}")
+    if args.run_id is not None:
+        parts.append(f"run{args.run_id}")
+
+    return ".".join(parts) if parts else None
+
+
+def _effective_method(method: str, tag: Optional[str]) -> str:
+    """Append tag to method name for result paths."""
+    return f"{method}.{tag}" if tag else method
+
+
+# ---------------------------------------------------------------------------
 # Main experiment loop
 # ---------------------------------------------------------------------------
 
@@ -272,30 +338,75 @@ def run_experiment(
     model_key: str,
     methods: List[str],
     resume: bool = False,
+    split: str = "test",
+    prompt_variant: str = "default",
+    n_examples: int = 3,
+    example_seed: Optional[int] = None,
+    tag: Optional[str] = None,
+    val_size: int = 40,
 ):
     """Run the full experiment for one model across specified methods."""
     logger.info(f"Loading dataset from {dataset_dir}")
     dataset = load_persuasive_essays(dataset_dir)
     train_data = get_split(dataset, "train")
-    test_data = get_split(dataset, "test")
-    logger.info(f"Loaded {len(train_data)} train, {len(test_data)} test essays")
+    logger.info(f"Loaded {len(train_data)} train essays")
+
+    # Determine evaluation data and example source
+    if split == "val":
+        example_source, eval_data = create_val_split(train_data, val_size=val_size)
+        logger.info(
+            f"Val split: {len(example_source)} train-proper, "
+            f"{len(eval_data)} validation essays"
+        )
+    else:
+        eval_data = get_split(dataset, "test")
+        example_source = train_data
+        logger.info(f"Test split: {len(eval_data)} test essays")
 
     # Select few-shot examples
-    fs_ids = select_fewshot_examples(train_data, n=3)
-    examples = [{"text": train_data[eid]["text"], "baf": train_data[eid]["baf"]} for eid in fs_ids]
-    logger.info(f"Few-shot examples: {fs_ids}")
+    if example_seed is not None:
+        fs_ids = select_fewshot_examples_random(
+            example_source, n=n_examples, seed=example_seed
+        )
+    else:
+        fs_ids = select_fewshot_examples(example_source, n=n_examples)
 
-    # Save few-shot example IDs for reproducibility
-    meta_dir = os.path.join(base_dir, "results", "meta")
+    examples = [
+        {"text": example_source[eid]["text"], "baf": example_source[eid]["baf"]}
+        for eid in fs_ids
+    ]
+    logger.info(f"Few-shot examples ({len(fs_ids)}): {fs_ids}")
+
+    # Save metadata
+    if split == "val":
+        meta_dir = os.path.join(base_dir, "results_val", "meta")
+    else:
+        meta_dir = os.path.join(base_dir, "results", "meta")
     os.makedirs(meta_dir, exist_ok=True)
-    with open(os.path.join(meta_dir, "fewshot_examples.json"), "w") as f:
-        json.dump({"essay_ids": fs_ids}, f, indent=2)
+
+    tag_label = tag or "default"
+    meta_filename = f"fewshot_examples_{tag_label}.json" if tag else "fewshot_examples.json"
+    with open(os.path.join(meta_dir, meta_filename), "w") as f:
+        json.dump({
+            "essay_ids": fs_ids,
+            "n_examples": n_examples,
+            "example_seed": example_seed,
+            "prompt_variant": prompt_variant,
+            "split": split,
+            "tag": tag,
+        }, f, indent=2)
+
+    # Log experiment config
+    logger.info(f"Config: split={split}, variant={prompt_variant}, "
+                f"n_examples={n_examples}, seed={example_seed}, tag={tag}")
 
     client = LLMClient()
 
     for method in methods:
+        eff_method = _effective_method(method, tag)
         logger.info(f"\n{'='*60}")
-        logger.info(f"Model: {model_key} | Method: {method}")
+        logger.info(f"Model: {model_key} | Method: {method} | Tag: {tag or '(none)'}")
+        logger.info(f"Split: {split} | Variant: {prompt_variant} | Effective: {eff_method}")
         logger.info(f"{'='*60}")
 
         predictions: Dict[str, BAF] = {}
@@ -303,22 +414,22 @@ def run_experiment(
         n_success = 0
         total_latency = 0.0
 
-        test_ids = sorted(test_data.keys())
-        for i, essay_id in enumerate(test_ids):
-            essay = test_data[essay_id]
+        eval_ids = sorted(eval_data.keys())
+        for i, essay_id in enumerate(eval_ids):
+            essay = eval_data[essay_id]
 
             # Resume: skip if already done
             if resume:
-                existing = _load_raw(base_dir, model_key, method, essay_id)
+                existing = _load_raw(base_dir, model_key, eff_method, essay_id, split)
                 if existing is not None:
                     pred_baf = BAF.from_dict(existing["pred_baf"])
                     predictions[essay_id] = pred_baf
                     golds[essay_id] = essay["baf"]
                     n_success += existing.get("parse_success", False)
-                    logger.info(f"  [{i+1}/{len(test_ids)}] {essay_id}: loaded from cache")
+                    logger.info(f"  [{i+1}/{len(eval_ids)}] {essay_id}: loaded from cache")
                     continue
 
-            logger.info(f"  [{i+1}/{len(test_ids)}] {essay_id}: running...")
+            logger.info(f"  [{i+1}/{len(eval_ids)}] {essay_id}: running...")
 
             result = run_essay(
                 client=client,
@@ -328,10 +439,11 @@ def run_experiment(
                 essay_text=essay["text"],
                 gold_baf=essay["baf"],
                 examples=examples,
+                variant=prompt_variant,
             )
 
             # Save raw result
-            _save_raw(base_dir, model_key, method, essay_id, result)
+            _save_raw(base_dir, model_key, eff_method, essay_id, result, split)
 
             pred_baf = BAF.from_dict(result["pred_baf"])
             predictions[essay_id] = pred_baf
@@ -348,17 +460,21 @@ def run_experiment(
             )
 
         # Evaluate
-        logger.info(f"\nEvaluating {method} on {model_key}...")
-        logger.info(f"Parse success rate: {n_success}/{len(test_ids)}")
+        logger.info(f"\nEvaluating {eff_method} on {model_key} ({split} split)...")
+        logger.info(f"Parse success rate: {n_success}/{len(eval_ids)}")
 
         eval_results = evaluate_dataset(predictions, golds)
-        eval_results["parse_success_rate"] = n_success / len(test_ids) if test_ids else 0
+        eval_results["parse_success_rate"] = n_success / len(eval_ids) if eval_ids else 0
 
         # Save evaluation results
-        eval_dir = os.path.join(base_dir, "results", "metrics")
+        if split == "val":
+            eval_dir = os.path.join(base_dir, "results_val", "metrics")
+        else:
+            eval_dir = os.path.join(base_dir, "results", "metrics")
         os.makedirs(eval_dir, exist_ok=True)
-        eval_path = os.path.join(eval_dir, f"{model_key}_{method}.json")
-        # Convert for JSON serialization (remove per_essay BAFs)
+        eval_path = os.path.join(eval_dir, f"{model_key}_{eff_method}.json")
+
+        # Convert for JSON serialization
         save_results = {k: v for k, v in eval_results.items() if k != "per_essay"}
         save_results["per_essay_summary"] = {
             eid: {
@@ -369,11 +485,22 @@ def run_experiment(
             }
             for eid, m in eval_results["per_essay"].items()
         }
+        # Record experiment config in metrics for traceability
+        save_results["config"] = {
+            "split": split,
+            "prompt_variant": prompt_variant,
+            "n_examples": n_examples,
+            "example_seed": example_seed,
+            "fewshot_ids": fs_ids,
+            "tag": tag,
+        }
         with open(eval_path, "w") as f:
             json.dump(save_results, f, indent=2)
 
         # Print results
         print(f"\n{prompts.METHODS.get(method, method)} | {MODELS[model_key].name}")
+        if tag:
+            print(f"[tag={tag}, split={split}, variant={prompt_variant}]")
         print(format_results(eval_results))
 
 
@@ -424,6 +551,54 @@ def main():
         action="store_true",
         help="Verify API key and model availability before running",
     )
+
+    # --- Sensitivity experiment parameters ---
+    parser.add_argument(
+        "--split",
+        choices=["test", "val"],
+        default="test",
+        help="Evaluation split: 'test' (80 official test essays) or "
+             "'val' (held-out from training). Default: test",
+    )
+    parser.add_argument(
+        "--prompt-variant",
+        choices=prompts.PROMPT_VARIANTS,
+        default="default",
+        help="Prompt variant to use. Default: 'default'",
+    )
+    parser.add_argument(
+        "--n-examples",
+        type=int,
+        default=3,
+        help="Number of few-shot examples. Default: 3",
+    )
+    parser.add_argument(
+        "--example-seed",
+        type=int,
+        default=None,
+        help="Random seed for few-shot example selection. "
+             "If not set, uses the deterministic heuristic.",
+    )
+    parser.add_argument(
+        "--val-size",
+        type=int,
+        default=40,
+        help="Number of essays in validation split. Default: 40",
+    )
+    parser.add_argument(
+        "--tag",
+        type=str,
+        default=None,
+        help="Tag appended to method name in result paths. "
+             "Auto-generated from non-default settings if not provided.",
+    )
+    parser.add_argument(
+        "--run-id",
+        type=int,
+        default=None,
+        help="Run identifier for repeated-run variance experiments.",
+    )
+
     args = parser.parse_args()
 
     if args.list:
@@ -433,6 +608,9 @@ def main():
         print("\nAvailable methods:")
         for k, v in prompts.METHODS.items():
             print(f"  {k:15s} {v}")
+        print("\nPrompt variants:")
+        for v in prompts.PROMPT_VARIANTS:
+            print(f"  {v}")
         return
 
     if args.check:
@@ -477,6 +655,9 @@ def main():
     else:
         methods = [args.method]
 
+    # Compute effective tag
+    tag = _compute_tag(args)
+
     # Resolve dataset path relative to base_dir if needed
     dataset_dir = args.dataset
     if not os.path.isabs(dataset_dir):
@@ -488,6 +669,12 @@ def main():
         model_key=args.model,
         methods=methods,
         resume=args.resume,
+        split=args.split,
+        prompt_variant=args.prompt_variant,
+        n_examples=args.n_examples,
+        example_seed=args.example_seed,
+        tag=tag,
+        val_size=args.val_size,
     )
 
 

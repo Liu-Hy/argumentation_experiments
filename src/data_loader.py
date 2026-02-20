@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import csv
 import os
+import random
 from typing import Dict, List, Tuple
 
 from .baf import Argument, BAF, Relation
@@ -162,5 +163,95 @@ def select_fewshot_examples(
     while len(selected) < n and remaining:
         idx = len(remaining) // (n - len(selected) + 1)
         selected.append(remaining.pop(idx))
+
+    return selected[:n]
+
+
+def create_val_split(
+    train_data: Dict[str, dict], val_size: int = 40, seed: int = 42
+) -> Tuple[Dict[str, dict], Dict[str, dict]]:
+    """Split training data into train-proper and validation sets.
+
+    Uses stratified sampling to ensure the validation set contains essays
+    with attack relations in roughly the same proportion as the full
+    training set.
+
+    Returns
+    -------
+    (train_proper, val_data) : tuple of dicts with same format as input
+    """
+    items = sorted(train_data.items(), key=lambda x: x[0])
+
+    has_attack = [
+        (eid, d) for eid, d in items
+        if any(r.type == "attack" for r in d["baf"].relations)
+    ]
+    no_attack = [
+        (eid, d) for eid, d in items
+        if not any(r.type == "attack" for r in d["baf"].relations)
+    ]
+
+    rng = random.Random(seed)
+    rng.shuffle(has_attack)
+    rng.shuffle(no_attack)
+
+    # Proportional allocation
+    attack_ratio = len(has_attack) / len(items) if items else 0.5
+    n_attack_val = max(1, round(val_size * attack_ratio))
+    n_no_attack_val = val_size - n_attack_val
+
+    # Clamp to available
+    n_attack_val = min(n_attack_val, len(has_attack))
+    n_no_attack_val = min(n_no_attack_val, len(no_attack))
+
+    val_items = has_attack[:n_attack_val] + no_attack[:n_no_attack_val]
+    train_items = has_attack[n_attack_val:] + no_attack[n_no_attack_val:]
+
+    return dict(train_items), dict(val_items)
+
+
+def select_fewshot_examples_random(
+    train_data: Dict[str, dict],
+    n: int = 3,
+    seed: int = 0,
+    ensure_attacks: bool = True,
+) -> List[str]:
+    """Randomly select n training essays for few-shot prompts.
+
+    If ensure_attacks is True and n >= 2, at least one selected essay will
+    have attack relations (if any exist in the training data).
+
+    Different seeds produce different example sets, enabling sensitivity
+    analysis across example selections.
+    """
+    items = sorted(train_data.items(), key=lambda x: x[0])
+    rng = random.Random(seed)
+
+    has_attack = [
+        (eid, d) for eid, d in items
+        if any(r.type == "attack" for r in d["baf"].relations)
+    ]
+    no_attack = [
+        (eid, d) for eid, d in items
+        if not any(r.type == "attack" for r in d["baf"].relations)
+    ]
+
+    selected: List[str] = []
+
+    if ensure_attacks and has_attack and n >= 2:
+        # Pick one random essay with attacks
+        attack_choice = rng.choice(has_attack)
+        selected.append(attack_choice[0])
+        remaining = [(eid, d) for eid, d in items if eid != attack_choice[0]]
+    else:
+        remaining = list(items)
+
+    # Fill remaining slots randomly
+    rng.shuffle(remaining)
+    for eid, _d in remaining:
+        if len(selected) >= n:
+            break
+        if eid not in selected:
+            selected.append(eid)
 
     return selected[:n]
