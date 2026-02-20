@@ -413,8 +413,11 @@ def run_experiment(
         golds: Dict[str, BAF] = {}
         n_success = 0
         total_latency = 0.0
+        consecutive_empty = 0  # circuit breaker: consecutive empty API responses
+        CIRCUIT_BREAKER_LIMIT = 3  # abort method after this many consecutive empties
 
         eval_ids = sorted(eval_data.keys())
+        aborted = False
         for i, essay_id in enumerate(eval_ids):
             essay = eval_data[essay_id]
 
@@ -427,6 +430,7 @@ def run_experiment(
                     golds[essay_id] = essay["baf"]
                     n_success += existing.get("parse_success", False)
                     logger.info(f"  [{i+1}/{len(eval_ids)}] {essay_id}: loaded from cache")
+                    consecutive_empty = 0  # cached result breaks the streak
                     continue
 
             logger.info(f"  [{i+1}/{len(eval_ids)}] {essay_id}: running...")
@@ -452,6 +456,15 @@ def run_experiment(
 
             if result["parse_success"]:
                 n_success += 1
+                consecutive_empty = 0
+            else:
+                # Check if the API returned empty content (systematic failure)
+                # vs. a non-empty response that just didn't parse (model issue)
+                raw_content = result.get("raw_output", "") or result.get("step1_raw", "")
+                if not raw_content.strip():
+                    consecutive_empty += 1
+                else:
+                    consecutive_empty = 0  # got content, just couldn't parse it
 
             logger.info(
                 f"    -> {len(pred_baf.arguments)} args, "
@@ -459,12 +472,27 @@ def run_experiment(
                 f"parse_ok={result['parse_success']}"
             )
 
+            # Circuit breaker: abort if API is systematically failing
+            if consecutive_empty >= CIRCUIT_BREAKER_LIMIT:
+                logger.error(
+                    f"ABORTING {method} on {model_key}: "
+                    f"{CIRCUIT_BREAKER_LIMIT} consecutive empty API responses. "
+                    f"This likely indicates a systematic issue (API key, model "
+                    f"availability, or incompatible parameters). "
+                    f"Completed {i+1}/{len(eval_ids)} essays before abort."
+                )
+                aborted = True
+                break
+
         # Evaluate
+        if aborted:
+            logger.warning(f"Run aborted — evaluating {len(predictions)}/{len(eval_ids)} essays")
         logger.info(f"\nEvaluating {eff_method} on {model_key} ({split} split)...")
         logger.info(f"Parse success rate: {n_success}/{len(eval_ids)}")
 
         eval_results = evaluate_dataset(predictions, golds)
         eval_results["parse_success_rate"] = n_success / len(eval_ids) if eval_ids else 0
+        eval_results["aborted"] = aborted
 
         # Save evaluation results
         if split == "val":

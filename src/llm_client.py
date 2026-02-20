@@ -185,6 +185,7 @@ class LLMResponse:
     model: str = ""
     usage: Dict = field(default_factory=dict)
     latency_s: float = 0.0
+    finish_reason: str = ""  # "stop", "length" (truncated), etc.
     raw: Optional[dict] = None
 
 
@@ -332,7 +333,17 @@ class LLMClient:
         response = client.chat.completions.create(**kwargs)
         latency = time.time() - t0
 
-        content = response.choices[0].message.content or ""
+        choice = response.choices[0]
+        content = choice.message.content or ""
+        finish_reason = choice.finish_reason or ""
+
+        if finish_reason == "length":
+            logger.warning(
+                f"Response TRUNCATED (finish_reason=length) for "
+                f"{config.model_id} — output may be incomplete. "
+                f"Consider increasing max_tokens (currently {config.max_tokens})."
+            )
+
         usage = {}
         if response.usage:
             usage = {
@@ -346,6 +357,7 @@ class LLMClient:
             model=config.model_id,
             usage=usage,
             latency_s=latency,
+            finish_reason=finish_reason,
             raw=response.model_dump()
             if hasattr(response, "model_dump")
             else None,
