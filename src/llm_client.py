@@ -30,67 +30,104 @@ class ModelConfig:
 
     name: str  # display name
     model_id: str  # OpenRouter model identifier (provider/model)
-    max_tokens: int = 4096
-    temperature: Optional[float] = 0.0  # None = model default (for reasoning models)
+    max_tokens: int = 8192
+    temperature: Optional[float] = 0.0  # None = omit (for reasoning models that reject it)
+    is_reasoning: bool = False  # whether model supports reasoning/thinking
+    reasoning_effort: str = "medium"  # OpenRouter reasoning effort level
 
 
 # OpenRouter model IDs follow the pattern "provider/model-name".
 # Browse https://openrouter.ai/models for the full catalogue.
 MODELS: Dict[str, ModelConfig] = {
     # --- Primary experiment models ---
+    # NOTE: All models in this experiment are reasoning/thinking models.
+    # - max_tokens=16384 ensures enough room for reasoning trace + final answer
+    #   (with "medium" effort, ~8K reasoning + ~8K visible output).
+    # - is_reasoning=True passes {"reasoning": {"effort": "medium"}} to OpenRouter
+    #   to explicitly enable reasoning and prevent it from being silently disabled.
+    # - temperature=None for OpenAI models (GPT-5 family) which reject the parameter.
+    # - temperature=0.0 for other providers that accept it alongside reasoning.
     "gpt-5-mini": ModelConfig(
         name="GPT-5 mini",
         model_id="openai/gpt-5-mini",
+        max_tokens=16384,
+        temperature=None,  # OpenAI reasoning models reject temperature
+        is_reasoning=True,
     ),
     "gpt-5-nano": ModelConfig(
         name="GPT-5 nano",
         model_id="openai/gpt-5-nano",
+        max_tokens=16384,
+        temperature=None,  # OpenAI reasoning models reject temperature
+        is_reasoning=True,
     ),
     "claude-haiku-4.5": ModelConfig(
         name="Claude Haiku 4.5",
         model_id="anthropic/claude-haiku-4.5",
+        max_tokens=16384,
+        is_reasoning=True,
     ),
     "gemini-3-flash-preview": ModelConfig(
         name="Gemini 3 Flash Preview",
         model_id="google/gemini-3-flash-preview",
+        max_tokens=16384,
+        is_reasoning=True,
     ),
     "gemini-2.5-flash-lite": ModelConfig(
         name="Gemini 2.5 Flash Lite",
         model_id="google/gemini-2.5-flash-lite",
+        max_tokens=16384,
+        is_reasoning=True,
     ),
     "kimi-k2.5": ModelConfig(
         name="Kimi K2.5",
         model_id="moonshotai/kimi-k2.5",
+        max_tokens=16384,
+        is_reasoning=True,
     ),
     "deepseek-v3.2": ModelConfig(
         name="DeepSeek V3.2",
         model_id="deepseek/deepseek-v3.2",
+        max_tokens=16384,
+        is_reasoning=True,
     ),
     "minimax-m2.1": ModelConfig(
         name="MiniMax M2.1",
         model_id="minimax/minimax-m2.1",
+        max_tokens=16384,
+        is_reasoning=True,
     ),
     "grok-4.1-fast": ModelConfig(
         name="Grok 4.1 Fast",
         model_id="x-ai/grok-4.1-fast",
+        max_tokens=16384,
+        is_reasoning=True,
     ),
     "qwen3-235b": ModelConfig(
         name="Qwen 3 235B A22B",
         model_id="qwen/qwen3-235b-a22b-2507",
+        max_tokens=16384,
+        is_reasoning=True,
     ),
     # --- SOTA frontier models ---
     "gpt-5.2": ModelConfig(
         name="GPT-5.2",
         model_id="openai/gpt-5.2",
-        temperature=None,  # reasoning model; does not support temperature
+        max_tokens=16384,
+        temperature=None,  # OpenAI reasoning models reject temperature
+        is_reasoning=True,
     ),
     "claude-sonnet-4.5": ModelConfig(
         name="Claude Sonnet 4.5",
         model_id="anthropic/claude-sonnet-4.5",
+        max_tokens=16384,
+        is_reasoning=True,
     ),
     "gemini-3-pro-preview": ModelConfig(
         name="Gemini 3 Pro Preview",
         model_id="google/gemini-3-pro-preview",
+        max_tokens=16384,
+        is_reasoning=True,
     ),
 }
 
@@ -223,12 +260,14 @@ class LLMClient:
         config = MODELS[model_key]
         try:
             client = self._get_client()
-            response = client.chat.completions.create(
+            kwargs = dict(
                 model=config.model_id,
                 messages=[{"role": "user", "content": "Say OK."}],
                 max_tokens=16,
-                temperature=0.0,
             )
+            if config.temperature is not None:
+                kwargs["temperature"] = config.temperature
+            response = client.chat.completions.create(**kwargs)
             # Some models return empty content for trivial prompts;
             # a successful HTTP response (no exception) is enough.
             return response.choices is not None and len(response.choices) > 0
@@ -279,6 +318,15 @@ class LLMClient:
         )
         if config.temperature is not None:
             kwargs["temperature"] = config.temperature
+
+        # Explicitly enable reasoning for thinking models via OpenRouter's
+        # unified reasoning parameter.  This ensures reasoning is not silently
+        # disabled and provides a consistent effort level across providers.
+        # See https://openrouter.ai/docs/guides/best-practices/reasoning-tokens
+        if config.is_reasoning:
+            kwargs["extra_body"] = {
+                "reasoning": {"effort": config.reasoning_effort}
+            }
 
         t0 = time.time()
         response = client.chat.completions.create(**kwargs)
