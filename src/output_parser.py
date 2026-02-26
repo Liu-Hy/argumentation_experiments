@@ -370,3 +370,54 @@ def parse_relations_only(
     relations = _parse_relations(remapped_rels, gold_ids, stats)
 
     return BAF(arguments=list(gold_baf.arguments), relations=relations), stats
+
+
+# ---------------------------------------------------------------------------
+# Pairwise relation classification parsing
+# ---------------------------------------------------------------------------
+
+
+def parse_pairwise_response(
+    raw_output: str, arg1_id: str, arg2_id: str
+) -> Optional[Relation]:
+    """Parse a pairwise relation classification response.
+
+    The LLM was asked to classify using placeholder IDs 'arg1' and 'arg2'.
+    This function remaps them to the actual argument IDs.
+
+    Returns a Relation if support/attack was identified, or None for
+    "no relation" or parse failure.
+    """
+    data = _extract_json(raw_output)
+    if data is None:
+        return None
+
+    # "none" responses
+    if data.get("relation") == "none" or data.get("type") == "none":
+        return None
+
+    source = str(data.get("source", ""))
+    target = str(data.get("target", ""))
+    rtype = str(data.get("type", "")).lower().strip()
+
+    # Normalise common LLM variations
+    if rtype in ("supports", "supporting"):
+        rtype = "support"
+    elif rtype in ("attacks", "attacking"):
+        rtype = "attack"
+
+    if rtype not in ("support", "attack"):
+        return None
+
+    # Remap placeholder IDs -> actual IDs
+    remap = {"arg1": arg1_id, "arg2": arg2_id}
+    actual_src = remap.get(source, source)
+    actual_tgt = remap.get(target, target)
+
+    valid_ids = {arg1_id, arg2_id}
+    if actual_src not in valid_ids or actual_tgt not in valid_ids:
+        return None
+    if actual_src == actual_tgt:
+        return None
+
+    return Relation(source=actual_src, target=actual_tgt, type=rtype)

@@ -57,7 +57,7 @@ from typing import Dict, List, Optional
 # Add parent dir to path so we can import src.*
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from src.baf import BAF
+from src.baf import BAF, Relation
 from src.data_loader import (
     create_val_split,
     get_split,
@@ -67,7 +67,7 @@ from src.data_loader import (
 )
 from src.evaluation import evaluate_dataset, format_results
 from src.llm_client import LLMClient, MODELS, LLMResponse
-from src.output_parser import parse_llm_output, parse_relations_only
+from src.output_parser import parse_llm_output, parse_relations_only, parse_pairwise_response
 from src import prompts
 
 logging.basicConfig(
@@ -80,7 +80,9 @@ logger = logging.getLogger("experiment")
 E2E_METHODS = ["zs_e2e", "fs_e2e", "fs_cot_e2e"]
 PIPE_METHODS = ["zs_pipe", "fs_pipe"]
 GOLD_METHODS = ["gold_zs", "gold_fs"]
-ALL_METHODS = E2E_METHODS + PIPE_METHODS + GOLD_METHODS
+PAIRWISE_METHODS = ["gold_fs_pairwise", "fs_pipe_pairwise"]
+ALL_METHODS = E2E_METHODS + PIPE_METHODS + GOLD_METHODS  # pairwise is opt-in
+ALL_METHODS_WITH_PAIRWISE = ALL_METHODS + PAIRWISE_METHODS
 
 
 # ---------------------------------------------------------------------------
@@ -297,6 +299,155 @@ def _parse_pipe_output(
 
 
 # ---------------------------------------------------------------------------
+# Pairwise per-essay execution
+# ---------------------------------------------------------------------------
+
+
+def run_essay_pairwise(
+    client: LLMClient,
+    model_key: str,
+    method: str,
+    essay_id: str,
+    essay_text: str,
+    gold_baf: BAF,
+    examples: List[Dict],
+    pair_examples: List[Dict],
+    variant: str = "default",
+) -> Dict:
+    """Run pairwise relation classification on one essay.
+
+    For gold_fs_pairwise: uses gold arguments, classifies all pairs.
+    For fs_pipe_pairwise: runs pipeline Step 1 first, then classifies pairs.
+    """
+    from itertools import combinations
+
+    is_gold = method.startswith("gold_")
+    total_latency = 0.0
+    step1_raw = None
+    step1_usage = {}
+
+    if is_gold:
+        # Use gold arguments, renumbered sequentially
+        arguments = list(gold_baf.arguments)
+        id_map = {}
+        arg_items = []
+        for i, arg in enumerate(arguments, 1):
+            seq_id = f"a{i}"
+            id_map[seq_id] = arg.id
+            arg_items.append((seq_id, arg))
+    else:
+        # Pipeline step 1: extract arguments (same as fs_pipe)
+        msgs1 = build_messages("fs_pipe", essay_text, examples, variant=variant)
+        resp1: LLMResponse = client.generate(msgs1, model_key)
+        step1_raw = resp1.content
+        step1_usage = resp1.usage
+        total_latency += resp1.latency_s
+
+        pred_baf_s1, stats_s1 = _parse_pipe_output(step1_raw, None, essay_text)
+        if len(pred_baf_s1.arguments) == 0:
+            return {
+                "essay_id": essay_id,
+                "method": method,
+                "model": model_key,
+                "step1_raw": step1_raw,
+                "step1_usage": step1_usage,
+                "n_pairs": 0,
+                "n_relations_found": 0,
+                "pairwise_usage": {},
+                "latency_s": total_latency,
+                "pred_baf": pred_baf_s1.to_dict(),
+                "parse_stats": stats_s1.to_dict(),
+                "parse_success": False,
+            }
+
+        arguments = pred_baf_s1.arguments
+        id_map = None
+        arg_items = [(arg.id, arg) for arg in arguments]
+
+    # Generate all unordered pairs
+    pairs = list(combinations(arg_items, 2))
+    n_pairs = len(pairs)
+
+    # Classify each pair
+    all_relations: List[Relation] = []
+    total_pw_usage = {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0}
+    n_parse_ok = 0
+    consecutive_empty = 0
+    PW_CIRCUIT_LIMIT = 5
+
+    for pair_idx, ((id1, arg1), (id2, arg2)) in enumerate(pairs):
+        msgs = prompts.pairwise_classify(
+            essay_text, arg1.text, arg2.text, pair_examples
+        )
+        resp: LLMResponse = client.generate(msgs, model_key)
+        total_latency += resp.latency_s
+        for k in total_pw_usage:
+            total_pw_usage[k] += resp.usage.get(k, 0)
+
+        if resp.content.strip():
+            consecutive_empty = 0
+            n_parse_ok += 1
+            relation = parse_pairwise_response(resp.content, id1, id2)
+            if relation is not None:
+                all_relations.append(relation)
+        else:
+            consecutive_empty += 1
+            if consecutive_empty >= PW_CIRCUIT_LIMIT:
+                logger.warning(
+                    f"    -> Pairwise circuit breaker: {PW_CIRCUIT_LIMIT} "
+                    f"consecutive empty responses at pair {pair_idx}/{n_pairs}"
+                )
+                break
+
+        # Progress logging every 25 pairs
+        if (pair_idx + 1) % 25 == 0:
+            logger.info(
+                f"      pair {pair_idx+1}/{n_pairs}, "
+                f"{len(all_relations)} relations so far"
+            )
+
+    # Remap IDs if gold setting
+    if is_gold and id_map:
+        remapped = []
+        for rel in all_relations:
+            src = id_map.get(rel.source, rel.source)
+            tgt = id_map.get(rel.target, rel.target)
+            remapped.append(Relation(source=src, target=tgt, type=rel.type))
+        pred_baf = BAF(arguments=list(gold_baf.arguments), relations=remapped)
+    else:
+        pred_baf = BAF(arguments=arguments, relations=all_relations)
+
+    result = {
+        "essay_id": essay_id,
+        "method": method,
+        "model": model_key,
+        "n_pairs": n_pairs,
+        "n_relations_found": len(all_relations),
+        "n_pair_calls_ok": n_parse_ok,
+        "pairwise_usage": total_pw_usage,
+        "latency_s": total_latency,
+        "pred_baf": pred_baf.to_dict(),
+        "parse_stats": {
+            "json_extracted": True,
+            "args_in_json": len(arguments),
+            "args_resolved": len(arguments),
+            "args_dropped": 0,
+            "rels_in_json": len(all_relations),
+            "rels_kept": len(all_relations),
+            "rels_dropped_bad_type": 0,
+            "rels_dropped_bad_id": 0,
+        },
+        "parse_success": len(arguments) > 0,
+    }
+
+    if step1_raw is not None:
+        result["step1_raw"] = step1_raw
+        result["step1_usage"] = step1_usage
+
+    return result
+
+
+# ---------------------------------------------------------------------------
 # Tag computation
 # ---------------------------------------------------------------------------
 
@@ -404,10 +555,17 @@ def run_experiment(
 
     for method in methods:
         eff_method = _effective_method(method, tag)
+        is_pairwise = method in PAIRWISE_METHODS
         logger.info(f"\n{'='*60}")
         logger.info(f"Model: {model_key} | Method: {method} | Tag: {tag or '(none)'}")
         logger.info(f"Split: {split} | Variant: {prompt_variant} | Effective: {eff_method}")
         logger.info(f"{'='*60}")
+
+        # Precompute pairwise examples if needed
+        pair_examples = None
+        if is_pairwise:
+            pair_examples = prompts.extract_pairwise_examples(examples)
+            logger.info(f"Pairwise mode: {len(pair_examples)} example pairs extracted")
 
         predictions: Dict[str, BAF] = {}
         golds: Dict[str, BAF] = {}
@@ -433,18 +591,33 @@ def run_experiment(
                     consecutive_empty = 0  # cached result breaks the streak
                     continue
 
-            logger.info(f"  [{i+1}/{len(eval_ids)}] {essay_id}: running...")
-
-            result = run_essay(
-                client=client,
-                model_key=model_key,
-                method=method,
-                essay_id=essay_id,
-                essay_text=essay["text"],
-                gold_baf=essay["baf"],
-                examples=examples,
-                variant=prompt_variant,
-            )
+            if is_pairwise:
+                n_args = len(essay["baf"].arguments) if method.startswith("gold_") else "?"
+                logger.info(f"  [{i+1}/{len(eval_ids)}] {essay_id}: running pairwise "
+                            f"({n_args} args)...")
+                result = run_essay_pairwise(
+                    client=client,
+                    model_key=model_key,
+                    method=method,
+                    essay_id=essay_id,
+                    essay_text=essay["text"],
+                    gold_baf=essay["baf"],
+                    examples=examples,
+                    pair_examples=pair_examples,
+                    variant=prompt_variant,
+                )
+            else:
+                logger.info(f"  [{i+1}/{len(eval_ids)}] {essay_id}: running...")
+                result = run_essay(
+                    client=client,
+                    model_key=model_key,
+                    method=method,
+                    essay_id=essay_id,
+                    essay_text=essay["text"],
+                    gold_baf=essay["baf"],
+                    examples=examples,
+                    variant=prompt_variant,
+                )
 
             # Save raw result
             _save_raw(base_dir, model_key, eff_method, essay_id, result, split)
@@ -466,11 +639,18 @@ def run_experiment(
                 else:
                     consecutive_empty = 0  # got content, just couldn't parse it
 
-            logger.info(
-                f"    -> {len(pred_baf.arguments)} args, "
-                f"{len(pred_baf.relations)} rels, "
-                f"parse_ok={result['parse_success']}"
-            )
+            if is_pairwise:
+                logger.info(
+                    f"    -> {len(pred_baf.arguments)} args, "
+                    f"{result.get('n_pairs', '?')} pairs, "
+                    f"{len(pred_baf.relations)} rels found"
+                )
+            else:
+                logger.info(
+                    f"    -> {len(pred_baf.arguments)} args, "
+                    f"{len(pred_baf.relations)} rels, "
+                    f"parse_ok={result['parse_success']}"
+                )
 
             # Circuit breaker: abort if API is systematically failing
             if consecutive_empty >= CIRCUIT_BREAKER_LIMIT:
@@ -560,9 +740,9 @@ def main():
     )
     parser.add_argument(
         "--method",
-        choices=ALL_METHODS + ["all", "e2e", "pipe", "gold"],
+        choices=ALL_METHODS_WITH_PAIRWISE + ["all", "e2e", "pipe", "gold", "pairwise"],
         default="all",
-        help="Method(s) to run",
+        help="Method(s) to run. 'pairwise' runs gold_fs_pairwise + fs_pipe_pairwise.",
     )
     parser.add_argument(
         "--resume",
@@ -680,6 +860,8 @@ def main():
         methods = PIPE_METHODS
     elif args.method == "gold":
         methods = GOLD_METHODS
+    elif args.method == "pairwise":
+        methods = PAIRWISE_METHODS
     else:
         methods = [args.method]
 

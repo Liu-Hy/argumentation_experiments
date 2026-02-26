@@ -1,13 +1,14 @@
 """Prompt templates for BAF extraction experiments.
 
-Five methods:
+Five core methods:
   1. ZS-E2E    -- Zero-shot end-to-end
   2. FS-E2E    -- Few-shot (3-shot) end-to-end
   3. ZS-Pipe   -- Zero-shot two-step pipeline
   4. FS-Pipe   -- Few-shot two-step pipeline
   5. FS-CoT-E2E -- Few-shot + chain-of-thought end-to-end
 
-Plus gold-argument variants (relation prediction only).
+Plus gold-argument variants (relation prediction only) and pairwise
+relation classification variants.
 
 Prompt variants:
   - "default"  -- Standard prompts (used for main results)
@@ -649,6 +650,167 @@ def gold_arg_relations(
 
 
 # ---------------------------------------------------------------------------
+# Pairwise relation classification
+# ---------------------------------------------------------------------------
+
+_PAIRWISE_SYSTEM = """\
+You are an expert in argumentation theory. Given a persuasive essay and two \
+specific arguments extracted from it, determine if there is a direct \
+argumentative relation between them.
+
+A "support" relation means one argument provides evidence or reasoning that \
+backs or strengthens the other.
+An "attack" relation means one argument provides evidence or reasoning that \
+undermines, opposes, or weakens the other.
+
+Return EXACTLY one of these JSON responses:
+- {"source": "arg1", "target": "arg2", "type": "support"} — Argument 1 supports Argument 2
+- {"source": "arg2", "target": "arg1", "type": "support"} — Argument 2 supports Argument 1
+- {"source": "arg1", "target": "arg2", "type": "attack"} — Argument 1 attacks Argument 2
+- {"source": "arg2", "target": "arg1", "type": "attack"} — Argument 2 attacks Argument 1
+- {"relation": "none"} — no direct argumentative relation
+
+IMPORTANT: Most argument pairs have NO direct relation. Only identify a \
+relation when there is a clear, direct argumentative connection between \
+the two specific arguments. Return ONLY the JSON.\
+"""
+
+
+def extract_pairwise_examples(examples: List[Dict]) -> List[Dict]:
+    """Extract representative argument pairs from few-shot BAF examples.
+
+    Returns a list of dicts with keys:
+        essay_text, arg1_text, arg2_text, answer
+
+    Tries to find one support, one attack, and one no-relation pair,
+    preferably from one essay that has both relation types.
+    """
+    # Prefer an essay with both support and attack relations
+    best_essay = None
+    for ex in examples:
+        has_attacks = any(r.type == "attack" for r in ex["baf"].relations)
+        has_supports = any(r.type == "support" for r in ex["baf"].relations)
+        if has_attacks and has_supports:
+            best_essay = ex
+            break
+    if best_essay is None:
+        best_essay = examples[0]
+
+    baf = best_essay["baf"]
+    text = best_essay["text"]
+    arg_map = {a.id: a for a in baf.arguments}
+
+    # Build relation lookup for no-relation search
+    rel_set = set()
+    for rel in baf.relations:
+        rel_set.add((rel.source, rel.target))
+
+    pair_examples = []
+
+    # One support pair
+    for rel in baf.relations:
+        if rel.type == "support" and rel.source in arg_map and rel.target in arg_map:
+            pair_examples.append({
+                "essay_text": text,
+                "arg1_text": arg_map[rel.source].text,
+                "arg2_text": arg_map[rel.target].text,
+                "answer": {"source": "arg1", "target": "arg2", "type": "support"},
+            })
+            break
+
+    # One attack pair
+    for rel in baf.relations:
+        if rel.type == "attack" and rel.source in arg_map and rel.target in arg_map:
+            pair_examples.append({
+                "essay_text": text,
+                "arg1_text": arg_map[rel.source].text,
+                "arg2_text": arg_map[rel.target].text,
+                "answer": {"source": "arg1", "target": "arg2", "type": "attack"},
+            })
+            break
+
+    # One no-relation pair
+    args_list = list(baf.arguments)
+    found_none = False
+    for i in range(len(args_list)):
+        if found_none:
+            break
+        for j in range(i + 1, len(args_list)):
+            a, b = args_list[i], args_list[j]
+            if (a.id, b.id) not in rel_set and (b.id, a.id) not in rel_set:
+                pair_examples.append({
+                    "essay_text": text,
+                    "arg1_text": a.text,
+                    "arg2_text": b.text,
+                    "answer": {"relation": "none"},
+                })
+                found_none = True
+                break
+
+    return pair_examples
+
+
+def _format_pairwise_block(pair_examples: List[Dict]) -> str:
+    """Format pairwise examples into a prompt block.
+
+    All examples are assumed to come from the same essay (shown once).
+    """
+    import json as _json
+
+    if not pair_examples:
+        return ""
+
+    essay_text = pair_examples[0]["essay_text"]
+    parts = [f"Essay:\n{essay_text.strip()}\n"]
+
+    for i, ex in enumerate(pair_examples, 1):
+        answer_str = _json.dumps(ex["answer"])
+        parts.append(
+            f'Pair {i}:\n'
+            f'Argument 1 (arg1): "{ex["arg1_text"]}"\n'
+            f'Argument 2 (arg2): "{ex["arg2_text"]}"\n'
+            f'Answer: {answer_str}'
+        )
+
+    return "\n\n".join(parts)
+
+
+def pairwise_classify(
+    essay_text: str,
+    arg1_text: str,
+    arg2_text: str,
+    pair_examples: List[Dict] | None = None,
+) -> List[Dict[str, str]]:
+    """Build prompt for classifying the relation between two arguments.
+
+    Uses placeholder IDs 'arg1' and 'arg2'; the caller remaps to real IDs.
+    If pair_examples is provided, includes few-shot demonstration.
+    """
+    user_parts = []
+
+    if pair_examples:
+        examples_block = _format_pairwise_block(pair_examples)
+        user_parts.append(
+            f"Here are examples of pairwise relation classification:\n\n"
+            f"{examples_block}\n\n"
+            f"---\n\n"
+        )
+
+    user_parts.append(
+        f"Now classify the following pair:\n\n"
+        f"Essay:\n{essay_text.strip()}\n\n"
+        f'Argument 1 (arg1): "{arg1_text}"\n'
+        f'Argument 2 (arg2): "{arg2_text}"\n\n'
+        f"Classify the argumentative relation between these two arguments."
+    )
+
+    return [
+        {"role": "system", "content": _PAIRWISE_SYSTEM},
+        {"role": "user", "content": "".join(user_parts)},
+    ]
+
+
+# ---------------------------------------------------------------------------
 # Registry for easy access
 # ---------------------------------------------------------------------------
 
@@ -660,4 +822,6 @@ METHODS = {
     "fs_cot_e2e": "Few-shot CoT End-to-End",
     "gold_zs": "Gold-argument Zero-shot",
     "gold_fs": "Gold-argument Few-shot",
+    "gold_fs_pairwise": "Gold-argument Few-shot Pairwise",
+    "fs_pipe_pairwise": "Few-shot Pipeline Pairwise",
 }
