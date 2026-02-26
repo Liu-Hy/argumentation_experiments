@@ -685,6 +685,9 @@ def extract_pairwise_examples(examples: List[Dict]) -> List[Dict]:
     Tries to find one support, one attack, and one no-relation pair,
     preferably from one essay that has both relation types.
     """
+    if not examples:
+        return []
+
     # Prefer an essay with both support and attack relations
     best_essay = None
     for ex in examples:

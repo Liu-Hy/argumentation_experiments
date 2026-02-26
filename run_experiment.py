@@ -371,7 +371,7 @@ def run_essay_pairwise(
     # Classify each pair
     all_relations: List[Relation] = []
     total_pw_usage = {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0}
-    n_parse_ok = 0
+    n_nonempty = 0
     consecutive_empty = 0
     PW_CIRCUIT_LIMIT = 5
 
@@ -386,7 +386,7 @@ def run_essay_pairwise(
 
         if resp.content.strip():
             consecutive_empty = 0
-            n_parse_ok += 1
+            n_nonempty += 1
             relation = parse_pairwise_response(resp.content, id1, id2)
             if relation is not None:
                 all_relations.append(relation)
@@ -423,21 +423,22 @@ def run_essay_pairwise(
         "model": model_key,
         "n_pairs": n_pairs,
         "n_relations_found": len(all_relations),
-        "n_pair_calls_ok": n_parse_ok,
+        "n_pair_calls_ok": n_nonempty,
         "pairwise_usage": total_pw_usage,
         "latency_s": total_latency,
         "pred_baf": pred_baf.to_dict(),
         "parse_stats": {
-            "json_extracted": True,
+            "json_extracted": n_nonempty > 0,
             "args_in_json": len(arguments),
             "args_resolved": len(arguments),
             "args_dropped": 0,
-            "rels_in_json": len(all_relations),
+            # For pairwise runs, this is "non-empty pair outputs seen"
+            "rels_in_json": n_nonempty,
             "rels_kept": len(all_relations),
             "rels_dropped_bad_type": 0,
             "rels_dropped_bad_id": 0,
         },
-        "parse_success": len(arguments) > 0,
+        "parse_success": len(arguments) > 0 and (n_pairs == 0 or n_nonempty > 0),
     }
 
     if step1_raw is not None:
@@ -631,13 +632,20 @@ def run_experiment(
                 n_success += 1
                 consecutive_empty = 0
             else:
-                # Check if the API returned empty content (systematic failure)
-                # vs. a non-empty response that just didn't parse (model issue)
-                raw_content = result.get("raw_output", "") or result.get("step1_raw", "")
-                if not raw_content.strip():
-                    consecutive_empty += 1
+                # Distinguish systematic empty responses from parse/model errors.
+                # Pairwise methods don't have a single raw_output field, so we
+                # use pair-call counters when available.
+                if is_pairwise and result.get("n_pairs", 0) > 0:
+                    if result.get("n_pair_calls_ok", 0) == 0:
+                        consecutive_empty += 1
+                    else:
+                        consecutive_empty = 0
                 else:
-                    consecutive_empty = 0  # got content, just couldn't parse it
+                    raw_content = result.get("raw_output", "") or result.get("step1_raw", "")
+                    if not raw_content.strip():
+                        consecutive_empty += 1
+                    else:
+                        consecutive_empty = 0  # got content, just couldn't parse it
 
             if is_pairwise:
                 logger.info(
