@@ -80,7 +80,8 @@ logger = logging.getLogger("experiment")
 E2E_METHODS = ["zs_e2e", "fs_e2e", "fs_cot_e2e"]
 PIPE_METHODS = ["zs_pipe", "fs_pipe"]
 GOLD_METHODS = ["gold_zs", "gold_fs"]
-PAIRWISE_METHODS = ["gold_fs_pairwise", "fs_pipe_pairwise"]
+PAIRWISE_METHODS = ["gold_fs_pairwise", "fs_pipe_pairwise",
+                     "gold_fs_pw_graph", "fs_pipe_pw_graph"]
 ALL_METHODS = E2E_METHODS + PIPE_METHODS + GOLD_METHODS  # pairwise is opt-in
 ALL_METHODS_WITH_PAIRWISE = ALL_METHODS + PAIRWISE_METHODS
 
@@ -313,6 +314,7 @@ def run_essay_pairwise(
     examples: List[Dict],
     pair_examples: List[Dict],
     variant: str = "default",
+    graph_example: Optional[Dict] = None,
 ) -> Dict:
     """Run pairwise relation classification on one essay.
 
@@ -376,9 +378,14 @@ def run_essay_pairwise(
     PW_CIRCUIT_LIMIT = 5
 
     for pair_idx, ((id1, arg1), (id2, arg2)) in enumerate(pairs):
-        msgs = prompts.pairwise_classify(
-            essay_text, arg1.text, arg2.text, pair_examples
-        )
+        if graph_example is not None:
+            msgs = prompts.pairwise_classify_with_graph(
+                essay_text, arg1.text, arg2.text, graph_example
+            )
+        else:
+            msgs = prompts.pairwise_classify(
+                essay_text, arg1.text, arg2.text, pair_examples
+            )
         resp: LLMResponse = client.generate(msgs, model_key)
         total_latency += resp.latency_s
         for k in total_pw_usage:
@@ -564,9 +571,21 @@ def run_experiment(
 
         # Precompute pairwise examples if needed
         pair_examples = None
+        graph_example = None
         if is_pairwise:
-            pair_examples = prompts.extract_pairwise_examples(examples)
-            logger.info(f"Pairwise mode: {len(pair_examples)} example pairs extracted")
+            if method in ("gold_fs_pw_graph", "fs_pipe_pw_graph"):
+                graph_example = prompts.extract_graph_example(examples)
+                if graph_example:
+                    logger.info(
+                        f"Graph context: {graph_example['n_args']} args, "
+                        f"{graph_example['n_rels']} rels / "
+                        f"{graph_example['n_pairs']} pairs from training essay"
+                    )
+                else:
+                    logger.warning("No graph example extracted — falling back to no examples")
+            else:
+                pair_examples = prompts.extract_pairwise_examples(examples)
+                logger.info(f"Pairwise mode: {len(pair_examples)} example pairs extracted")
 
         predictions: Dict[str, BAF] = {}
         golds: Dict[str, BAF] = {}
@@ -606,6 +625,7 @@ def run_experiment(
                     examples=examples,
                     pair_examples=pair_examples,
                     variant=prompt_variant,
+                    graph_example=graph_example,
                 )
             else:
                 logger.info(f"  [{i+1}/{len(eval_ids)}] {essay_id}: running...")
@@ -748,9 +768,10 @@ def main():
     )
     parser.add_argument(
         "--method",
-        choices=ALL_METHODS_WITH_PAIRWISE + ["all", "e2e", "pipe", "gold", "pairwise"],
+        choices=ALL_METHODS_WITH_PAIRWISE + ["all", "e2e", "pipe", "gold", "pairwise", "pw_graph"],
         default="all",
-        help="Method(s) to run. 'pairwise' runs gold_fs_pairwise + fs_pipe_pairwise.",
+        help="Method(s) to run. 'pairwise' runs all pairwise methods. "
+             "'pw_graph' runs graph-context pairwise only.",
     )
     parser.add_argument(
         "--resume",
@@ -870,6 +891,8 @@ def main():
         methods = GOLD_METHODS
     elif args.method == "pairwise":
         methods = PAIRWISE_METHODS
+    elif args.method == "pw_graph":
+        methods = ["gold_fs_pw_graph", "fs_pipe_pw_graph"]
     else:
         methods = [args.method]
 

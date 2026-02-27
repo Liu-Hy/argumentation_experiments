@@ -814,6 +814,126 @@ def pairwise_classify(
 
 
 # ---------------------------------------------------------------------------
+# Graph-context pairwise classification
+# ---------------------------------------------------------------------------
+
+
+def extract_graph_example(examples: List[Dict]) -> Dict | None:
+    """Extract a full training essay BAF as graph context for pairwise prompts.
+
+    Returns a dict with:
+        essay_text, arguments (list of (seq_id, text)),
+        relations (list of (src_id, tgt_id, type)),
+        n_args, n_pairs, n_rels
+
+    Prefers an essay with both support and attack relations.
+    Returns None if examples is empty.
+    """
+    if not examples:
+        return None
+
+    # Prefer an essay with both support and attack relations
+    best_essay = None
+    for ex in examples:
+        has_attacks = any(r.type == "attack" for r in ex["baf"].relations)
+        has_supports = any(r.type == "support" for r in ex["baf"].relations)
+        if has_attacks and has_supports:
+            best_essay = ex
+            break
+    if best_essay is None:
+        best_essay = examples[0]
+
+    baf = best_essay["baf"]
+
+    # Build sequential ID mapping
+    id_map = {}
+    args = []
+    for i, arg in enumerate(baf.arguments, 1):
+        seq_id = f"a{i}"
+        id_map[arg.id] = seq_id
+        args.append((seq_id, arg.text))
+
+    # Map relations
+    rels = []
+    for rel in baf.relations:
+        src = id_map.get(rel.source)
+        tgt = id_map.get(rel.target)
+        if src and tgt:
+            rels.append((src, tgt, rel.type))
+
+    n_args = len(args)
+    n_pairs = n_args * (n_args - 1) // 2
+
+    return {
+        "essay_text": best_essay["text"],
+        "arguments": args,
+        "relations": rels,
+        "n_args": n_args,
+        "n_pairs": n_pairs,
+        "n_rels": len(rels),
+    }
+
+
+def _format_graph_block(graph_example: Dict) -> str:
+    """Format a full training BAF as a prompt block."""
+    parts = [f"Essay:\n{graph_example['essay_text'].strip()}\n"]
+
+    # List all arguments
+    parts.append(f"Arguments identified ({graph_example['n_args']} total):")
+    for seq_id, text in graph_example["arguments"]:
+        parts.append(f'  {seq_id}: "{text}"')
+
+    # List all relations with sparsity context
+    n_rels = graph_example["n_rels"]
+    n_pairs = graph_example["n_pairs"]
+    parts.append(f"\nRelations ({n_rels} out of {n_pairs} possible pairs):")
+    for src, tgt, rtype in graph_example["relations"]:
+        parts.append(f"  {src} -> {tgt}: {rtype}")
+
+    no_rel = n_pairs - n_rels
+    parts.append(
+        f"\nThe remaining {no_rel} argument pairs have NO direct relation. "
+        f"In argumentative essays, only a small fraction of argument pairs "
+        f"are directly related."
+    )
+
+    return "\n".join(parts)
+
+
+def pairwise_classify_with_graph(
+    essay_text: str,
+    arg1_text: str,
+    arg2_text: str,
+    graph_example: Dict,
+) -> List[Dict[str, str]]:
+    """Build pairwise classification prompt with full-graph training context.
+
+    Shows the complete annotation of a training essay (all arguments and
+    all relations) so the model can calibrate its predictions based on
+    real relation density (~8% of pairs).
+    """
+    graph_block = _format_graph_block(graph_example)
+
+    user_content = (
+        f"Here is a complete annotation of a training essay, showing all "
+        f"arguments and their relations:\n\n"
+        f"{graph_block}\n\n"
+        f"---\n\n"
+        f"Now classify the relation between the following two arguments "
+        f"from a new essay:\n\n"
+        f"Essay:\n{essay_text.strip()}\n\n"
+        f'Argument 1 (arg1): "{arg1_text}"\n'
+        f'Argument 2 (arg2): "{arg2_text}"\n\n'
+        f"Classify the argumentative relation between these two arguments."
+    )
+
+    return [
+        {"role": "system", "content": _PAIRWISE_SYSTEM},
+        {"role": "user", "content": user_content},
+    ]
+
+
+# ---------------------------------------------------------------------------
 # Registry for easy access
 # ---------------------------------------------------------------------------
 
@@ -827,4 +947,6 @@ METHODS = {
     "gold_fs": "Gold-argument Few-shot",
     "gold_fs_pairwise": "Gold-argument Few-shot Pairwise",
     "fs_pipe_pairwise": "Few-shot Pipeline Pairwise",
+    "gold_fs_pw_graph": "Gold-arg Pairwise (Graph Context)",
+    "fs_pipe_pw_graph": "Pipeline Pairwise (Graph Context)",
 }
