@@ -384,14 +384,22 @@ def run_experiment(
         logger.info(f"Method: {method} ({JTD_METHODS.get(method, '?')})")
         logger.info(f"Model: {model_key}")
         logger.info(f"{'='*60}")
+        effective_model = "heuristic" if method == "BH" else model_key
 
         # Phase 1: AF Construction (LLM calls)
-        if method not in ("BH",):
+        if method == "BH":
+            _phase1_heuristic(cases, base_dir, method)
+        elif method == "B3":
+            # B3 uses same AF as B2 (same prompt, different semantics).
+            # Reuse B2's raw results if available, otherwise run LLM.
+            _phase1_reuse_or_call(
+                cases, base_dir, model_key, method,
+                reuse_from="B2", resume=resume,
+            )
+        else:
             _phase1_llm_calls(
                 cases, base_dir, model_key, method, resume
             )
-        else:
-            _phase1_heuristic(cases, base_dir, method)
 
         # Phase 2: Compute predictions and evaluate per fold
         folds = stratified_kfold(cases, n_folds=n_folds, seed=seed)
@@ -413,7 +421,7 @@ def run_experiment(
             # Compute predictions for test cases
             test_predictions = []
             for case in test_cases:
-                raw = _load_raw(base_dir, model_key, method, case.tort_id)
+                raw = _load_raw(base_dir, effective_model, method, case.tort_id)
                 if raw is None:
                     logger.warning(f"  Missing result for {case.tort_id}")
                     p_ids = [f"p{i}" for i in range(len(case.plaintiff_claims))]
@@ -427,27 +435,28 @@ def run_experiment(
                     preds = compute_predictions(raw, case, method, threshold)
                 test_predictions.append(preds)
 
-            # Evaluate
-            for tp_strategy in ["tp_a", "tp_b"]:
-                fold_result = evaluate_fold(
-                    test_cases, test_predictions, tp_strategy=tp_strategy
-                )
-                fold_result["fold"] = fold_idx
-                fold_result["threshold"] = threshold
-                fold_result["tp_strategy"] = tp_strategy
+            # Evaluate both TP strategies
+            fold_a = evaluate_fold(
+                test_cases, test_predictions, tp_strategy="tp_a"
+            )
+            fold_b = evaluate_fold(
+                test_cases, test_predictions, tp_strategy="tp_b"
+            )
+            fold_a["fold"] = fold_b["fold"] = fold_idx
+            fold_a["threshold"] = fold_b["threshold"] = threshold
 
-                if tp_strategy == "tp_b":  # primary strategy for fold aggregation
-                    fold_results.append(fold_result)
+            fold_results.append({"tp_a": fold_a, "tp_b": fold_b})
 
-                logger.info(
-                    f"  Fold {fold_idx+1} ({tp_strategy}): "
-                    f"RE-F1={fold_result['re']['micro_f1']['f1']:.4f}, "
-                    f"TP-Acc={fold_result['tp']['accuracy']:.4f}, "
-                    f"TP-F1={fold_result['tp']['macro_f1']:.4f}"
-                )
+            logger.info(
+                f"  Fold {fold_idx+1}: "
+                f"RE-F1={fold_b['re']['micro_f1']['f1']:.4f}, "
+                f"TP-Acc(A)={fold_a['tp']['accuracy']:.4f}, "
+                f"TP-Acc(B)={fold_b['tp']['accuracy']:.4f}"
+            )
 
-        # Aggregate across folds
-        summary = aggregate_folds(fold_results)
+        # Aggregate across folds (both strategies)
+        summary_a = aggregate_folds([fr["tp_a"] for fr in fold_results])
+        summary_b = aggregate_folds([fr["tp_b"] for fr in fold_results])
 
         # Save summary
         metrics_dir = os.path.join(base_dir, "results_jtd", "metrics")
@@ -461,7 +470,8 @@ def run_experiment(
                     "n_cases": len(cases),
                     "n_folds": n_folds,
                     "subsample": subsample,
-                    "summary": summary,
+                    "summary_tp_a": summary_a,
+                    "summary_tp_b": summary_b,
                     "per_fold": fold_results,
                 },
                 f,
@@ -470,7 +480,52 @@ def run_experiment(
 
         # Print results
         print(f"\n{JTD_METHODS.get(method, method)} | {MODELS[model_key].name}")
-        print(format_results(summary))
+        print("--- TP Strategy A (Meta-argument) ---")
+        print(format_results(summary_a))
+        print("--- TP Strategy B (Aggregation) ---")
+        print(format_results(summary_b))
+
+
+def _phase1_reuse_or_call(
+    cases: List[TortCase],
+    base_dir: str,
+    model_key: str,
+    method: str,
+    reuse_from: str,
+    resume: bool,
+):
+    """Phase 1 with reuse: copy results from another method if available.
+
+    Used for B3 which shares the same AF construction as B2.
+    Falls back to LLM calls for cases missing from the source method.
+    """
+    n_reused = 0
+    need_llm = []
+
+    for case in cases:
+        # Already done?
+        if resume and _load_raw(base_dir, model_key, method, case.tort_id):
+            continue
+
+        # Try reusing from source method
+        source = _load_raw(base_dir, model_key, reuse_from, case.tort_id)
+        if source is not None:
+            # Copy with updated method name
+            copied = dict(source)
+            copied["method"] = method
+            _save_raw(base_dir, model_key, method, case.tort_id, copied)
+            n_reused += 1
+        else:
+            need_llm.append(case)
+
+    if n_reused:
+        logger.info(f"  Reused {n_reused} results from {reuse_from}")
+
+    if need_llm:
+        logger.info(f"  Running LLM for {len(need_llm)} remaining cases")
+        _phase1_llm_calls(need_llm, base_dir, model_key, method, resume=False)
+    else:
+        logger.info(f"  All cases covered (reused or cached)")
 
 
 def _phase1_llm_calls(

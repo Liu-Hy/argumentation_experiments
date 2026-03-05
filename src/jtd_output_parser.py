@@ -174,6 +174,21 @@ def _parse_strengths(
     return strengths, errors
 
 
+def _coerce_bool(val) -> Optional[bool]:
+    """Coerce common JSON/LLM boolean representations to bool."""
+    if isinstance(val, bool):
+        return val
+    if isinstance(val, (int, float)):
+        return bool(val)
+    if isinstance(val, str):
+        low = val.strip().lower()
+        if low in {"true", "t", "1", "yes", "y"}:
+            return True
+        if low in {"false", "f", "0", "no", "n"}:
+            return False
+    return None
+
+
 # ---------------------------------------------------------------------------
 # Method-specific parsers
 # ---------------------------------------------------------------------------
@@ -209,7 +224,9 @@ def parse_baf(
 ) -> AFParseResult:
     """Parse BAF output (B4): attacks + supports.
 
-    Enforces constraint: undisputed facts cannot be attacked.
+    Enforces constraints on undisputed facts:
+    - no attack can target or originate from an undisputed fact
+    - undisputed facts can only be support sources (never targets)
     """
     result = AFParseResult()
     data = extract_json(raw_output)
@@ -224,11 +241,11 @@ def parse_baf(
     if isinstance(attacks_raw, list):
         all_attacks, errs = _parse_relation_list(attacks_raw, valid_ids, "attack")
         result.errors.extend(errs)
-        # Filter out attacks on undisputed facts
+        # Undisputed facts are axioms: cannot attack or be attacked.
         for src, tgt in all_attacks:
-            if tgt in undisputed_ids:
+            if src in undisputed_ids or tgt in undisputed_ids:
                 result.errors.append(
-                    f"Dropped attack on undisputed fact: {src} -> {tgt}"
+                    f"Dropped invalid attack with undisputed fact: {src} -> {tgt}"
                 )
             else:
                 result.attacks.append((src, tgt))
@@ -236,10 +253,16 @@ def parse_baf(
     # Parse supports
     supports_raw = data.get("supports", [])
     if isinstance(supports_raw, list):
-        result.supports, errs = _parse_relation_list(
-            supports_raw, valid_ids, "support"
-        )
+        all_supports, errs = _parse_relation_list(supports_raw, valid_ids, "support")
         result.errors.extend(errs)
+        # Undisputed facts may only be support sources.
+        for src, tgt in all_supports:
+            if tgt in undisputed_ids:
+                result.errors.append(
+                    f"Dropped invalid support targeting undisputed fact: {src} -> {tgt}"
+                )
+            else:
+                result.supports.append((src, tgt))
 
     result.success = True
     return result
@@ -296,15 +319,15 @@ def parse_qbaf(
 
     result.raw_json = data
 
-    # Parse attacks (filter out attacks on undisputed facts)
+    # Parse attacks (undisputed facts cannot attack or be attacked)
     attacks_raw = data.get("attacks", [])
     if isinstance(attacks_raw, list):
         all_attacks, errs = _parse_relation_list(attacks_raw, valid_ids, "attack")
         result.errors.extend(errs)
         for src, tgt in all_attacks:
-            if tgt in undisputed_ids:
+            if src in undisputed_ids or tgt in undisputed_ids:
                 result.errors.append(
-                    f"Dropped attack on undisputed fact: {src} -> {tgt}"
+                    f"Dropped invalid attack with undisputed fact: {src} -> {tgt}"
                 )
             else:
                 result.attacks.append((src, tgt))
@@ -312,10 +335,16 @@ def parse_qbaf(
     # Parse supports
     supports_raw = data.get("supports", [])
     if isinstance(supports_raw, list):
-        result.supports, errs = _parse_relation_list(
-            supports_raw, valid_ids, "support"
-        )
+        all_supports, errs = _parse_relation_list(supports_raw, valid_ids, "support")
         result.errors.extend(errs)
+        # Undisputed facts may only be support sources.
+        for src, tgt in all_supports:
+            if tgt in undisputed_ids:
+                result.errors.append(
+                    f"Dropped invalid support targeting undisputed fact: {src} -> {tgt}"
+                )
+            else:
+                result.supports.append((src, tgt))
 
     # Parse strengths
     strengths_raw = data.get("argument_strengths", {})
@@ -362,16 +391,25 @@ def parse_direct_prediction(
             key = f"p{i}"
             val = p_preds.get(key)
             if val is not None:
-                result.plaintiff_predictions[key] = bool(val)
+                parsed = _coerce_bool(val)
+                if parsed is None:
+                    result.plaintiff_predictions[key] = False
+                    result.errors.append(f"Invalid boolean for {key}: {val}")
+                else:
+                    result.plaintiff_predictions[key] = parsed
             else:
-                # Try string key
                 result.plaintiff_predictions[key] = False
                 result.errors.append(f"Missing prediction for {key}")
     elif isinstance(p_preds, list):
         # Handle list format: [true, false, ...]
         for i, val in enumerate(p_preds):
             if i < n_plaintiff:
-                result.plaintiff_predictions[f"p{i}"] = bool(val)
+                parsed = _coerce_bool(val)
+                if parsed is None:
+                    result.plaintiff_predictions[f"p{i}"] = False
+                    result.errors.append(f"Invalid boolean for p{i}: {val}")
+                else:
+                    result.plaintiff_predictions[f"p{i}"] = parsed
 
     # Parse defendant predictions
     d_preds = data.get("defendant_claims", {})
@@ -380,19 +418,33 @@ def parse_direct_prediction(
             key = f"d{i}"
             val = d_preds.get(key)
             if val is not None:
-                result.defendant_predictions[key] = bool(val)
+                parsed = _coerce_bool(val)
+                if parsed is None:
+                    result.defendant_predictions[key] = False
+                    result.errors.append(f"Invalid boolean for {key}: {val}")
+                else:
+                    result.defendant_predictions[key] = parsed
             else:
                 result.defendant_predictions[key] = False
                 result.errors.append(f"Missing prediction for {key}")
     elif isinstance(d_preds, list):
         for i, val in enumerate(d_preds):
             if i < n_defendant:
-                result.defendant_predictions[f"d{i}"] = bool(val)
+                parsed = _coerce_bool(val)
+                if parsed is None:
+                    result.defendant_predictions[f"d{i}"] = False
+                    result.errors.append(f"Invalid boolean for d{i}: {val}")
+                else:
+                    result.defendant_predictions[f"d{i}"] = parsed
 
     # Parse tort decision
     td = data.get("tort_decision")
     if td is not None:
-        result.tort_decision = bool(td)
+        parsed_td = _coerce_bool(td)
+        if parsed_td is None:
+            result.errors.append(f"Invalid tort_decision: {td}")
+        else:
+            result.tort_decision = parsed_td
     else:
         result.errors.append("Missing tort_decision")
 

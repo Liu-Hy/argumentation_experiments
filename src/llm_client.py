@@ -84,9 +84,9 @@ MODELS: Dict[str, ModelConfig] = {
         model_id="deepseek/deepseek-v3.2",
         is_reasoning=True,
     ),
-    "minimax-m2.1": ModelConfig(
-        name="MiniMax M2.1",
-        model_id="minimax/minimax-m2.1",
+    "minimax-m2.5": ModelConfig(
+        name="MiniMax M2.5",
+        model_id="minimax/minimax-m2.5",
         is_reasoning=True,
     ),
     "grok-4.1-fast": ModelConfig(

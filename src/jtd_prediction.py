@@ -353,6 +353,7 @@ def compute_standard_predictions(
             result["re_predictions_skeptical"] = re_preds
             result["tp_a_credulous"] = tp_meta_argument_grounded(af, p_ids, d_ids)
             result["tp_a_skeptical"] = result["tp_a_credulous"]
+            result["tp_a"] = result["tp_a_credulous"]  # default to credulous
             result["tp_b"] = tp_aggregation_standard(re_preds, p_ids)
         else:
             result["timeout"] = False
@@ -387,6 +388,7 @@ def compute_standard_predictions(
                 result["tp_a_credulous"] = tp_cred
                 result["tp_a_skeptical"] = tp_skep
                 result["tp_a_timeout"] = False
+            result["tp_a"] = result["tp_a_credulous"]  # default to credulous
 
             # TP Strategy B (from credulous RE)
             result["tp_b"] = tp_aggregation_standard(re_cred, p_ids)

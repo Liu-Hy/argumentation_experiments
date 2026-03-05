@@ -176,6 +176,17 @@ def re_tp_consistency(
     return matches / len(case_tp_from_re)
 
 
+def _resolve_tp_a(preds: Dict) -> bool:
+    """Resolve TP Strategy A prediction from a case prediction dict."""
+    if "tp_a" in preds and preds["tp_a"] is not None:
+        return bool(preds["tp_a"])
+    if "tp_a_credulous" in preds and preds["tp_a_credulous"] is not None:
+        return bool(preds["tp_a_credulous"])
+    if "tp_a_skeptical" in preds and preds["tp_a_skeptical"] is not None:
+        return bool(preds["tp_a_skeptical"])
+    return False
+
+
 # ---------------------------------------------------------------------------
 # Threshold tuning for quantitative methods
 # ---------------------------------------------------------------------------
@@ -250,8 +261,9 @@ def evaluate_fold(
     tp_gold = []
     for case, preds in zip(cases, case_predictions):
         tp_gold.append(case.court_decision)
-        tp_val = preds.get(tp_strategy)
-        if tp_val is None:
+        if tp_strategy == "tp_a":
+            tp_val = _resolve_tp_a(preds)
+        else:
             tp_val = preds.get("tp_b", False)
         tp_pred.append(bool(tp_val))
 
@@ -262,13 +274,9 @@ def evaluate_fold(
     # Joint metrics
     j_acc = joint_accuracy(cases, case_re_preds, tp_pred)
 
-    # TP from RE (Strategy B) for consistency check
-    tp_from_re = []
-    for preds in case_predictions:
-        tp_b = preds.get("tp_b", False)
-        tp_from_re.append(bool(tp_b))
-
-    tp_direct = tp_pred
+    # TP from RE (Strategy B) vs direct TP (Strategy A) for consistency
+    tp_from_re = [bool(preds.get("tp_b", False)) for preds in case_predictions]
+    tp_direct = [_resolve_tp_a(preds) for preds in case_predictions]
     consistency = re_tp_consistency(case_re_preds, tp_from_re, tp_direct)
 
     return {
