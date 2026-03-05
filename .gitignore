@@ -1,5 +1,5 @@
 # Datasets (managed separately or too large for git)
-data/
+# data/
 
 # Experiment results (generated)
 results/
