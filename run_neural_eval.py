@@ -16,7 +16,7 @@ Usage:
 
     # Custom paths
     python run_neural_eval.py --model gemini-3-flash-preview --method zs_e2e \
-        --dataset ./PersuasiveEssaysV2 --base-dir .
+        --dataset ./data/PersuasiveEssaysV2 --base-dir .
 """
 
 from __future__ import annotations
@@ -46,9 +46,14 @@ logger = logging.getLogger("neural_eval")
 # ---------------------------------------------------------------------------
 
 
-def _discover_results(base_dir: str) -> List[Tuple[str, str]]:
+def _derive_dataset_name(dataset_dir: str) -> str:
+    """Derive a short dataset name from the dataset directory path."""
+    return os.path.basename(os.path.normpath(dataset_dir))
+
+
+def _discover_results(base_dir: str, dataset_name: str) -> List[Tuple[str, str]]:
     """Discover all (model, method) pairs with saved raw results."""
-    raw_dir = os.path.join(base_dir, "results", "raw")
+    raw_dir = os.path.join(base_dir, "results", dataset_name, "raw")
     if not os.path.isdir(raw_dir):
         return []
 
@@ -69,10 +74,10 @@ def _discover_results(base_dir: str) -> List[Tuple[str, str]]:
 
 
 def _load_predictions(
-    base_dir: str, model_key: str, method: str
+    base_dir: str, dataset_name: str, model_key: str, method: str
 ) -> Dict[str, BAF]:
     """Load predicted BAFs from saved per-essay JSON files."""
-    raw_dir = os.path.join(base_dir, "results", "raw", model_key, method)
+    raw_dir = os.path.join(base_dir, "results", dataset_name, "raw", model_key, method)
     predictions: Dict[str, BAF] = {}
 
     if not os.path.isdir(raw_dir):
@@ -170,8 +175,11 @@ def run_neural_eval(
     method: str,
     device: str = "auto",
     batch_size: int = 16,
+    dataset_name: str = None,
 ):
     """Run neural evaluation for one (model, method) pair."""
+    if dataset_name is None:
+        dataset_name = _derive_dataset_name(dataset_dir)
     device = _detect_device(device)
     logger.info(f"Neural evaluation: {model_key} / {method} on {device}")
 
@@ -182,7 +190,7 @@ def run_neural_eval(
     logger.info(f"Loaded {len(test_data)} test essays")
 
     # Load predictions
-    predictions = _load_predictions(base_dir, model_key, method)
+    predictions = _load_predictions(base_dir, dataset_name, model_key, method)
     logger.info(f"Loaded {len(predictions)} predictions for {model_key}/{method}")
 
     if not predictions:
@@ -203,7 +211,7 @@ def run_neural_eval(
     )
 
     # Save results
-    out_dir = os.path.join(base_dir, "results", "neural_metrics")
+    out_dir = os.path.join(base_dir, "results", dataset_name, "neural_metrics")
     os.makedirs(out_dir, exist_ok=True)
     out_path = os.path.join(out_dir, f"{model_key}_{method}.json")
     with open(out_path, "w") as f:
@@ -230,8 +238,13 @@ def main():
     )
     parser.add_argument(
         "--dataset",
-        default="./PersuasiveEssaysV2",
-        help="Path to the PersuasiveEssaysV2 directory",
+        default="./data/PersuasiveEssaysV2",
+        help="Path to the dataset directory (e.g., ./data/PersuasiveEssaysV2)",
+    )
+    parser.add_argument(
+        "--dataset-name",
+        default=None,
+        help="Dataset name for organizing results (auto-derived from --dataset if not set)",
     )
     parser.add_argument(
         "--base-dir",
@@ -276,15 +289,17 @@ def main():
     if not os.path.isabs(dataset_dir):
         dataset_dir = os.path.join(args.base_dir, dataset_dir)
 
+    dataset_name = args.dataset_name or _derive_dataset_name(dataset_dir)
+
     if args.list:
-        pairs = _discover_results(args.base_dir)
+        pairs = _discover_results(args.base_dir, dataset_name)
         if not pairs:
             print("No saved results found.")
             return
         print("Available (model, method) pairs:")
         for model_key, method in pairs:
             raw_dir = os.path.join(
-                args.base_dir, "results", "raw", model_key, method
+                args.base_dir, "results", dataset_name, "raw", model_key, method
             )
             n_files = len([
                 f for f in os.listdir(raw_dir) if f.endswith(".json")
@@ -293,7 +308,7 @@ def main():
         return
 
     if args.all:
-        pairs = _discover_results(args.base_dir)
+        pairs = _discover_results(args.base_dir, dataset_name)
         if not pairs:
             print("No saved results found.")
             return
@@ -306,6 +321,7 @@ def main():
                 method=method,
                 device=args.device,
                 batch_size=args.batch_size,
+                dataset_name=dataset_name,
             )
         return
 
@@ -319,6 +335,7 @@ def main():
         method=args.method,
         device=args.device,
         batch_size=args.batch_size,
+        dataset_name=dataset_name,
     )
 
 

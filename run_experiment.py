@@ -8,7 +8,7 @@ Usage:
     export OPENROUTER_API_KEY="sk-or-..."
 
     # Run all methods on a single model
-    python run_experiment.py --model gpt-4o --dataset ./PersuasiveEssaysV2
+    python run_experiment.py --model gpt-4o --dataset ./data/PersuasiveEssaysV2
 
     # Run a specific method
     python run_experiment.py --model gpt-4o --method fs_e2e
@@ -91,28 +91,29 @@ ALL_METHODS_WITH_PAIRWISE = ALL_METHODS + PAIRWISE_METHODS
 # ---------------------------------------------------------------------------
 
 
-def _results_dir(base: str, model_key: str, method: str, split: str = "test") -> str:
+def _results_dir(base: str, dataset_name: str, model_key: str, method: str,
+                 split: str = "test") -> str:
     if split == "val":
-        d = os.path.join(base, "results_val", "raw", model_key, method)
+        d = os.path.join(base, "results_val", dataset_name, "raw", model_key, method)
     else:
-        d = os.path.join(base, "results", "raw", model_key, method)
+        d = os.path.join(base, "results", dataset_name, "raw", model_key, method)
     os.makedirs(d, exist_ok=True)
     return d
 
 
-def _save_raw(base: str, model_key: str, method: str, essay_id: str, data: dict,
-              split: str = "test"):
-    d = _results_dir(base, model_key, method, split)
+def _save_raw(base: str, dataset_name: str, model_key: str, method: str,
+              essay_id: str, data: dict, split: str = "test"):
+    d = _results_dir(base, dataset_name, model_key, method, split)
     with open(os.path.join(d, f"{essay_id}.json"), "w") as f:
         json.dump(data, f, indent=2)
 
 
-def _load_raw(base: str, model_key: str, method: str, essay_id: str,
-              split: str = "test") -> Optional[dict]:
+def _load_raw(base: str, dataset_name: str, model_key: str, method: str,
+              essay_id: str, split: str = "test") -> Optional[dict]:
     if split == "val":
-        path = os.path.join(base, "results_val", "raw", model_key, method, f"{essay_id}.json")
+        path = os.path.join(base, "results_val", dataset_name, "raw", model_key, method, f"{essay_id}.json")
     else:
-        path = os.path.join(base, "results", "raw", model_key, method, f"{essay_id}.json")
+        path = os.path.join(base, "results", dataset_name, "raw", model_key, method, f"{essay_id}.json")
     if os.path.exists(path):
         with open(path) as f:
             return json.load(f)
@@ -491,6 +492,11 @@ def _effective_method(method: str, tag: Optional[str]) -> str:
 # ---------------------------------------------------------------------------
 
 
+def _derive_dataset_name(dataset_dir: str) -> str:
+    """Derive a short dataset name from the dataset directory path."""
+    return os.path.basename(os.path.normpath(dataset_dir))
+
+
 def run_experiment(
     dataset_dir: str,
     base_dir: str,
@@ -503,9 +509,12 @@ def run_experiment(
     example_seed: Optional[int] = None,
     tag: Optional[str] = None,
     val_size: int = 40,
+    dataset_name: Optional[str] = None,
 ):
     """Run the full experiment for one model across specified methods."""
-    logger.info(f"Loading dataset from {dataset_dir}")
+    if dataset_name is None:
+        dataset_name = _derive_dataset_name(dataset_dir)
+    logger.info(f"Loading dataset from {dataset_dir} (dataset: {dataset_name})")
     dataset = load_persuasive_essays(dataset_dir)
     train_data = get_split(dataset, "train")
     logger.info(f"Loaded {len(train_data)} train essays")
@@ -538,9 +547,9 @@ def run_experiment(
 
     # Save metadata
     if split == "val":
-        meta_dir = os.path.join(base_dir, "results_val", "meta")
+        meta_dir = os.path.join(base_dir, "results_val", dataset_name, "meta")
     else:
-        meta_dir = os.path.join(base_dir, "results", "meta")
+        meta_dir = os.path.join(base_dir, "results", dataset_name, "meta")
     os.makedirs(meta_dir, exist_ok=True)
 
     tag_label = tag or "default"
@@ -601,7 +610,7 @@ def run_experiment(
 
             # Resume: skip if already done
             if resume:
-                existing = _load_raw(base_dir, model_key, eff_method, essay_id, split)
+                existing = _load_raw(base_dir, dataset_name, model_key, eff_method, essay_id, split)
                 if existing is not None:
                     pred_baf = BAF.from_dict(existing["pred_baf"])
                     predictions[essay_id] = pred_baf
@@ -641,7 +650,7 @@ def run_experiment(
                 )
 
             # Save raw result
-            _save_raw(base_dir, model_key, eff_method, essay_id, result, split)
+            _save_raw(base_dir, dataset_name, model_key, eff_method, essay_id, result, split)
 
             pred_baf = BAF.from_dict(result["pred_baf"])
             predictions[essay_id] = pred_baf
@@ -704,9 +713,9 @@ def run_experiment(
 
         # Save evaluation results
         if split == "val":
-            eval_dir = os.path.join(base_dir, "results_val", "metrics")
+            eval_dir = os.path.join(base_dir, "results_val", dataset_name, "metrics")
         else:
-            eval_dir = os.path.join(base_dir, "results", "metrics")
+            eval_dir = os.path.join(base_dir, "results", dataset_name, "metrics")
         os.makedirs(eval_dir, exist_ok=True)
         eval_path = os.path.join(eval_dir, f"{model_key}_{eff_method}.json")
 
@@ -753,8 +762,13 @@ def main():
     )
     parser.add_argument(
         "--dataset",
-        default="./PersuasiveEssaysV2",
-        help="Path to the PersuasiveEssaysV2 directory",
+        default="./data/PersuasiveEssaysV2",
+        help="Path to the dataset directory (e.g., ./data/PersuasiveEssaysV2)",
+    )
+    parser.add_argument(
+        "--dataset-name",
+        default=None,
+        help="Dataset name for organizing results (auto-derived from --dataset if not set)",
     )
     parser.add_argument(
         "--base-dir",
@@ -916,6 +930,7 @@ def main():
         example_seed=args.example_seed,
         tag=tag,
         val_size=args.val_size,
+        dataset_name=args.dataset_name,
     )
 
 

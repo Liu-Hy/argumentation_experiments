@@ -1,5 +1,9 @@
-# Dataset repos (managed as separate git repositories)
-PersuasiveEssaysV2/
+# Datasets (managed separately or too large for git)
+data/
+
+# Experiment results (generated)
+results/
+results_val/
 
 # Python
 __pycache__/
@@ -22,12 +26,10 @@ venv/
 Thumbs.db
 
 # Review transcripts
-answer_colleague_1.md
-answer_colleague_2.md
+docs/answer_colleague_1.md
+docs/answer_colleague_2.md
 
 # Environment
 .env
 /test/
-/results/
 /test.7z
-/CAIL2023/
