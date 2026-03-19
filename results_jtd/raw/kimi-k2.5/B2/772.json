@@ -1,0 +1,19 @@
+{
+  "tort_id": "772",
+  "method": "B2",
+  "model": "kimi-k2.5",
+  "raw_output": "{\"attacks\": []}",
+  "usage": {
+    "prompt_tokens": 465,
+    "completion_tokens": 1618,
+    "total_tokens": 2083
+  },
+  "latency_s": 61.42053508758545,
+  "parse_success": true,
+  "parse_errors": [],
+  "af": {
+    "attacks": [],
+    "supports": [],
+    "argument_strengths": {}
+  }
+}

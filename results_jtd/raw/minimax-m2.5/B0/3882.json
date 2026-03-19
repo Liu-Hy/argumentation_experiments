@@ -1,0 +1,19 @@
+{
+  "tort_id": "3882",
+  "method": "B0",
+  "model": "minimax-m2.5",
+  "raw_output": "",
+  "usage": {
+    "prompt_tokens": 748,
+    "completion_tokens": 495,
+    "total_tokens": 1243
+  },
+  "latency_s": 256.97302889823914,
+  "parse_success": false,
+  "parse_errors": [
+    "Could not extract JSON from output"
+  ],
+  "re_predictions": {},
+  "tp_a": null,
+  "tp_b": null
+}

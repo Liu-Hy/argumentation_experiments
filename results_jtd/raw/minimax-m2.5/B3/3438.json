@@ -1,0 +1,44 @@
+{
+  "tort_id": "3438",
+  "method": "B3",
+  "model": "minimax-m2.5",
+  "raw_output": "```json\n{\n  \"attacks\": [\n    {\"source\": \"p0\", \"target\": \"p7\"},\n    {\"source\": \"p0\", \"target\": \"p9\"},\n    {\"source\": \"p8\", \"target\": \"p7\"},\n    {\"source\": \"p8\", \"target\": \"p9\"},\n    {\"source\": \"p10\", \"target\": \"p7\"},\n    {\"source\": \"p10\", \"target\": \"p9\"}\n  ]\n}\n```",
+  "usage": {
+    "prompt_tokens": 853,
+    "completion_tokens": 703,
+    "total_tokens": 1556
+  },
+  "latency_s": 20.152838230133057,
+  "parse_success": true,
+  "parse_errors": [],
+  "af": {
+    "attacks": [
+      [
+        "p0",
+        "p7"
+      ],
+      [
+        "p0",
+        "p9"
+      ],
+      [
+        "p8",
+        "p7"
+      ],
+      [
+        "p8",
+        "p9"
+      ],
+      [
+        "p10",
+        "p7"
+      ],
+      [
+        "p10",
+        "p9"
+      ]
+    ],
+    "supports": [],
+    "argument_strengths": {}
+  }
+}

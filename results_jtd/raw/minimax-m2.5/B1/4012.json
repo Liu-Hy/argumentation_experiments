@@ -1,0 +1,29 @@
+{
+  "tort_id": "4012",
+  "method": "B1",
+  "model": "minimax-m2.5",
+  "step1_raw": "{\"attacks\":[{\"source\":\"p0\",\"target\":\"d2\"},{\"source\":\"d2\",\"target\":\"p0\"},{\"source\":\"d1\",\"target\":\"p0\"},{\"source\":\"d0\",\"target\":\"p0\"},{\"source\":\"p1\",\"target\":\"d1\"}]}",
+  "step2_raw": "{\"plaintiff_claims\":{\"p0\":false,\"p1\":true},\"defendant_claims\":{\"d0\":true,\"d1\":true,\"d2\":true},\"tort_decision\":true}",
+  "step1_usage": {
+    "prompt_tokens": 732,
+    "completion_tokens": 674,
+    "total_tokens": 1406
+  },
+  "step2_usage": {
+    "prompt_tokens": 805,
+    "completion_tokens": 918,
+    "total_tokens": 1723
+  },
+  "latency_s": 75.60029339790344,
+  "parse_success": true,
+  "parse_errors": [],
+  "re_predictions": {
+    "p0": false,
+    "p1": true,
+    "d0": true,
+    "d1": true,
+    "d2": true
+  },
+  "tp_a": true,
+  "tp_b": true
+}

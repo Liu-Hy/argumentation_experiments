@@ -1,0 +1,52 @@
+{
+  "tort_id": "6",
+  "method": "B2",
+  "model": "kimi-k2.5",
+  "raw_output": " ```json\n{\n  \"attacks\": [\n    {\"source\": \"d0\", \"target\": \"p2\"},\n    {\"source\": \"d1\", \"target\": \"p4\"},\n    {\"source\": \"d1\", \"target\": \"p5\"},\n    {\"source\": \"d1\", \"target\": \"p6\"},\n    {\"source\": \"d1\", \"target\": \"p15\"},\n    {\"source\": \"d1\", \"target\": \"p16\"},\n    {\"source\": \"d2\", \"target\": \"p12\"},\n    {\"source\": \"d3\", \"target\": \"p8\"}\n  ]\n}\n```",
+  "usage": {
+    "prompt_tokens": 1690,
+    "completion_tokens": 4302,
+    "total_tokens": 5992
+  },
+  "latency_s": 145.48681139945984,
+  "parse_success": true,
+  "parse_errors": [],
+  "af": {
+    "attacks": [
+      [
+        "d0",
+        "p2"
+      ],
+      [
+        "d1",
+        "p4"
+      ],
+      [
+        "d1",
+        "p5"
+      ],
+      [
+        "d1",
+        "p6"
+      ],
+      [
+        "d1",
+        "p15"
+      ],
+      [
+        "d1",
+        "p16"
+      ],
+      [
+        "d2",
+        "p12"
+      ],
+      [
+        "d3",
+        "p8"
+      ]
+    ],
+    "supports": [],
+    "argument_strengths": {}
+  }
+}

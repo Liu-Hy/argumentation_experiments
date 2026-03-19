@@ -1,0 +1,42 @@
+{
+  "tort_id": "425",
+  "method": "B5",
+  "model": "minimax-m2.5",
+  "raw_output": "```json\n{\n  \"argument_strengths\": {\n    \"p0\": 0.75,\n    \"p1\": 0.85,\n    \"p2\": 0.85,\n    \"p3\": 0.7,\n    \"p4\": 0.75,\n    \"p5\": 0.9,\n    \"p6\": 0.65,\n    \"d0\": 0.7,\n    \"d1\": 0.65,\n    \"d2\": 0.7,\n    \"d3\": 0.6\n  },\n  \"attacks\": [\n    {\"source\": \"d0\", \"target\": \"p0\"},\n    {\"source\": \"d0\", \"target\": \"p3\"},\n    {\"source\": \"d1\", \"target\": \"p4\"},\n    {\"source\": \"d2\", \"target\": \"p6\"},\n    {\"source\": \"d3\", \"target\": \"p6\"},\n    {\"source\": \"p0\", \"target\": \"d0\"},\n    {\"source\": \"p3\", \"target\": \"d0\"},\n    {\"source\": \"p4\", \"target\": \"d1\"},\n    {\"source\": \"p5\", \"target\": \"d1\"},\n    {\"source\": \"p6\", \"target\": \"d2\"}\n  ]\n}\n```",
+  "usage": {
+    "prompt_tokens": 1000,
+    "completion_tokens": 972,
+    "total_tokens": 1972
+  },
+  "latency_s": 9.617876529693604,
+  "parse_success": true,
+  "parse_errors": [
+    "Unknown source ID in attack: d0",
+    "Unknown source ID in attack: d0",
+    "Unknown source ID in attack: d1",
+    "Unknown source ID in attack: d2",
+    "Unknown source ID in attack: d3",
+    "Unknown target ID in attack: d0",
+    "Unknown target ID in attack: d0",
+    "Unknown target ID in attack: d1",
+    "Unknown target ID in attack: d1",
+    "Unknown target ID in attack: d2",
+    "Unknown argument ID in strengths: d0",
+    "Unknown argument ID in strengths: d1",
+    "Unknown argument ID in strengths: d2",
+    "Unknown argument ID in strengths: d3"
+  ],
+  "af": {
+    "attacks": [],
+    "supports": [],
+    "argument_strengths": {
+      "p0": 0.75,
+      "p1": 0.85,
+      "p2": 0.85,
+      "p3": 0.7,
+      "p4": 0.75,
+      "p5": 0.9,
+      "p6": 0.65
+    }
+  }
+}

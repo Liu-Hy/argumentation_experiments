@@ -1,0 +1,48 @@
+{
+  "tort_id": "5582",
+  "method": "B2",
+  "model": "minimax-m2.5",
+  "raw_output": "{\"attacks\":[{\"source\":\"d1\",\"target\":\"p2\"},{\"source\":\"d2\",\"target\":\"p1\"},{\"source\":\"d1\",\"target\":\"p0\"},{\"source\":\"d2\",\"target\":\"p2\"},{\"source\":\"d3\",\"target\":\"p2\"},{\"source\":\"d0\",\"target\":\"p0\"},{\"source\":\"d0\",\"target\":\"p1\"}]}",
+  "usage": {
+    "prompt_tokens": 1018,
+    "completion_tokens": 708,
+    "total_tokens": 1726
+  },
+  "latency_s": 2.742063522338867,
+  "parse_success": true,
+  "parse_errors": [],
+  "af": {
+    "attacks": [
+      [
+        "d1",
+        "p2"
+      ],
+      [
+        "d2",
+        "p1"
+      ],
+      [
+        "d1",
+        "p0"
+      ],
+      [
+        "d2",
+        "p2"
+      ],
+      [
+        "d3",
+        "p2"
+      ],
+      [
+        "d0",
+        "p0"
+      ],
+      [
+        "d0",
+        "p1"
+      ]
+    ],
+    "supports": [],
+    "argument_strengths": {}
+  }
+}

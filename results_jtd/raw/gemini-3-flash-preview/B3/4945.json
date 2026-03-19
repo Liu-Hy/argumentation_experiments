@@ -1,0 +1,44 @@
+{
+  "tort_id": "4945",
+  "method": "B3",
+  "model": "gemini-3-flash-preview",
+  "raw_output": "{\n  \"attacks\": [\n    {\n      \"source\": \"d0\",\n      \"target\": \"p0\"\n    },\n    {\n      \"source\": \"d1\",\n      \"target\": \"p1\"\n    },\n    {\n      \"source\": \"d2\",\n      \"target\": \"p2\"\n    },\n    {\n      \"source\": \"d3\",\n      \"target\": \"p0\"\n    },\n    {\n      \"source\": \"d3\",\n      \"target\": \"p2\"\n    },\n    {\n      \"source\": \"d4\",\n      \"target\": \"p2\"\n    }\n  ]\n}",
+  "usage": {
+    "prompt_tokens": 871,
+    "completion_tokens": 2161,
+    "total_tokens": 3032
+  },
+  "latency_s": 11.606738567352295,
+  "parse_success": true,
+  "parse_errors": [],
+  "af": {
+    "attacks": [
+      [
+        "d0",
+        "p0"
+      ],
+      [
+        "d1",
+        "p1"
+      ],
+      [
+        "d2",
+        "p2"
+      ],
+      [
+        "d3",
+        "p0"
+      ],
+      [
+        "d3",
+        "p2"
+      ],
+      [
+        "d4",
+        "p2"
+      ]
+    ],
+    "supports": [],
+    "argument_strengths": {}
+  }
+}

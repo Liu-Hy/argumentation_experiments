@@ -1,0 +1,24 @@
+{
+  "tort_id": "412",
+  "method": "B5",
+  "model": "gemini-3-flash-preview",
+  "raw_output": "{\n  \"argument_strengths\": {\n    \"p0\": 0.6,\n    \"d0\": 0.8\n  },\n  \"attacks\": [\n    {\n      \"source\": \"d0\",\n      \"target\": \"p0\"\n    }\n  ]\n}",
+  "usage": {
+    "prompt_tokens": 324,
+    "completion_tokens": 4090,
+    "total_tokens": 4414
+  },
+  "latency_s": 24.241862297058105,
+  "parse_success": true,
+  "parse_errors": [
+    "Unknown target ID in attack: p0",
+    "Unknown argument ID in strengths: p0"
+  ],
+  "af": {
+    "attacks": [],
+    "supports": [],
+    "argument_strengths": {
+      "d0": 0.8
+    }
+  }
+}

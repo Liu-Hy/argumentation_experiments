@@ -1,0 +1,41 @@
+{
+  "tort_id": "4987",
+  "method": "B6",
+  "model": "gemini-3-flash-preview",
+  "raw_output": "{\n  \"argument_strengths\": {\n    \"u0\": 1.0,\n    \"p0\": 0.7,\n    \"p1\": 0.7,\n    \"p2\": 0.6\n  },\n  \"attacks\": [],\n  \"supports\": [\n    {\n      \"source\": \"u0\",\n      \"target\": \"p2\"\n    },\n    {\n      \"source\": \"p0\",\n      \"target\": \"p1\"\n    },\n    {\n      \"source\": \"p1\",\n      \"target\": \"p0\"\n    },\n    {\n      \"source\": \"p1\",\n      \"target\": \"p2\"\n    }\n  ]\n}",
+  "usage": {
+    "prompt_tokens": 942,
+    "completion_tokens": 3001,
+    "total_tokens": 3943
+  },
+  "latency_s": 20.68162488937378,
+  "parse_success": true,
+  "parse_errors": [],
+  "af": {
+    "attacks": [],
+    "supports": [
+      [
+        "u0",
+        "p2"
+      ],
+      [
+        "p0",
+        "p1"
+      ],
+      [
+        "p1",
+        "p0"
+      ],
+      [
+        "p1",
+        "p2"
+      ]
+    ],
+    "argument_strengths": {
+      "u0": 1.0,
+      "p0": 0.7,
+      "p1": 0.7,
+      "p2": 0.6
+    }
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "tort_id": "4730",
+  "method": "B4",
+  "model": "kimi-k2.5",
+  "raw_output": " ```json\n{\n  \"attacks\": [\n    {\"source\": \"d0\", \"target\": \"p8\"}\n  ],\n  \"supports\": [\n    {\"source\": \"p1\", \"target\": \"p0\"},\n    {\"source\": \"p0\", \"target\": \"p4\"},\n    {\"source\": \"p2\", \"target\": \"p4\"},\n    {\"source\": \"p2\", \"target\": \"p3\"},\n    {\"source\": \"p5\", \"target\": \"p6\"},\n    {\"source\": \"p6\", \"target\": \"p7\"},\n    {\"source\": \"p7\", \"target\": \"p8\"},\n    {\"source\": \"p4\", \"target\": \"p8\"},\n    {\"source\": \"p3\", \"target\": \"p8\"}\n  ]\n}\n```",
+  "usage": {
+    "prompt_tokens": 1123,
+    "completion_tokens": 4417,
+    "total_tokens": 5540
+  },
+  "latency_s": 143.07468175888062,
+  "parse_success": true,
+  "parse_errors": [],
+  "af": {
+    "attacks": [
+      [
+        "d0",
+        "p8"
+      ]
+    ],
+    "supports": [
+      [
+        "p1",
+        "p0"
+      ],
+      [
+        "p0",
+        "p4"
+      ],
+      [
+        "p2",
+        "p4"
+      ],
+      [
+        "p2",
+        "p3"
+      ],
+      [
+        "p5",
+        "p6"
+      ],
+      [
+        "p6",
+        "p7"
+      ],
+      [
+        "p7",
+        "p8"
+      ],
+      [
+        "p4",
+        "p8"
+      ],
+      [
+        "p3",
+        "p8"
+      ]
+    ],
+    "argument_strengths": {}
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "tort_id": "3916",
+  "method": "B4",
+  "model": "kimi-k2.5",
+  "raw_output": "{\n  \"attacks\": [],\n  \"supports\": []\n}",
+  "usage": {
+    "prompt_tokens": 393,
+    "completion_tokens": 1076,
+    "total_tokens": 1469
+  },
+  "latency_s": 40.11354660987854,
+  "parse_success": true,
+  "parse_errors": [],
+  "af": {
+    "attacks": [],
+    "supports": [],
+    "argument_strengths": {}
+  }
+}

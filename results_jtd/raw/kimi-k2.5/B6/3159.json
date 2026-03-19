@@ -1,0 +1,21 @@
+{
+  "tort_id": "3159",
+  "method": "B6",
+  "model": "kimi-k2.5",
+  "raw_output": " ```json\n{\n  \"argument_strengths\": {\n    \"u0\": 1.0,\n    \"u1\": 1.0,\n    \"u2\": 1.0,\n    \"u3\": 1.0,\n    \"u4\": 1.0,\n    \"u5\": 1.0,\n    \"u6\": 1.0,\n    \"u7\": 1.0,\n    \"u8\": 1.0,\n    \"p0\": 0.8,\n    \"p1\": 0.7,\n    \"p2\": 0.6,\n    \"p3\": 0.8,\n    \"p4\": 0.9,\n    \"p5\": 0.8,\n    \"p6\": 0.6,\n    \"p7\": 0.7,\n    \"d0\": 0.4,\n    \"d1\": 0.4,\n    \"d2\": 0.5,\n    \"d3\": 0.4,\n    \"d4\": 0.4,\n    \"d5\": 0.5,\n    \"d6\": 0.8,\n    \"d7\": 0.5,\n    \"d8\": 0.4,\n    \"d9\": 0.5,\n    \"d10\": 0.5,\n    \"d11\": 0.3\n  },\n  \"attacks\": [\n    {\"source\": \"d0\", \"target\": \"p0\"},\n    {\"source\": \"d0\", \"target\": \"p5\"},\n    {\"source\": \"d1\", \"target\": \"p0\"},\n    {\"source\": \"d1\", \"target\": \"p3\"},\n    {\"source\": \"d1\", \"target\": \"p5\"},\n    {\"source\": \"d2\", \"target\": \"p1\"},\n    {\"source\": \"d2\", \"target\": \"p3\"},\n    {\"source\": \"d3\", \"target\": \"p0\"},\n    {\"source\": \"d3\", \"target\": \"p3\"},\n    {\"source\": \"d3\", \"target\": \"p5\"},\n    {\"source\": \"d4\", \"target\": \"p0\"},\n    {\"source\": \"d4\", \"target\": \"p3\"},\n    {\"source\": \"d4\", \"target\": \"p5\"},\n    {\"source\": \"d5\", \"target\": \"p4\"},\n    {\"source\": \"d6\", \"target\": \"p2\"},\n    {\"source\": \"d6\", \"target\": \"p6\"},\n    {\"source\": \"d7\", \"target\": \"p0\"},\n    {\"source\": \"d7\", \"target\": \"p3\"},\n    {\"source\": \"d7\", \"target\": \"p5\"},\n    {\"source\": \"d8\", \"target\": \"p0\"},\n    {\"source\": \"d8\", \"target\": \"p1\"},\n    {\"source\": \"d8\", \"target\": \"p3\"},\n    {\"source\": \"d8\", \"target\": \"p5\"},\n    {\"source\": \"d9\", \"target\": \"p1\"},\n    {\"source\": \"d9\", \"target\": \"p7\"},\n    {\"source\": \"d11\", \"target\": \"p0\"},\n    {\"source\": \"d11\", \"target\": \"p3\"},\n    {\"source\": \"d11\", \"target\": \"p4\"},\n    {\"source\": \"d11\", \"target\": \"p5\"},\n    {\"source\": \"p0\", \"target\": \"d0\"},\n    {\"source\": \"p0\", \"target\": \"d1\"},\n    {\"source\": \"p0\", \"target\": \"d3\"},\n    {\"source\": \"p0\", \"target\": \"d4\"},\n    {\"source\": \"p0\", \"target\": \"d7\"},\n    {\"source\": \"p0\", \"target\": \"d8\"},\n    {\"source\": \"p0\", \"target\": \"d11\"},\n    {\"source\": \"p1\", \"target\": \"d2\"},\n    {\"source\": \"p1\", \"target\": \"d8\"},\n    {\"source\": \"p1\", \"target\": \"d9\"},\n    {\"source\": \"p3\", \"target\": \"d1\"},\n    {\"source\": \"p3\", \"target\": \"d2\"},\n    {\"source\": \"p3\", \"target\": \"d4\"},\n    {\"source\": \"p3\", \"target\": \"d7\"},\n    {\"source\": \"p3\", \"target\": \"d8\"},\n    {\"source\": \"p3\", \"target\": \"d10\"},\n    {\"source\": \"p4\", \"target\": \"d5\"},\n    {\"source\": \"p4\", \"target\": \"d11\"},\n    {\"source\": \"p5\", \"target\": \"d0\"},\n    {\"source\": \"p5\", \"target\": \"d1\"},\n    {\"source\": \"p5\", \"target\": \"d3\"},\n    {\"source\": \"p5\", \"target\": \"d4\"},\n    {\"source\": \"p5\", \"tar",
+  "usage": {
+    "prompt_tokens": 2120,
+    "completion_tokens": 6874,
+    "total_tokens": 8994
+  },
+  "latency_s": 410.8615610599518,
+  "parse_success": false,
+  "parse_errors": [
+    "Could not extract JSON from output"
+  ],
+  "af": {
+    "attacks": [],
+    "supports": [],
+    "argument_strengths": {}
+  }
+}

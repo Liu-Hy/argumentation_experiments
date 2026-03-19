@@ -1,0 +1,40 @@
+{
+  "tort_id": "4325",
+  "method": "B0",
+  "model": "kimi-k2.5",
+  "raw_output": " {\n  \"plaintiff_claims\": {\n    \"p0\": true,\n    \"p1\": true,\n    \"p2\": true,\n    \"p3\": false,\n    \"p4\": true,\n    \"p5\": true,\n    \"p6\": true,\n    \"p7\": false,\n    \"p8\": true,\n    \"p9\": true\n  },\n  \"defendant_claims\": {\n    \"d0\": false,\n    \"d1\": false,\n    \"d2\": true,\n    \"d3\": true,\n    \"d4\": true,\n    \"d5\": false,\n    \"d6\": false,\n    \"d7\": false,\n    \"d8\": false,\n    \"d9\": true,\n    \"d10\": false,\n    \"d11\": false\n  },\n  \"tort_decision\": true\n}",
+  "usage": {
+    "prompt_tokens": 4140,
+    "completion_tokens": 4289,
+    "total_tokens": 8429
+  },
+  "latency_s": 59.18164896965027,
+  "parse_success": true,
+  "parse_errors": [],
+  "re_predictions": {
+    "p0": true,
+    "p1": true,
+    "p2": true,
+    "p3": false,
+    "p4": true,
+    "p5": true,
+    "p6": true,
+    "p7": false,
+    "p8": true,
+    "p9": true,
+    "d0": false,
+    "d1": false,
+    "d2": true,
+    "d3": true,
+    "d4": true,
+    "d5": false,
+    "d6": false,
+    "d7": false,
+    "d8": false,
+    "d9": true,
+    "d10": false,
+    "d11": false
+  },
+  "tp_a": true,
+  "tp_b": true
+}

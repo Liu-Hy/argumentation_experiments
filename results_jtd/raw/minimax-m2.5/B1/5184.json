@@ -1,0 +1,37 @@
+{
+  "tort_id": "5184",
+  "method": "B1",
+  "model": "minimax-m2.5",
+  "step1_raw": "{\"attacks\":[{\"source\":\"d0\",\"target\":\"p0\"},{\"source\":\"d1\",\"target\":\"p0\"},{\"source\":\"d7\",\"target\":\"p0\"},{\"source\":\"d2\",\"target\":\"p1\"},{\"source\":\"d3\",\"target\":\"p1\"},{\"source\":\"d4\",\"target\":\"p1\"},{\"source\":\"d5\",\"target\":\"p2\"},{\"source\":\"d6\",\"target\":\"p2\"},{\"source\":\"d2\",\"target\":\"p3\"},{\"source\":\"d0\",\"target\":\"p4\"},{\"source\":\"d1\",\"target\":\"p4\"},{\"source\":\"p0\",\"target\":\"d0\"},{\"source\":\"p1\",\"target\":\"d1\"},{\"source\":\"p2\",\"target\":\"d1\"},{\"source\":\"p3\",\"target\":\"d1\"},{\"source\":\"p4\",\"target\":\"d1\"},{\"source\":\"p1\",\"target\":\"d2\"},{\"source\":\"p2\",\"target\":\"d5\"},{\"source\":\"p3\",\"target\":\"d5\"},{\"source\":\"p0\",\"target\":\"d7\"}]}",
+  "step2_raw": "{\"plaintiff_claims\":{\"p0\":true,\"p1\":true,\"p2\":true,\"p3\":true,\"p4\":true},\"defendant_claims\":{\"d0\":false,\"d1\":false,\"d2\":false,\"d3\":false,\"d4\":false,\"d5\":false,\"d6\":false,\"d7\":false},\"tort_decision\":true}",
+  "step1_usage": {
+    "prompt_tokens": 1237,
+    "completion_tokens": 823,
+    "total_tokens": 2060
+  },
+  "step2_usage": {
+    "prompt_tokens": 1462,
+    "completion_tokens": 629,
+    "total_tokens": 2091
+  },
+  "latency_s": 23.2000994682312,
+  "parse_success": true,
+  "parse_errors": [],
+  "re_predictions": {
+    "p0": true,
+    "p1": true,
+    "p2": true,
+    "p3": true,
+    "p4": true,
+    "d0": false,
+    "d1": false,
+    "d2": false,
+    "d3": false,
+    "d4": false,
+    "d5": false,
+    "d6": false,
+    "d7": false
+  },
+  "tp_a": true,
+  "tp_b": true
+}

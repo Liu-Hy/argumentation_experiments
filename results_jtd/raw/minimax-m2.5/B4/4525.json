@@ -1,0 +1,61 @@
+{
+  "tort_id": "4525",
+  "method": "B4",
+  "model": "minimax-m2.5",
+  "raw_output": "{\"attacks\": [{\"source\": \"d0\", \"target\": \"p2\"}, {\"source\": \"d0\", \"target\": \"p3\"}, {\"source\": \"p1\", \"target\": \"p2\"}, {\"source\": \"p3\", \"target\": \"p2\"}, {\"source\": \"p4\", \"target\": \"p0\"}, {\"source\": \"p5\", \"target\": \"p2\"}], \"supports\": [{\"source\": \"p0\", \"target\": \"p3\"}, {\"source\": \"p1\", \"target\": \"p0\"}, {\"source\": \"p3\", \"target\": \"p5\"}, {\"source\": \"p4\", \"target\": \"p5\"}]}",
+  "usage": {
+    "prompt_tokens": 801,
+    "completion_tokens": 749,
+    "total_tokens": 1550
+  },
+  "latency_s": 34.80993413925171,
+  "parse_success": true,
+  "parse_errors": [],
+  "af": {
+    "attacks": [
+      [
+        "d0",
+        "p2"
+      ],
+      [
+        "d0",
+        "p3"
+      ],
+      [
+        "p1",
+        "p2"
+      ],
+      [
+        "p3",
+        "p2"
+      ],
+      [
+        "p4",
+        "p0"
+      ],
+      [
+        "p5",
+        "p2"
+      ]
+    ],
+    "supports": [
+      [
+        "p0",
+        "p3"
+      ],
+      [
+        "p1",
+        "p0"
+      ],
+      [
+        "p3",
+        "p5"
+      ],
+      [
+        "p4",
+        "p5"
+      ]
+    ],
+    "argument_strengths": {}
+  }
+}

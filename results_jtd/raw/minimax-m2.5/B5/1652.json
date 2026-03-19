@@ -1,0 +1,30 @@
+{
+  "tort_id": "1652",
+  "method": "B5",
+  "model": "minimax-m2.5",
+  "raw_output": "{\"argument_strengths\": {\"p0\": 0.75, \"p1\": 0.7, \"d0\": 0.65, \"d1\": 0.6, \"d2\": 0.55}, \"attacks\": [{\"source\": \"d0\", \"target\": \"p0\"}, {\"source\": \"d1\", \"target\": \"p0\"}, {\"source\": \"d2\", \"target\": \"p1\"}, {\"source\": \"p0\", \"target\": \"d0\"}, {\"source\": \"p0\", \"target\": \"d1\"}]}",
+  "usage": {
+    "prompt_tokens": 345,
+    "completion_tokens": 652,
+    "total_tokens": 997
+  },
+  "latency_s": 10.755900144577026,
+  "parse_success": true,
+  "parse_errors": [
+    "Unknown source ID in attack: d0",
+    "Unknown source ID in attack: d1",
+    "Unknown source ID in attack: d2",
+    "Unknown source ID in attack: p0",
+    "Unknown source ID in attack: p0",
+    "Unknown argument ID in strengths: p0",
+    "Unknown argument ID in strengths: p1",
+    "Unknown argument ID in strengths: d0",
+    "Unknown argument ID in strengths: d1",
+    "Unknown argument ID in strengths: d2"
+  ],
+  "af": {
+    "attacks": [],
+    "supports": [],
+    "argument_strengths": {}
+  }
+}

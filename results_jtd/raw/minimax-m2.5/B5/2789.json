@@ -1,0 +1,52 @@
+{
+  "tort_id": "2789",
+  "method": "B5",
+  "model": "minimax-m2.5",
+  "raw_output": "{\"argument_strengths\": {\"p0\": 0.9, \"p1\": 0.85, \"p2\": 0.85, \"p3\": 0.85, \"p4\": 0.8, \"p5\": 0.8, \"p6\": 0.75, \"p7\": 0.85, \"p8\": 0.8, \"p9\": 0.85, \"p10\": 0.9, \"p11\": 0.9, \"p12\": 0.8, \"p13\": 0.85, \"d0\": 0.6, \"d1\": 0.5, \"d2\": 0.4, \"d3\": 0.5}, \"attacks\": [{\"source\": \"d0\", \"target\": \"p13\"}, {\"source\": \"d1\", \"target\": \"p2\"}, {\"source\": \"d1\", \"target\": \"p9\"}, {\"source\": \"d2\", \"target\": \"p0\"}, {\"source\": \"d2\", \"target\": \"p1\"}, {\"source\": \"d2\", \"target\": \"p3\"}, {\"source\": \"d2\", \"target\": \"p4\"}, {\"source\": \"d2\", \"target\": \"p5\"}, {\"source\": \"d2\", \"target\": \"p6\"}, {\"source\": \"d2\", \"target\": \"p7\"}, {\"source\": \"d2\", \"target\": \"p11\"}, {\"source\": \"d2\", \"target\": \"p12\"}, {\"source\": \"d3\", \"target\": \"p13\"}]}",
+  "usage": {
+    "prompt_tokens": 1227,
+    "completion_tokens": 943,
+    "total_tokens": 2170
+  },
+  "latency_s": 18.592345237731934,
+  "parse_success": true,
+  "parse_errors": [
+    "Unknown source ID in attack: d0",
+    "Unknown source ID in attack: d1",
+    "Unknown source ID in attack: d1",
+    "Unknown source ID in attack: d2",
+    "Unknown source ID in attack: d2",
+    "Unknown source ID in attack: d2",
+    "Unknown source ID in attack: d2",
+    "Unknown source ID in attack: d2",
+    "Unknown source ID in attack: d2",
+    "Unknown source ID in attack: d2",
+    "Unknown source ID in attack: d2",
+    "Unknown source ID in attack: d2",
+    "Unknown source ID in attack: d3",
+    "Unknown argument ID in strengths: d0",
+    "Unknown argument ID in strengths: d1",
+    "Unknown argument ID in strengths: d2",
+    "Unknown argument ID in strengths: d3"
+  ],
+  "af": {
+    "attacks": [],
+    "supports": [],
+    "argument_strengths": {
+      "p0": 0.9,
+      "p1": 0.85,
+      "p2": 0.85,
+      "p3": 0.85,
+      "p4": 0.8,
+      "p5": 0.8,
+      "p6": 0.75,
+      "p7": 0.85,
+      "p8": 0.8,
+      "p9": 0.85,
+      "p10": 0.9,
+      "p11": 0.9,
+      "p12": 0.8,
+      "p13": 0.85
+    }
+  }
+}

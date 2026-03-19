@@ -1,0 +1,21 @@
+{
+  "tort_id": "412",
+  "method": "B2",
+  "model": "minimax-m2.5",
+  "raw_output": "```json\n{\n  \"attacks\": [\n    {\"source\": \"d0\", \"target\": \"p0\"}\n  ]\n}\n```",
+  "usage": {
+    "prompt_tokens": 265,
+    "completion_tokens": 493,
+    "total_tokens": 758
+  },
+  "latency_s": 18.9129638671875,
+  "parse_success": true,
+  "parse_errors": [
+    "Unknown target ID in attack: p0"
+  ],
+  "af": {
+    "attacks": [],
+    "supports": [],
+    "argument_strengths": {}
+  }
+}

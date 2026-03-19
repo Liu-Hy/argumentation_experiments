@@ -1,0 +1,44 @@
+{
+  "tort_id": "3159",
+  "method": "B1",
+  "model": "gemini-3-flash-preview",
+  "step1_raw": "```json\n{\n  \"attacks\": [\n    {\"source\": \"p0\", \"target\": \"d0\"},\n    {\"source\": \"d0\", \"target\": \"p0\"},\n    {\"source\": \"p0\", \"target\": \"d1\"},\n    {\"source\": \"d1\", \"target\": \"p0\"},\n    {\"source\": \"p0\", \"target\": \"d3\"},\n    {\"source\": \"d3\", \"target\": \"p0\"},\n    {\"source\": \"p0\", \"target\": \"d7\"},\n    {\"source\": \"d7\", \"target\": \"p0\"},\n    {\"source\": \"p0\", \"target\": \"d10\"},\n    {\"source\": \"d10\", \"target\": \"p0\"},\n    {\"source\": \"p0\", \"target\": \"d11\"},\n    {\"source\": \"d11\", \"target\": \"p0\"},\n    {\"source\": \"p1\", \"target\": \"d2\"},\n    {\"source\": \"d2\", \"target\": \"p1\"},\n    {\"source\": \"p1\", \"target\": \"d4\"},\n    {\"source\": \"d4\", \"target\": \"p1\"},\n    {\"source\": \"p1\", \"target\": \"d8\"},\n    {\"source\": \"d8\", \"target\": \"p1\"},\n    {\"source\": \"p1\", \"target\": \"d9\"},\n    {\"source\": \"d9\", \"target\": \"p1\"},\n    {\"source\": \"p2\", \"target\": \"d6\"},\n    {\"source\": \"d6\", \"target\": \"p2\"},\n    {\"source\": \"p3\", \"target\": \"d1\"},\n    {\"source\": \"d1\", \"target\": \"p3\"},\n    {\"source\": \"p3\", \"target\": \"d2\"},\n    {\"source\": \"d2\", \"target\": \"p3\"},\n    {\"source\": \"p3\", \"target\": \"d4\"},\n    {\"source\": \"d4\", \"target\": \"p3\"},\n    {\"source\": \"p3\", \"target\": \"d7\"},\n    {\"source\": \"d7\", \"target\": \"p3\"},\n    {\"source\": \"p3\", \"target\": \"d8\"},\n    {\"source\": \"d8\", \"target\": \"p3\"},\n    {\"source\": \"p3\", \"target\": \"d10\"},\n    {\"source\": \"d10\", \"target\": \"p3\"},\n    {\"source\": \"p4\", \"target\": \"d3\"},\n    {\"source\": \"d3\", \"target\": \"p4\"},\n    {\"source\": \"p4\", \"target\": \"d5\"},\n    {\"source\": \"d5\", \"target\": \"p4\"},\n    {\"source\": \"p4\", \"target\": \"d8\"},\n    {\"source\": \"d8\", \"target\": \"p4\"},\n    {\"source\": \"p4\", \"target\": \"d11\"},\n    {\"source\": \"d11\", \"target\": \"p4\"},\n    {\"source\": \"p5\", \"target\": \"d0\"},\n    {\"source\": \"d0\", \"target\": \"p5\"},\n    {\"source\": \"p5\", \"target\": \"d1\"},\n    {\"source\": \"d1\", \"target\": \"p5\"},\n    {\"source\": \"p5\", \"target\": \"d3\"},\n    {\"source\": \"d3\", \"target\": \"p5\"},\n    {\"source\": \"p5\", \"target\": \"d7\"},\n    {\"source\": \"d7\", \"target\": \"p5\"},\n    {\"source\": \"p5\", \"target\": \"d10\"},\n    {\"source\": \"d10\", \"target\": \"p5\"},\n    {\"source\": \"p5\", \"target\": \"d11\"},\n    {\"source\": \"d11\", \"target\": \"p5\"},\n    {\"source\": \"p6\", \"target\": \"d6\"},\n    {\"source\": \"d6\", \"target\": \"p6\"},\n    {\"source\": \"p7\", \"target\": \"d2\"},\n    {\"source\": \"d2\", \"target\": \"p7\"},\n    {\"source\": \"p7\", \"target\": \"d9\"},\n    {\"source\": \"d9\", \"target\": \"p7\"}\n  ]\n}\n```",
+  "step2_raw": "```json\n{\n  \"plaintiff_claims\": {\n    \"p0\": true,\n    \"p1\": true,\n    \"p2\": true,\n    \"p3\": true,\n    \"p4\": true,\n    \"p5\": true,\n    \"p6\": true,\n    \"p7\": true\n  },\n  \"defendant_claims\": {\n    \"d0\": false,\n    \"d1\": false,\n    \"d2\": false,\n    \"d3\": false,\n    \"d4\": false,\n    \"d5\": false,\n    \"d6\": false,\n    \"d7\": false,\n    \"d8\": false,\n    \"d9\": false,\n    \"d10\": false,\n    \"d11\": false\n  },\n  \"tort_decision\": true\n}\n```",
+  "step1_usage": {
+    "prompt_tokens": 1578,
+    "completion_tokens": 6893,
+    "total_tokens": 8471
+  },
+  "step2_usage": {
+    "prompt_tokens": 2593,
+    "completion_tokens": 2847,
+    "total_tokens": 5440
+  },
+  "latency_s": 56.40935206413269,
+  "parse_success": true,
+  "parse_errors": [],
+  "re_predictions": {
+    "p0": true,
+    "p1": true,
+    "p2": true,
+    "p3": true,
+    "p4": true,
+    "p5": true,
+    "p6": true,
+    "p7": true,
+    "d0": false,
+    "d1": false,
+    "d2": false,
+    "d3": false,
+    "d4": false,
+    "d5": false,
+    "d6": false,
+    "d7": false,
+    "d8": false,
+    "d9": false,
+    "d10": false,
+    "d11": false
+  },
+  "tp_a": true,
+  "tp_b": true
+}

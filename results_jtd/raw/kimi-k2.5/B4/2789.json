@@ -1,0 +1,100 @@
+{
+  "tort_id": "2789",
+  "method": "B4",
+  "model": "kimi-k2.5",
+  "raw_output": " ```json\n{\n  \"attacks\": [],\n  \"supports\": [\n    {\"source\": \"p0\", \"target\": \"p1\"},\n    {\"source\": \"p0\", \"target\": \"p10\"},\n    {\"source\": \"p2\", \"target\": \"p10\"},\n    {\"source\": \"p3\", \"target\": \"p10\"},\n    {\"source\": \"p4\", \"target\": \"p10\"},\n    {\"source\": \"p5\", \"target\": \"p10\"},\n    {\"source\": \"p6\", \"target\": \"p10\"},\n    {\"source\": \"p7\", \"target\": \"p10\"},\n    {\"source\": \"p9\", \"target\": \"p10\"},\n    {\"source\": \"p11\", \"target\": \"p10\"},\n    {\"source\": \"p12\", \"target\": \"p10\"},\n    {\"source\": \"p8\", \"target\": \"p10\"},\n    {\"source\": \"p10\", \"target\": \"p13\"},\n    {\"source\": \"p1\", \"target\": \"p13\"},\n    {\"source\": \"p2\", \"target\": \"p13\"},\n    {\"source\": \"p5\", \"target\": \"p13\"},\n    {\"source\": \"p6\", \"target\": \"p13\"},\n    {\"source\": \"p8\", \"target\": \"p13\"},\n    {\"source\": \"p9\", \"target\": \"p13\"},\n    {\"source\": \"p11\", \"target\": \"p13\"}\n  ]\n}\n```",
+  "usage": {
+    "prompt_tokens": 1654,
+    "completion_tokens": 7320,
+    "total_tokens": 8974
+  },
+  "latency_s": 106.63060259819031,
+  "parse_success": true,
+  "parse_errors": [],
+  "af": {
+    "attacks": [],
+    "supports": [
+      [
+        "p0",
+        "p1"
+      ],
+      [
+        "p0",
+        "p10"
+      ],
+      [
+        "p2",
+        "p10"
+      ],
+      [
+        "p3",
+        "p10"
+      ],
+      [
+        "p4",
+        "p10"
+      ],
+      [
+        "p5",
+        "p10"
+      ],
+      [
+        "p6",
+        "p10"
+      ],
+      [
+        "p7",
+        "p10"
+      ],
+      [
+        "p9",
+        "p10"
+      ],
+      [
+        "p11",
+        "p10"
+      ],
+      [
+        "p12",
+        "p10"
+      ],
+      [
+        "p8",
+        "p10"
+      ],
+      [
+        "p10",
+        "p13"
+      ],
+      [
+        "p1",
+        "p13"
+      ],
+      [
+        "p2",
+        "p13"
+      ],
+      [
+        "p5",
+        "p13"
+      ],
+      [
+        "p6",
+        "p13"
+      ],
+      [
+        "p8",
+        "p13"
+      ],
+      [
+        "p9",
+        "p13"
+      ],
+      [
+        "p11",
+        "p13"
+      ]
+    ],
+    "argument_strengths": {}
+  }
+}

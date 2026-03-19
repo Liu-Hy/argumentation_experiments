@@ -1,0 +1,28 @@
+{
+  "tort_id": "5784",
+  "method": "B4",
+  "model": "minimax-m2.5",
+  "raw_output": "```json\n{\n  \"attacks\": [],\n  \"supports\": [\n    {\"source\": \"p1\", \"target\": \"p0\"},\n    {\"source\": \"p2\", \"target\": \"p0\"}\n  ]\n}\n```",
+  "usage": {
+    "prompt_tokens": 430,
+    "completion_tokens": 611,
+    "total_tokens": 1041
+  },
+  "latency_s": 18.368290424346924,
+  "parse_success": true,
+  "parse_errors": [],
+  "af": {
+    "attacks": [],
+    "supports": [
+      [
+        "p1",
+        "p0"
+      ],
+      [
+        "p2",
+        "p0"
+      ]
+    ],
+    "argument_strengths": {}
+  }
+}

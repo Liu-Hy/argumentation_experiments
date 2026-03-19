@@ -1,0 +1,97 @@
+{
+  "tort_id": "5582",
+  "method": "B6",
+  "model": "minimax-m2.5",
+  "raw_output": "{\"argument_strengths\": {\"u0\": 1.0, \"u1\": 1.0, \"u2\": 1.0, \"u3\": 1.0, \"u4\": 1.0, \"u5\": 1.0, \"u6\": 1.0, \"p0\": 0.7, \"p1\": 0.8, \"p2\": 0.6, \"d0\": 0.7, \"d1\": 0.6, \"d2\": 0.5, \"d3\": 0.6}, \"attacks\": [{\"source\": \"d0\", \"target\": \"p0\"}, {\"source\": \"d0\", \"target\": \"p1\"}, {\"source\": \"d0\", \"target\": \"p2\"}, {\"source\": \"d1\", \"target\": \"p0\"}, {\"source\": \"d1\", \"target\": \"p1\"}, {\"source\": \"d1\", \"target\": \"p2\"}, {\"source\": \"d2\", \"target\": \"p1\"}, {\"source\": \"d3\", \"target\": \"p2\"}, {\"source\": \"p1\", \"target\": \"d1\"}, {\"source\": \"p1\", \"target\": \"d2\"}], \"supports\": [{\"source\": \"u0\", \"target\": \"u3\"}, {\"source\": \"u1\", \"target\": \"u2\"}, {\"source\": \"u2\", \"target\": \"u3\"}, {\"source\": \"u2\", \"target\": \"u5\"}, {\"source\": \"u3\", \"target\": \"u4\"}, {\"source\": \"u3\", \"target\": \"u6\"}, {\"source\": \"u5\", \"target\": \"u4\"}, {\"source\": \"u5\", \"target\": \"u6\"}, {\"source\": \"p0\", \"target\": \"p2\"}, {\"source\": \"p1\", \"target\": \"p0\"}, {\"source\": \"p1\", \"target\": \"p2\"}]}",
+  "usage": {
+    "prompt_tokens": 1159,
+    "completion_tokens": 1002,
+    "total_tokens": 2161
+  },
+  "latency_s": 47.0697968006134,
+  "parse_success": true,
+  "parse_errors": [
+    "Dropped invalid support targeting undisputed fact: u0 -> u3",
+    "Dropped invalid support targeting undisputed fact: u1 -> u2",
+    "Dropped invalid support targeting undisputed fact: u2 -> u3",
+    "Dropped invalid support targeting undisputed fact: u2 -> u5",
+    "Dropped invalid support targeting undisputed fact: u3 -> u4",
+    "Dropped invalid support targeting undisputed fact: u3 -> u6",
+    "Dropped invalid support targeting undisputed fact: u5 -> u4",
+    "Dropped invalid support targeting undisputed fact: u5 -> u6"
+  ],
+  "af": {
+    "attacks": [
+      [
+        "d0",
+        "p0"
+      ],
+      [
+        "d0",
+        "p1"
+      ],
+      [
+        "d0",
+        "p2"
+      ],
+      [
+        "d1",
+        "p0"
+      ],
+      [
+        "d1",
+        "p1"
+      ],
+      [
+        "d1",
+        "p2"
+      ],
+      [
+        "d2",
+        "p1"
+      ],
+      [
+        "d3",
+        "p2"
+      ],
+      [
+        "p1",
+        "d1"
+      ],
+      [
+        "p1",
+        "d2"
+      ]
+    ],
+    "supports": [
+      [
+        "p0",
+        "p2"
+      ],
+      [
+        "p1",
+        "p0"
+      ],
+      [
+        "p1",
+        "p2"
+      ]
+    ],
+    "argument_strengths": {
+      "u0": 1.0,
+      "u1": 1.0,
+      "u2": 1.0,
+      "u3": 1.0,
+      "u4": 1.0,
+      "u5": 1.0,
+      "u6": 1.0,
+      "p0": 0.7,
+      "p1": 0.8,
+      "p2": 0.6,
+      "d0": 0.7,
+      "d1": 0.6,
+      "d2": 0.5,
+      "d3": 0.6
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "tort_id": "1683",
+  "method": "B0",
+  "model": "minimax-m2.5",
+  "raw_output": "{\"plaintiff_claims\": {\"p0\": true, \"p1\": true, \"p2\": true}, \"defendant_claims\": {\"d0\": false, \"d1\": false, \"d2\": false, \"d3\": false, \"d4\": false, \"d5\": false, \"d6\": false, \"d7\": false, \"d8\": false}, \"tort_decision\": true}",
+  "usage": {
+    "prompt_tokens": 1354,
+    "completion_tokens": 905,
+    "total_tokens": 2259
+  },
+  "latency_s": 25.994682788848877,
+  "parse_success": true,
+  "parse_errors": [],
+  "re_predictions": {
+    "p0": true,
+    "p1": true,
+    "p2": true,
+    "d0": false,
+    "d1": false,
+    "d2": false,
+    "d3": false,
+    "d4": false,
+    "d5": false,
+    "d6": false,
+    "d7": false,
+    "d8": false
+  },
+  "tp_a": true,
+  "tp_b": true
+}

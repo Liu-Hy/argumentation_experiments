@@ -1,0 +1,97 @@
+{
+  "tort_id": "3734",
+  "method": "B4",
+  "model": "kimi-k2.5",
+  "raw_output": "```json\n{\n  \"attacks\": [\n    {\"source\": \"d0\", \"target\": \"p0\"},\n    {\"source\": \"p0\", \"target\": \"d0\"},\n    {\"source\": \"p1\", \"target\": \"d0\"},\n    {\"source\": \"d1\", \"target\": \"p2\"},\n    {\"source\": \"d2\", \"target\": \"p2\"},\n    {\"source\": \"d3\", \"target\": \"p2\"},\n    {\"source\": \"p2\", \"target\": \"d1\"},\n    {\"source\": \"p2\", \"target\": \"d2\"},\n    {\"source\": \"p2\", \"target\": \"d3\"},\n    {\"source\": \"p3\", \"target\": \"d1\"},\n    {\"source\": \"p4\", \"target\": \"d1\"},\n    {\"source\": \"p5\", \"target\": \"d1\"},\n    {\"source\": \"p5\", \"target\": \"d2\"}\n  ],\n  \"supports\": [\n    {\"source\": \"p1\", \"target\": \"p0\"},\n    {\"source\": \"p3\", \"target\": \"p2\"},\n    {\"source\": \"p4\", \"target\": \"p2\"},\n    {\"source\": \"p5\", \"target\": \"p2\"},\n    {\"source\": \"d2\", \"target\": \"d1\"},\n    {\"source\": \"d3\", \"target\": \"d1\"}\n  ]\n}\n```",
+  "usage": {
+    "prompt_tokens": 1129,
+    "completion_tokens": 6009,
+    "total_tokens": 7138
+  },
+  "latency_s": 177.38394832611084,
+  "parse_success": true,
+  "parse_errors": [],
+  "af": {
+    "attacks": [
+      [
+        "d0",
+        "p0"
+      ],
+      [
+        "p0",
+        "d0"
+      ],
+      [
+        "p1",
+        "d0"
+      ],
+      [
+        "d1",
+        "p2"
+      ],
+      [
+        "d2",
+        "p2"
+      ],
+      [
+        "d3",
+        "p2"
+      ],
+      [
+        "p2",
+        "d1"
+      ],
+      [
+        "p2",
+        "d2"
+      ],
+      [
+        "p2",
+        "d3"
+      ],
+      [
+        "p3",
+        "d1"
+      ],
+      [
+        "p4",
+        "d1"
+      ],
+      [
+        "p5",
+        "d1"
+      ],
+      [
+        "p5",
+        "d2"
+      ]
+    ],
+    "supports": [
+      [
+        "p1",
+        "p0"
+      ],
+      [
+        "p3",
+        "p2"
+      ],
+      [
+        "p4",
+        "p2"
+      ],
+      [
+        "p5",
+        "p2"
+      ],
+      [
+        "d2",
+        "d1"
+      ],
+      [
+        "d3",
+        "d1"
+      ]
+    ],
+    "argument_strengths": {}
+  }
+}

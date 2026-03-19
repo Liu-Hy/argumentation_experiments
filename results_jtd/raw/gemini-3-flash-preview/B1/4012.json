@@ -1,0 +1,29 @@
+{
+  "tort_id": "4012",
+  "method": "B1",
+  "model": "gemini-3-flash-preview",
+  "step1_raw": "{\n  \"attacks\": [\n    {\"source\": \"p0\", \"target\": \"d1\"},\n    {\"source\": \"p0\", \"target\": \"d2\"},\n    {\"source\": \"d0\", \"target\": \"p0\"},\n    {\"source\": \"d1\", \"target\": \"p0\"},\n    {\"source\": \"d2\", \"target\": \"p0\"}\n  ]\n}",
+  "step2_raw": "```json\n{\n  \"plaintiff_claims\": {\n    \"p0\": false,\n    \"p1\": true\n  },\n  \"defendant_claims\": {\n    \"d0\": true,\n    \"d1\": true,\n    \"d2\": true\n  },\n  \"tort_decision\": true\n}\n```",
+  "step1_usage": {
+    "prompt_tokens": 810,
+    "completion_tokens": 3202,
+    "total_tokens": 4012
+  },
+  "step2_usage": {
+    "prompt_tokens": 930,
+    "completion_tokens": 4609,
+    "total_tokens": 5539
+  },
+  "latency_s": 49.619818449020386,
+  "parse_success": true,
+  "parse_errors": [],
+  "re_predictions": {
+    "p0": false,
+    "p1": true,
+    "d0": true,
+    "d1": true,
+    "d2": true
+  },
+  "tp_a": true,
+  "tp_b": true
+}

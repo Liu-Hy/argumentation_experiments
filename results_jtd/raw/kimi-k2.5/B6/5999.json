@@ -1,0 +1,55 @@
+{
+  "tort_id": "5999",
+  "method": "B6",
+  "model": "kimi-k2.5",
+  "raw_output": "```json\n{\n  \"argument_strengths\": {\n    \"u0\": 1.0,\n    \"u1\": 1.0,\n    \"u2\": 1.0,\n    \"u3\": 1.0,\n    \"u4\": 1.0,\n    \"u5\": 1.0,\n    \"u6\": 1.0,\n    \"u7\": 1.0,\n    \"p0\": 0.7,\n    \"d0\": 0.6,\n    \"d1\": 0.75\n  },\n  \"attacks\": [\n    {\"source\": \"d0\", \"target\": \"p0\"},\n    {\"source\": \"d1\", \"target\": \"p0\"}\n  ],\n  \"supports\": [\n    {\"source\": \"u0\", \"target\": \"p0\"},\n    {\"source\": \"u1\", \"target\": \"d0\"},\n    {\"source\": \"u6\", \"target\": \"d0\"},\n    {\"source\": \"u2\", \"target\": \"d1\"},\n    {\"source\": \"u3\", \"target\": \"d1\"},\n    {\"source\": \"u4\", \"target\": \"d1\"},\n    {\"source\": \"u5\", \"target\": \"d1\"},\n    {\"source\": \"u6\", \"target\": \"d1\"},\n    {\"source\": \"u7\", \"target\": \"d1\"},\n    {\"source\": \"d0\", \"target\": \"d1\"}\n  ]\n}\n```",
+  "usage": {
+    "prompt_tokens": 904,
+    "completion_tokens": 5397,
+    "total_tokens": 6301
+  },
+  "latency_s": 148.4230444431305,
+  "parse_success": true,
+  "parse_errors": [
+    "Unknown source ID in support: u0",
+    "Unknown source ID in support: u1",
+    "Unknown source ID in support: u6",
+    "Unknown source ID in support: u2",
+    "Unknown source ID in support: u3",
+    "Unknown source ID in support: u4",
+    "Unknown source ID in support: u5",
+    "Unknown source ID in support: u6",
+    "Unknown source ID in support: u7",
+    "Unknown argument ID in strengths: u0",
+    "Unknown argument ID in strengths: u1",
+    "Unknown argument ID in strengths: u2",
+    "Unknown argument ID in strengths: u3",
+    "Unknown argument ID in strengths: u4",
+    "Unknown argument ID in strengths: u5",
+    "Unknown argument ID in strengths: u6",
+    "Unknown argument ID in strengths: u7"
+  ],
+  "af": {
+    "attacks": [
+      [
+        "d0",
+        "p0"
+      ],
+      [
+        "d1",
+        "p0"
+      ]
+    ],
+    "supports": [
+      [
+        "d0",
+        "d1"
+      ]
+    ],
+    "argument_strengths": {
+      "p0": 0.7,
+      "d0": 0.6,
+      "d1": 0.75
+    }
+  }
+}

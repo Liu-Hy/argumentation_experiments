@@ -1,0 +1,21 @@
+{
+  "tort_id": "2789",
+  "method": "B6",
+  "model": "kimi-k2.5",
+  "raw_output": "```json\n{\n  \"argument_strengths\": {\n    \"u0\": 1.0,\n    \"u1\": 1.0,\n    \"u2\": 1.0,\n    \"u3\": 1.0,\n    \"u4\": 1.0,\n    \"u5\": 1.0,\n    \"u6\": 1.0,\n    \"u7\": 1.0,\n    \"u8\": 1.0,\n    \"p0\": 0.9,\n    \"p1\": 0.8,\n    \"p2\": 0.9,\n    \"p3\": 0.8,\n    \"p4\": 0.8,\n    \"p5\": 0.9,\n    \"p6\": 0.8,\n    \"p7\": 0.9,\n    \"p8\": 0.85,\n    \"p9\": 0.9,\n    \"p10\": 0.9,\n    \"p11\": 0.9,\n    \"p12\": 0.9,\n    \"p13\": 0.75,\n    \"d0\": 0.6,\n    \"d1\": 0.7,\n    \"d2\": 0.6,\n    \"d3\": 0.5\n  },\n  \"attacks\": [\n    {\"source\": \"d0\", \"target\": \"p13\"},\n    {\"source\": \"d1\", \"target\": \"p13\"},\n    {\"source\": \"d2\", \"target\": \"p1\"},\n    {\"source\": \"d3\", \"target\": \"p13\"}\n  ],\n  \"supports\": [\n    {\"source\": \"u0\", \"target\": \"p0\"},\n    {\"source\": \"u0\", \"target\": \"d0\"},\n    {\"source\": \"u1\", \"target\": \"p0\"},\n    {\"source\": \"u2\", \"target\": \"p2\"},\n    {\"source\": \"u3\", \"target\": \"p11\"},\n    {\"source\": \"u4\", \"target\": \"p11\"},\n    {\"source\": \"u5\", \"target\": \"p5\"},\n    {\"source\": \"u6\", \"target\": \"p7\"},\n    {\"source\": \"u7\", \"target\": \"p9\"},\n    {\"source\": \"u8",
+  "usage": {
+    "prompt_tokens": 1713,
+    "completion_tokens": 8192,
+    "total_tokens": 9905
+  },
+  "latency_s": 201.94742369651794,
+  "parse_success": false,
+  "parse_errors": [
+    "Could not extract JSON from output"
+  ],
+  "af": {
+    "attacks": [],
+    "supports": [],
+    "argument_strengths": {}
+  }
+}

@@ -20,7 +20,7 @@ docs/                   Experiment plans, reviews, and reports
 
 ```bash
 pip install -r requirements.txt
-python run_experiment.py --model <model_key> --dataset ./data/PersuasiveEssaysV2
+python run_essay_experiment.py --model <model_key> --dataset ./data/PersuasiveEssaysV2
 ```
 
-Set `OPENROUTER_API_KEY` in a `.env` file or as an environment variable. See `docs/EXPERIMENT_PLAN.md` and `docs/IMPLEMENTATION_PLAN.md` for full details on the experimental design.
+Set `OPENROUTER_API_KEY` in a `.env` file or as an environment variable. See `docs/essay_experiment_plan.md` and `docs/essay_implementation_plan.md` for full details on the experimental design.

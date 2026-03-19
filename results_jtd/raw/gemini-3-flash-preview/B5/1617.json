@@ -1,0 +1,21 @@
+{
+  "tort_id": "1617",
+  "method": "B5",
+  "model": "gemini-3-flash-preview",
+  "raw_output": "{\n  \"argument_strengths\": {\n    \"p0\": 0.8\n  },\n  \"attacks\": []\n}",
+  "usage": {
+    "prompt_tokens": 465,
+    "completion_tokens": 1794,
+    "total_tokens": 2259
+  },
+  "latency_s": 32.39450120925903,
+  "parse_success": true,
+  "parse_errors": [],
+  "af": {
+    "attacks": [],
+    "supports": [],
+    "argument_strengths": {
+      "p0": 0.8
+    }
+  }
+}

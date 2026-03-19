@@ -1,0 +1,29 @@
+{
+  "tort_id": "2787",
+  "method": "B1",
+  "model": "gemini-3-flash-preview",
+  "step1_raw": "{\n  \"attacks\": [\n    {\"source\": \"p0\", \"target\": \"d1\"},\n    {\"source\": \"p1\", \"target\": \"d0\"},\n    {\"source\": \"p1\", \"target\": \"d1\"},\n    {\"source\": \"p2\", \"target\": \"d0\"},\n    {\"source\": \"p2\", \"target\": \"d1\"},\n    {\"source\": \"d0\", \"target\": \"p1\"},\n    {\"source\": \"d0\", \"target\": \"p2\"},\n    {\"source\": \"d1\", \"target\": \"p0\"},\n    {\"source\": \"d1\", \"target\": \"p1\"},\n    {\"source\": \"d1\", \"target\": \"p2\"}\n  ]\n}",
+  "step2_raw": "{\n  \"plaintiff_claims\": {\n    \"p0\": false,\n    \"p1\": false,\n    \"p2\": false\n  },\n  \"defendant_claims\": {\n    \"d0\": false,\n    \"d1\": true\n  },\n  \"tort_decision\": false\n}",
+  "step1_usage": {
+    "prompt_tokens": 626,
+    "completion_tokens": 2156,
+    "total_tokens": 2782
+  },
+  "step2_usage": {
+    "prompt_tokens": 824,
+    "completion_tokens": 1763,
+    "total_tokens": 2587
+  },
+  "latency_s": 25.17911982536316,
+  "parse_success": true,
+  "parse_errors": [],
+  "re_predictions": {
+    "p0": false,
+    "p1": false,
+    "p2": false,
+    "d0": false,
+    "d1": true
+  },
+  "tp_a": false,
+  "tp_b": false
+}

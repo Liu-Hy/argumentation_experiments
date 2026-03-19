@@ -1,0 +1,88 @@
+{
+  "tort_id": "4730",
+  "method": "B6",
+  "model": "minimax-m2.5",
+  "raw_output": "```json\n{\n  \"argument_strengths\": {\n    \"u0\": 1.0,\n    \"u1\": 1.0,\n    \"u2\": 1.0,\n    \"u3\": 1.0,\n    \"p0\": 0.85,\n    \"p1\": 0.8,\n    \"p2\": 0.85,\n    \"p3\": 0.8,\n    \"p4\": 0.9,\n    \"p5\": 1.0,\n    \"p6\": 0.85,\n    \"p7\": 0.7,\n    \"p8\": 0.6,\n    \"d0\": 0.75\n  },\n  \"attacks\": [\n    {\"source\": \"d0\", \"target\": \"p7\"},\n    {\"source\": \"d0\", \"target\": \"p8\"},\n    {\"source\": \"p7\", \"target\": \"d0\"},\n    {\"source\": \"p8\", \"target\": \"d0\"}\n  ],\n  \"supports\": [\n    {\"source\": \"u0\", \"target\": \"p0\"},\n    {\"source\": \"u0\", \"target\": \"p2\"},\n    {\"source\": \"u0\", \"target\": \"p4\"},\n    {\"source\": \"u1\", \"target\": \"p5\"},\n    {\"source\": \"u2\", \"target\": \"p6\"},\n    {\"source\": \"u3\", \"target\": \"p7\"},\n    {\"source\": \"u3\", \"target\": \"p8\"},\n    {\"source\": \"p0\", \"target\": \"p5\"},\n    {\"source\": \"p1\", \"target\": \"p5\"},\n    {\"source\": \"p2\", \"target\": \"p5\"},\n    {\"source\": \"p3\", \"target\": \"p5\"},\n    {\"source\": \"p4\", \"target\": \"p5\"},\n    {\"source\": \"p6\", \"target\": \"p8\"},\n    {\"source\": \"p7\", \"target\": \"p8\"}\n  ]\n}\n```",
+  "usage": {
+    "prompt_tokens": 881,
+    "completion_tokens": 4412,
+    "total_tokens": 5293
+  },
+  "latency_s": 77.69109201431274,
+  "parse_success": true,
+  "parse_errors": [
+    "Unknown source ID in support: u0",
+    "Unknown source ID in support: u0",
+    "Unknown source ID in support: u0",
+    "Unknown source ID in support: u1",
+    "Unknown source ID in support: u2",
+    "Unknown source ID in support: u3",
+    "Unknown source ID in support: u3",
+    "Unknown argument ID in strengths: u0",
+    "Unknown argument ID in strengths: u1",
+    "Unknown argument ID in strengths: u2",
+    "Unknown argument ID in strengths: u3"
+  ],
+  "af": {
+    "attacks": [
+      [
+        "d0",
+        "p7"
+      ],
+      [
+        "d0",
+        "p8"
+      ],
+      [
+        "p7",
+        "d0"
+      ],
+      [
+        "p8",
+        "d0"
+      ]
+    ],
+    "supports": [
+      [
+        "p0",
+        "p5"
+      ],
+      [
+        "p1",
+        "p5"
+      ],
+      [
+        "p2",
+        "p5"
+      ],
+      [
+        "p3",
+        "p5"
+      ],
+      [
+        "p4",
+        "p5"
+      ],
+      [
+        "p6",
+        "p8"
+      ],
+      [
+        "p7",
+        "p8"
+      ]
+    ],
+    "argument_strengths": {
+      "p0": 0.85,
+      "p1": 0.8,
+      "p2": 0.85,
+      "p3": 0.8,
+      "p4": 0.9,
+      "p5": 1.0,
+      "p6": 0.85,
+      "p7": 0.7,
+      "p8": 0.6,
+      "d0": 0.75
+    }
+  }
+}

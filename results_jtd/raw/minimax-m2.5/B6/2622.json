@@ -1,0 +1,94 @@
+{
+  "tort_id": "2622",
+  "method": "B6",
+  "model": "minimax-m2.5",
+  "raw_output": "{\"argument_strengths\": {\"u0\": 1.0, \"u1\": 1.0, \"u2\": 1.0, \"u3\": 1.0, \"p0\": 0.85, \"p1\": 0.85, \"p2\": 0.8, \"p3\": 0.8, \"p4\": 0.85, \"d0\": 0.7, \"d1\": 0.7, \"d2\": 0.7, \"d3\": 0.6, \"d4\": 0.75}, \"attacks\": [{\"source\": \"d0\", \"target\": \"p0\"}, {\"source\": \"d0\", \"target\": \"p1\"}, {\"source\": \"d1\", \"target\": \"p3\"}, {\"source\": \"d2\", \"target\": \"p4\"}, {\"source\": \"d3\", \"target\": \"p0\"}, {\"source\": \"d3\", \"target\": \"p1\"}, {\"source\": \"d3\", \"target\": \"p2\"}, {\"source\": \"d3\", \"target\": \"p3\"}, {\"source\": \"d3\", \"target\": \"p4\"}, {\"source\": \"d4\", \"target\": \"p2\"}], \"supports\": [{\"source\": \"u0\", \"target\": \"p0\"}, {\"source\": \"u0\", \"target\": \"p1\"}, {\"source\": \"u1\", \"target\": \"p3\"}, {\"source\": \"u2\", \"target\": \"p4\"}, {\"source\": \"u3\", \"target\": \"p2\"}, {\"source\": \"d0\", \"target\": \"d3\"}, {\"source\": \"d1\", \"target\": \"d3\"}, {\"source\": \"d2\", \"target\": \"d3\"}]}",
+  "usage": {
+    "prompt_tokens": 1119,
+    "completion_tokens": 967,
+    "total_tokens": 2086
+  },
+  "latency_s": 7.374698638916016,
+  "parse_success": true,
+  "parse_errors": [
+    "Unknown source ID in support: u0",
+    "Unknown source ID in support: u0",
+    "Unknown source ID in support: u1",
+    "Unknown source ID in support: u2",
+    "Unknown source ID in support: u3",
+    "Unknown argument ID in strengths: u0",
+    "Unknown argument ID in strengths: u1",
+    "Unknown argument ID in strengths: u2",
+    "Unknown argument ID in strengths: u3"
+  ],
+  "af": {
+    "attacks": [
+      [
+        "d0",
+        "p0"
+      ],
+      [
+        "d0",
+        "p1"
+      ],
+      [
+        "d1",
+        "p3"
+      ],
+      [
+        "d2",
+        "p4"
+      ],
+      [
+        "d3",
+        "p0"
+      ],
+      [
+        "d3",
+        "p1"
+      ],
+      [
+        "d3",
+        "p2"
+      ],
+      [
+        "d3",
+        "p3"
+      ],
+      [
+        "d3",
+        "p4"
+      ],
+      [
+        "d4",
+        "p2"
+      ]
+    ],
+    "supports": [
+      [
+        "d0",
+        "d3"
+      ],
+      [
+        "d1",
+        "d3"
+      ],
+      [
+        "d2",
+        "d3"
+      ]
+    ],
+    "argument_strengths": {
+      "p0": 0.85,
+      "p1": 0.85,
+      "p2": 0.8,
+      "p3": 0.8,
+      "p4": 0.85,
+      "d0": 0.7,
+      "d1": 0.7,
+      "d2": 0.7,
+      "d3": 0.6,
+      "d4": 0.75
+    }
+  }
+}

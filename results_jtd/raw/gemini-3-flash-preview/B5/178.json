@@ -1,0 +1,125 @@
+{
+  "tort_id": "178",
+  "method": "B5",
+  "model": "gemini-3-flash-preview",
+  "raw_output": "{\n  \"argument_strengths\": {\n    \"p0\": 0.8,\n    \"p1\": 0.5,\n    \"p2\": 0.7,\n    \"p3\": 0.7,\n    \"p4\": 0.5,\n    \"p5\": 0.7,\n    \"p6\": 0.6,\n    \"p7\": 0.7,\n    \"p8\": 0.7,\n    \"p9\": 0.7,\n    \"p10\": 0.7,\n    \"d0\": 0.7,\n    \"d1\": 0.6,\n    \"d2\": 0.6,\n    \"d3\": 0.5,\n    \"d4\": 0.7,\n    \"d5\": 0.5,\n    \"d6\": 0.6,\n    \"d7\": 0.7,\n    \"d8\": 0.6,\n    \"d9\": 0.6,\n    \"d10\": 0.7,\n    \"d11\": 0.6,\n    \"d12\": 0.6\n  },\n  \"attacks\": [\n    {\n      \"source\": \"d0\",\n      \"target\": \"p0\"\n    },\n    {\n      \"source\": \"d12\",\n      \"target\": \"p1\"\n    },\n    {\n      \"source\": \"d2\",\n      \"target\": \"p2\"\n    },\n    {\n      \"source\": \"d8\",\n      \"target\": \"p2\"\n    },\n    {\n      \"source\": \"d4\",\n      \"target\": \"p3\"\n    },\n    {\n      \"source\": \"d10\",\n      \"target\": \"p3\"\n    },\n    {\n      \"source\": \"d5\",\n      \"target\": \"p4\"\n    },\n    {\n      \"source\": \"d12\",\n      \"target\": \"p5\"\n    },\n    {\n      \"source\": \"d6\",\n      \"target\": \"p6\"\n    },\n    {\n      \"source\": \"d1\",\n      \"target\": \"p7\"\n    },\n    {\n      \"source\": \"d7\",\n      \"target\": \"p7\"\n    },\n    {\n      \"source\": \"d9\",\n      \"target\": \"p8\"\n    },\n    {\n      \"source\": \"d11\",\n      \"target\": \"p9\"\n    },\n    {\n      \"source\": \"p2\",\n      \"target\": \"d2\"\n    },\n    {\n      \"source\": \"p3\",\n      \"target\": \"d4\"\n    },\n    {\n      \"source\": \"p3\",\n      \"target\": \"d10\"\n    },\n    {\n      \"source\": \"p7\",\n      \"target\": \"d1\"\n    },\n    {\n      \"source\": \"p7\",\n      \"target\": \"d7\"\n    },\n    {\n      \"source\": \"p9\",\n      \"target\": \"d11\"\n    },\n    {\n      \"source\": \"p10\",\n      \"target\": \"d12\"\n    }\n  ]\n}",
+  "usage": {
+    "prompt_tokens": 2030,
+    "completion_tokens": 3465,
+    "total_tokens": 5495
+  },
+  "latency_s": 22.013293743133545,
+  "parse_success": true,
+  "parse_errors": [],
+  "af": {
+    "attacks": [
+      [
+        "d0",
+        "p0"
+      ],
+      [
+        "d12",
+        "p1"
+      ],
+      [
+        "d2",
+        "p2"
+      ],
+      [
+        "d8",
+        "p2"
+      ],
+      [
+        "d4",
+        "p3"
+      ],
+      [
+        "d10",
+        "p3"
+      ],
+      [
+        "d5",
+        "p4"
+      ],
+      [
+        "d12",
+        "p5"
+      ],
+      [
+        "d6",
+        "p6"
+      ],
+      [
+        "d1",
+        "p7"
+      ],
+      [
+        "d7",
+        "p7"
+      ],
+      [
+        "d9",
+        "p8"
+      ],
+      [
+        "d11",
+        "p9"
+      ],
+      [
+        "p2",
+        "d2"
+      ],
+      [
+        "p3",
+        "d4"
+      ],
+      [
+        "p3",
+        "d10"
+      ],
+      [
+        "p7",
+        "d1"
+      ],
+      [
+        "p7",
+        "d7"
+      ],
+      [
+        "p9",
+        "d11"
+      ],
+      [
+        "p10",
+        "d12"
+      ]
+    ],
+    "supports": [],
+    "argument_strengths": {
+      "p0": 0.8,
+      "p1": 0.5,
+      "p2": 0.7,
+      "p3": 0.7,
+      "p4": 0.5,
+      "p5": 0.7,
+      "p6": 0.6,
+      "p7": 0.7,
+      "p8": 0.7,
+      "p9": 0.7,
+      "p10": 0.7,
+      "d0": 0.7,
+      "d1": 0.6,
+      "d2": 0.6,
+      "d3": 0.5,
+      "d4": 0.7,
+      "d5": 0.5,
+      "d6": 0.6,
+      "d7": 0.7,
+      "d8": 0.6,
+      "d9": 0.6,
+      "d10": 0.7,
+      "d11": 0.6,
+      "d12": 0.6
+    }
+  }
+}

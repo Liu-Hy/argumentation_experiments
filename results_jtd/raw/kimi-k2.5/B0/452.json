@@ -1,0 +1,19 @@
+{
+  "tort_id": "452",
+  "method": "B0",
+  "model": "kimi-k2.5",
+  "raw_output": " ```json\n{\n  \"plaintiff_claims\": {\"p0\": true},\n  \"defendant_claims\": {},\n  \"tort_decision\": true\n}\n```",
+  "usage": {
+    "prompt_tokens": 423,
+    "completion_tokens": 4277,
+    "total_tokens": 4700
+  },
+  "latency_s": 152.15206027030945,
+  "parse_success": true,
+  "parse_errors": [],
+  "re_predictions": {
+    "p0": true
+  },
+  "tp_a": true,
+  "tp_b": true
+}

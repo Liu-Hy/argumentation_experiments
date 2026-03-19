@@ -1,0 +1,25 @@
+{
+  "tort_id": "4325",
+  "method": "B1",
+  "model": "kimi-k2.5",
+  "step1_raw": " ```json\n{\n  \"attacks\": [\n    {\"source\": \"d1\", \"target\": \"p0\"},\n    {\"source\": \"d2\", \"target\": \"p0\"},\n    {\"source\": \"d3\", \"target\": \"p0\"},\n    {\"source\": \"d3\", \"target\": \"p1\"},\n    {\"source\": \"d4\", \"target\": \"p0\"},\n    {\"source\": \"d4\", \"target\": \"p1\"},\n    {\"source\": \"d5\", \"target\": \"p0\"},\n    {\"source\": \"d5\", \"target\": \"p1\"},\n    {\"source\": \"d6\", \"target\": \"p2\"},\n    {\"source\": \"d6\", \"target\": \"p6\"},\n    {\"source\": \"d6\", \"target\": \"p8\"},\n    {\"source\": \"d7\", \"target\": \"p3\"},\n    {\"source\": \"d8\", \"target\": \"p3\"},\n    {\"source\": \"d8\", \"target\": \"p4\"},\n    {\"source\": \"d9\", \"target\": \"p3\"},\n    {\"source\": \"d9\", \"target\": \"p4\"},\n    {\"source\": \"d10\", \"target\": \"p2\"},\n    {\"source\": \"d10\", \"target\": \"p6\"},\n    {\"source\": \"d10\", \"target\": \"p8\"},\n    {\"source\": \"d11\", \"target\": \"p6\"},\n    {\"source\": \"d11\", \"target\": \"p9\"},\n    {\"source\": \"d0\", \"target\": \"p0\"},\n    {\"source\": \"d0\", \"target\": \"p6\"},\n    {\"source\": \"p0\", \"target\": \"d0\"},\n    {\"source\": \"p0\", \"target\": \"d1\"},\n    {\"source\": \"p0\", \"target\": \"d2\"},\n    {\"source\": \"p0\", \"target\": \"d5\"},\n    {\"source\": \"p1\", \"target\": \"d0\"},\n    {\"source\": \"p1\", \"target\": \"d3\"},\n    {\"source\": \"p1\", \"target\": \"d5\"},\n    {\"source\": \"p2\", \"target\": \"d6\"},\n    {\"source\": \"p2\", \"target\": \"d10\"},\n    {\"source\": \"p3\", \"target\": \"d7\"},\n    {\"source\": \"p3\", \"target\": \"d8\"},\n    {\"source\": \"p3\", \"target\": \"d9\"},\n    {\"source\": \"p4\", \"target\": \"d0\"},\n    {\"source\": \"p4\", \"target\": \"d7\"},\n    {\"source\": \"p4\", \"target\": \"d8\"},\n    {\"source\": \"p4\", \"target\": \"d9\"},\n    {\"source\": \"p5\", \"target\": \"d0\"},\n    {\"source\": \"p5\", \"target\": \"d6\"},\n    {\"source\": \"p5\", \"target\": \"d10\"},\n    {\"source\": \"p6\", \"target\": \"d0\"},\n    {\"source\": \"p6\", \"target\": \"d6\"},\n    {\"source\": \"p6\", \"target\": \"d10\"},\n    {\"source\": \"p6\", \"target\": \"d11\"},\n    {\"source\": \"p7\", \"target\": \"d6\"},\n    {\"source\": \"p8\", \"target\": \"d6\"},\n    {\"source\": \"p8\", \"target\": \"d10\"},\n    {\"source\": \"p9\", \"target\": \"d6\"},\n    {\"source\": \"p9\", \"target\": \"d11\"}\n  ]\n}\n```",
+  "step2_raw": "",
+  "step1_usage": {
+    "prompt_tokens": 4137,
+    "completion_tokens": 7086,
+    "total_tokens": 11223
+  },
+  "step2_usage": {
+    "prompt_tokens": 4934,
+    "completion_tokens": 8192,
+    "total_tokens": 13126
+  },
+  "latency_s": 345.6452248096466,
+  "parse_success": false,
+  "parse_errors": [
+    "Could not extract JSON from output"
+  ],
+  "re_predictions": {},
+  "tp_a": null,
+  "tp_b": null
+}

@@ -1,0 +1,38 @@
+{
+  "tort_id": "2789",
+  "method": "B1",
+  "model": "gemini-3-flash-preview",
+  "step1_raw": "```json\n{\n  \"attacks\": []\n}\n```",
+  "step2_raw": "{\n  \"plaintiff_claims\": {\n    \"p0\": true,\n    \"p1\": true,\n    \"p2\": true,\n    \"p3\": true,\n    \"p4\": true,\n    \"p5\": true,\n    \"p6\": true,\n    \"p7\": true,\n    \"p8\": true,\n    \"p9\": true,\n    \"p10\": true,\n    \"p11\": true,\n    \"p12\": true,\n    \"p13\": true\n  },\n  \"defendant_claims\": {},\n  \"tort_decision\": true\n}",
+  "step1_usage": {
+    "prompt_tokens": 1316,
+    "completion_tokens": 7415,
+    "total_tokens": 8731
+  },
+  "step2_usage": {
+    "prompt_tokens": 1358,
+    "completion_tokens": 3228,
+    "total_tokens": 4586
+  },
+  "latency_s": 73.54944825172424,
+  "parse_success": true,
+  "parse_errors": [],
+  "re_predictions": {
+    "p0": true,
+    "p1": true,
+    "p2": true,
+    "p3": true,
+    "p4": true,
+    "p5": true,
+    "p6": true,
+    "p7": true,
+    "p8": true,
+    "p9": true,
+    "p10": true,
+    "p11": true,
+    "p12": true,
+    "p13": true
+  },
+  "tp_a": true,
+  "tp_b": true
+}

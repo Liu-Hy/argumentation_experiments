@@ -1,0 +1,71 @@
+{
+  "tort_id": "5821",
+  "method": "B6",
+  "model": "minimax-m2.5",
+  "raw_output": "{\"argument_strengths\":{\"u0\":1.0,\"u1\":1.0,\"u2\":1.0,\"p0\":0.85,\"p1\":0.9,\"p2\":0.75,\"d0\":0.7,\"d1\":0.7,\"d2\":0.6,\"d3\":0.7},\"attacks\":[{\"source\":\"d0\",\"target\":\"p0\"},{\"source\":\"d2\",\"target\":\"p1\"},{\"source\":\"d2\",\"target\":\"p0\"},{\"source\":\"p0\",\"target\":\"d2\"},{\"source\":\"p1\",\"target\":\"d2\"},{\"source\":\"p2\",\"target\":\"d2\"}],\"supports\":[{\"source\":\"u0\",\"target\":\"p0\"},{\"source\":\"u0\",\"target\":\"d0\"},{\"source\":\"u1\",\"target\":\"p1\"},{\"source\":\"u1\",\"target\":\"d1\"},{\"source\":\"u2\",\"target\":\"p2\"},{\"source\":\"u2\",\"target\":\"d3\"},{\"source\":\"p0\",\"target\":\"p1\"},{\"source\":\"p1\",\"target\":\"p2\"}]}",
+  "usage": {
+    "prompt_tokens": 827,
+    "completion_tokens": 1004,
+    "total_tokens": 1831
+  },
+  "latency_s": 43.00840377807617,
+  "parse_success": true,
+  "parse_errors": [
+    "Unknown source ID in support: u0",
+    "Unknown source ID in support: u0",
+    "Unknown source ID in support: u1",
+    "Unknown source ID in support: u1",
+    "Unknown source ID in support: u2",
+    "Unknown source ID in support: u2",
+    "Unknown argument ID in strengths: u0",
+    "Unknown argument ID in strengths: u1",
+    "Unknown argument ID in strengths: u2"
+  ],
+  "af": {
+    "attacks": [
+      [
+        "d0",
+        "p0"
+      ],
+      [
+        "d2",
+        "p1"
+      ],
+      [
+        "d2",
+        "p0"
+      ],
+      [
+        "p0",
+        "d2"
+      ],
+      [
+        "p1",
+        "d2"
+      ],
+      [
+        "p2",
+        "d2"
+      ]
+    ],
+    "supports": [
+      [
+        "p0",
+        "p1"
+      ],
+      [
+        "p1",
+        "p2"
+      ]
+    ],
+    "argument_strengths": {
+      "p0": 0.85,
+      "p1": 0.9,
+      "p2": 0.75,
+      "d0": 0.7,
+      "d1": 0.7,
+      "d2": 0.6,
+      "d3": 0.7
+    }
+  }
+}

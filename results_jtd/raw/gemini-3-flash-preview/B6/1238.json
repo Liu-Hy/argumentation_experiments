@@ -1,0 +1,21 @@
+{
+  "tort_id": "1238",
+  "method": "B6",
+  "model": "gemini-3-flash-preview",
+  "raw_output": "```json\n{\n  \"argument_strengths\": {\n    \"u0\": 1.0,\n    \"u1\": 1.0,\n    \"u2\": 1.0,\n    \"u3\": 1.0,\n    \"p0\": 0.75,\n    \"p1\": 0.5,\n    \"p2\": 0.65,\n    \"p3\": 0.85,\n    \"p4\": 0.4,\n    \"p5\": 0.45,\n    \"p6\": 0.6,\n    \"p7\": 0.6,\n    \"d0\": 0.7,\n    \"d1\": 0.75,\n    \"d2\": 0.7,\n    \"d3\": 0.7,\n    \"d4\": 0.7,\n    \"d5\": 0.7,\n    \"d6\": 0.7,\n    \"d7\": 0.7,\n    \"d8\": 0.6,\n    \"d9\": 0.7,\n    \"d10\": 0.7,\n    \"d11\": 0.7,\n    \"d12\": 0.7,\n    \"d13\": 0.7,\n    \"d14\": 0.75,\n    \"d",
+  "usage": {
+    "prompt_tokens": 2791,
+    "completion_tokens": 8188,
+    "total_tokens": 10979
+  },
+  "latency_s": 42.928364753723145,
+  "parse_success": false,
+  "parse_errors": [
+    "Could not extract JSON from output"
+  ],
+  "af": {
+    "attacks": [],
+    "supports": [],
+    "argument_strengths": {}
+  }
+}

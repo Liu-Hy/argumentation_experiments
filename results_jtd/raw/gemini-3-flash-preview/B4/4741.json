@@ -1,0 +1,29 @@
+{
+  "tort_id": "4741",
+  "method": "B4",
+  "model": "gemini-3-flash-preview",
+  "raw_output": "{\n  \"attacks\": [\n    {\n      \"source\": \"d0\",\n      \"target\": \"p1\"\n    }\n  ],\n  \"supports\": [\n    {\n      \"source\": \"p0\",\n      \"target\": \"p1\"\n    }\n  ]\n}",
+  "usage": {
+    "prompt_tokens": 584,
+    "completion_tokens": 963,
+    "total_tokens": 1547
+  },
+  "latency_s": 6.03986930847168,
+  "parse_success": true,
+  "parse_errors": [],
+  "af": {
+    "attacks": [
+      [
+        "d0",
+        "p1"
+      ]
+    ],
+    "supports": [
+      [
+        "p0",
+        "p1"
+      ]
+    ],
+    "argument_strengths": {}
+  }
+}

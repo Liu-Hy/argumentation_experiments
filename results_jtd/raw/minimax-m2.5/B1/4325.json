@@ -1,0 +1,46 @@
+{
+  "tort_id": "4325",
+  "method": "B1",
+  "model": "minimax-m2.5",
+  "step1_raw": "{\"attacks\":[{\"source\":\"d1\",\"target\":\"p0\"},{\"source\":\"d2\",\"target\":\"p0\"},{\"source\":\"d3\",\"target\":\"p0\"},{\"source\":\"d4\",\"target\":\"p0\"},{\"source\":\"d5\",\"target\":\"p0\"},{\"source\":\"d6\",\"target\":\"p0\"},{\"source\":\"p0\",\"target\":\"d5\"},{\"source\":\"p1\",\"target\":\"d3\"},{\"source\":\"p1\",\"target\":\"d5\"},{\"source\":\"p2\",\"target\":\"d6\"},{\"source\":\"p2\",\"target\":\"d10\"},{\"source\":\"p3\",\"target\":\"d8\"},{\"source\":\"p4\",\"target\":\"d8\"},{\"source\":\"p4\",\"target\":\"d9\"},{\"source\":\"p6\",\"target\":\"d6\"},{\"source\":\"p6\",\"target\":\"d10\"},{\"source\":\"p7\",\"target\":\"d6\"},{\"source\":\"p8\",\"target\":\"d10\"},{\"source\":\"p9\",\"target\":\"d11\"},{\"source\":\"d8\",\"target\":\"p3\"},{\"source\":\"d9\",\"target\":\"p3\"},{\"source\":\"d10\",\"target\":\"p8\"},{\"source\":\"d11\",\"target\":\"p9\"}]}",
+  "step2_raw": "{\"plaintiff_claims\":{\"p0\":false,\"p1\":false,\"p2\":false,\"p3\":false,\"p4\":false,\"p5\":false,\"p6\":false,\"p7\":false,\"p8\":false,\"p9\":false},\"defendant_claims\":{\"d0\":true,\"d1\":true,\"d2\":true,\"d3\":true,\"d4\":true,\"d5\":true,\"d6\":true,\"d7\":false,\"d8\":true,\"d9\":true,\"d10\":true,\"d11\":true},\"tort_decision\":false}",
+  "step1_usage": {
+    "prompt_tokens": 2599,
+    "completion_tokens": 894,
+    "total_tokens": 3493
+  },
+  "step2_usage": {
+    "prompt_tokens": 2853,
+    "completion_tokens": 1047,
+    "total_tokens": 3900
+  },
+  "latency_s": 104.71280193328857,
+  "parse_success": true,
+  "parse_errors": [],
+  "re_predictions": {
+    "p0": false,
+    "p1": false,
+    "p2": false,
+    "p3": false,
+    "p4": false,
+    "p5": false,
+    "p6": false,
+    "p7": false,
+    "p8": false,
+    "p9": false,
+    "d0": true,
+    "d1": true,
+    "d2": true,
+    "d3": true,
+    "d4": true,
+    "d5": true,
+    "d6": true,
+    "d7": false,
+    "d8": true,
+    "d9": true,
+    "d10": true,
+    "d11": true
+  },
+  "tp_a": false,
+  "tp_b": false
+}

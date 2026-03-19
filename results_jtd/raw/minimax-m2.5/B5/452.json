@@ -1,0 +1,21 @@
+{
+  "tort_id": "452",
+  "method": "B5",
+  "model": "minimax-m2.5",
+  "raw_output": "```json\n{\n  \"argument_strengths\": {\n    \"p0\": 0.8\n  },\n  \"attacks\": []\n}\n```",
+  "usage": {
+    "prompt_tokens": 379,
+    "completion_tokens": 739,
+    "total_tokens": 1118
+  },
+  "latency_s": 12.757829189300537,
+  "parse_success": true,
+  "parse_errors": [],
+  "af": {
+    "attacks": [],
+    "supports": [],
+    "argument_strengths": {
+      "p0": 0.8
+    }
+  }
+}

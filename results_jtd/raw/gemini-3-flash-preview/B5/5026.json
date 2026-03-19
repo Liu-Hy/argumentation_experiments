@@ -1,0 +1,110 @@
+{
+  "tort_id": "5026",
+  "method": "B5",
+  "model": "gemini-3-flash-preview",
+  "raw_output": "{\n  \"argument_strengths\": {\n    \"p0\": 0.8,\n    \"p1\": 0.7,\n    \"p2\": 0.7,\n    \"p3\": 0.6,\n    \"p4\": 0.7,\n    \"p5\": 0.5,\n    \"d0\": 0.6,\n    \"d1\": 0.6,\n    \"d2\": 0.8,\n    \"d3\": 0.5,\n    \"d4\": 0.6,\n    \"d5\": 0.6,\n    \"d6\": 0.5\n  },\n  \"attacks\": [\n    {\n      \"source\": \"d0\",\n      \"target\": \"p0\"\n    },\n    {\n      \"source\": \"d6\",\n      \"target\": \"p0\"\n    },\n    {\n      \"source\": \"d5\",\n      \"target\": \"p1\"\n    },\n    {\n      \"source\": \"d5\",\n      \"target\": \"p2\"\n    },\n    {\n      \"source\": \"d1\",\n      \"target\": \"p1\"\n    },\n    {\n      \"source\": \"d1\",\n      \"target\": \"p2\"\n    },\n    {\n      \"source\": \"d2\",\n      \"target\": \"p0\"\n    },\n    {\n      \"source\": \"d2\",\n      \"target\": \"p1\"\n    },\n    {\n      \"source\": \"d2\",\n      \"target\": \"p2\"\n    },\n    {\n      \"source\": \"d2\",\n      \"target\": \"p3\"\n    },\n    {\n      \"source\": \"d2\",\n      \"target\": \"p4\"\n    },\n    {\n      \"source\": \"d3\",\n      \"target\": \"p0\"\n    },\n    {\n      \"source\": \"d3\",\n      \"target\": \"p1\"\n    },\n    {\n      \"source\": \"d3\",\n      \"target\": \"p2\"\n    },\n    {\n      \"source\": \"d3\",\n      \"target\": \"p3\"\n    },\n    {\n      \"source\": \"d3\",\n      \"target\": \"p4\"\n    },\n    {\n      \"source\": \"d4\",\n      \"target\": \"p0\"\n    },\n    {\n      \"source\": \"d4\",\n      \"target\": \"p2\"\n    },\n    {\n      \"source\": \"d4\",\n      \"target\": \"p3\"\n    }\n  ]\n}",
+  "usage": {
+    "prompt_tokens": 1117,
+    "completion_tokens": 2088,
+    "total_tokens": 3205
+  },
+  "latency_s": 10.907974004745483,
+  "parse_success": true,
+  "parse_errors": [],
+  "af": {
+    "attacks": [
+      [
+        "d0",
+        "p0"
+      ],
+      [
+        "d6",
+        "p0"
+      ],
+      [
+        "d5",
+        "p1"
+      ],
+      [
+        "d5",
+        "p2"
+      ],
+      [
+        "d1",
+        "p1"
+      ],
+      [
+        "d1",
+        "p2"
+      ],
+      [
+        "d2",
+        "p0"
+      ],
+      [
+        "d2",
+        "p1"
+      ],
+      [
+        "d2",
+        "p2"
+      ],
+      [
+        "d2",
+        "p3"
+      ],
+      [
+        "d2",
+        "p4"
+      ],
+      [
+        "d3",
+        "p0"
+      ],
+      [
+        "d3",
+        "p1"
+      ],
+      [
+        "d3",
+        "p2"
+      ],
+      [
+        "d3",
+        "p3"
+      ],
+      [
+        "d3",
+        "p4"
+      ],
+      [
+        "d4",
+        "p0"
+      ],
+      [
+        "d4",
+        "p2"
+      ],
+      [
+        "d4",
+        "p3"
+      ]
+    ],
+    "supports": [],
+    "argument_strengths": {
+      "p0": 0.8,
+      "p1": 0.7,
+      "p2": 0.7,
+      "p3": 0.6,
+      "p4": 0.7,
+      "p5": 0.5,
+      "d0": 0.6,
+      "d1": 0.6,
+      "d2": 0.8,
+      "d3": 0.5,
+      "d4": 0.6,
+      "d5": 0.6,
+      "d6": 0.5
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "tort_id": "1165",
+  "method": "B3",
+  "model": "kimi-k2.5",
+  "raw_output": " ```json\n{\n  \"attacks\": [\n    {\"source\": \"d0\", \"target\": \"p2\"},\n    {\"source\": \"d1\", \"target\": \"p2\"},\n    {\"source\": \"d2\", \"target\": \"p2\"},\n    {\"source\": \"d4\", \"target\": \"p6\"},\n    {\"source\": \"d5\", \"target\": \"p7\"},\n    {\"source\": \"d6\", \"target\": \"p4\"},\n    {\"source\": \"d6\", \"target\": \"p6\"},\n    {\"source\": \"d7\", \"target\": \"p8\"},\n    {\"source\": \"d8\", \"target\": \"p9\"},\n    {\"source\": \"d8\", \"target\": \"p10\"},\n    {\"source\": \"p2\", \"target\": \"d1\"},\n    {\"source\": \"p3\", \"target\": \"d1\"},\n    {\"source\": \"p5\", \"target\": \"d3\"},\n    {\"source\": \"p6\", \"target\": \"d4\"},\n    {\"source\": \"p7\", \"target\": \"d5\"},\n    {\"source\": \"p8\", \"target\": \"d7\"},\n    {\"source\": \"p9\", \"target\": \"d8\"},\n    {\"source\": \"p10\", \"target",
+  "usage": {
+    "prompt_tokens": 2555,
+    "completion_tokens": 8192,
+    "total_tokens": 10747
+  },
+  "latency_s": 205.3630440235138,
+  "parse_success": false,
+  "parse_errors": [
+    "Could not extract JSON from output"
+  ],
+  "af": {
+    "attacks": [],
+    "supports": [],
+    "argument_strengths": {}
+  }
+}

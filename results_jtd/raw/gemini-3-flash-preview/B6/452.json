@@ -1,0 +1,32 @@
+{
+  "tort_id": "452",
+  "method": "B6",
+  "model": "gemini-3-flash-preview",
+  "raw_output": "{\n  \"argument_strengths\": {\n    \"u0\": 1.0,\n    \"u1\": 1.0,\n    \"p0\": 0.6,\n    \"p1\": 0.7,\n    \"p2\": 0.7,\n    \"p3\": 0.8\n  },\n  \"attacks\": [],\n  \"supports\": [\n    {\n      \"source\": \"u0\",\n      \"target\": \"p0\"\n    },\n    {\n      \"source\": \"u1\",\n      \"target\": \"p2\"\n    },\n    {\n      \"source\": \"p1\",\n      \"target\": \"p2\"\n    },\n    {\n      \"source\": \"p0\",\n      \"target\": \"p3\"\n    },\n    {\n      \"source\": \"p2\",\n      \"target\": \"p3\"\n    }\n  ]\n}",
+  "usage": {
+    "prompt_tokens": 513,
+    "completion_tokens": 5717,
+    "total_tokens": 6230
+  },
+  "latency_s": 31.56696057319641,
+  "parse_success": true,
+  "parse_errors": [
+    "Unknown source ID in support: u0",
+    "Unknown source ID in support: u1",
+    "Unknown source ID in support: p1",
+    "Unknown target ID in support: p3",
+    "Unknown source ID in support: p2",
+    "Unknown argument ID in strengths: u0",
+    "Unknown argument ID in strengths: u1",
+    "Unknown argument ID in strengths: p1",
+    "Unknown argument ID in strengths: p2",
+    "Unknown argument ID in strengths: p3"
+  ],
+  "af": {
+    "attacks": [],
+    "supports": [],
+    "argument_strengths": {
+      "p0": 0.6
+    }
+  }
+}

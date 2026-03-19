@@ -1,0 +1,127 @@
+{
+  "tort_id": "526",
+  "method": "B6",
+  "model": "kimi-k2.5",
+  "raw_output": "```json\n{\n  \"argument_strengths\": {\n    \"u0\": 1.0,\n    \"u1\": 1.0,\n    \"u2\": 1.0,\n    \"u3\": 1.0,\n    \"u4\": 1.0,\n    \"u5\": 1.0,\n    \"u6\": 1.0,\n    \"p0\": 0.9,\n    \"p1\": 0.8,\n    \"p2\": 0.7,\n    \"d0\": 0.4,\n    \"d1\": 0.3,\n    \"d2\": 0.5\n  },\n  \"attacks\": [\n    {\"source\": \"d0\", \"target\": \"p0\"},\n    {\"source\": \"d0\", \"target\": \"p1\"},\n    {\"source\": \"d1\", \"target\": \"p1\"},\n    {\"source\": \"d2\", \"target\": \"p2\"},\n    {\"source\": \"p0\", \"target\": \"d0\"},\n    {\"source\": \"p1\", \"target\": \"d1\"},\n    {\"source\": \"p2\", \"target\": \"d2\"}\n  ],\n  \"supports\": [\n    {\"source\": \"u0\", \"target\": \"p0\"},\n    {\"source\": \"u1\", \"target\": \"p0\"},\n    {\"source\": \"u2\", \"target\": \"p0\"},\n    {\"source\": \"u3\", \"target\": \"p0\"},\n    {\"source\": \"u4\", \"target\": \"p0\"},\n    {\"source\": \"u5\", \"target\": \"p0\"},\n    {\"source\": \"u6\", \"target\": \"p0\"},\n    {\"source\": \"u0\", \"target\": \"p1\"},\n    {\"source\": \"u1\", \"target\": \"p1\"},\n    {\"source\": \"u2\", \"target\": \"p1\"},\n    {\"source\": \"u3\", \"target\": \"p1\"},\n    {\"source\": \"u4\", \"target\": \"p1\"},\n    {\"source\": \"u5\", \"target\": \"p1\"},\n    {\"source\": \"u6\", \"target\": \"p1\"},\n    {\"source\": \"p0\", \"target\": \"p1\"},\n    {\"source\": \"p2\", \"target\": \"p1\"}\n  ]\n}\n```",
+  "usage": {
+    "prompt_tokens": 944,
+    "completion_tokens": 6503,
+    "total_tokens": 7447
+  },
+  "latency_s": 164.96793460845947,
+  "parse_success": true,
+  "parse_errors": [],
+  "af": {
+    "attacks": [
+      [
+        "d0",
+        "p0"
+      ],
+      [
+        "d0",
+        "p1"
+      ],
+      [
+        "d1",
+        "p1"
+      ],
+      [
+        "d2",
+        "p2"
+      ],
+      [
+        "p0",
+        "d0"
+      ],
+      [
+        "p1",
+        "d1"
+      ],
+      [
+        "p2",
+        "d2"
+      ]
+    ],
+    "supports": [
+      [
+        "u0",
+        "p0"
+      ],
+      [
+        "u1",
+        "p0"
+      ],
+      [
+        "u2",
+        "p0"
+      ],
+      [
+        "u3",
+        "p0"
+      ],
+      [
+        "u4",
+        "p0"
+      ],
+      [
+        "u5",
+        "p0"
+      ],
+      [
+        "u6",
+        "p0"
+      ],
+      [
+        "u0",
+        "p1"
+      ],
+      [
+        "u1",
+        "p1"
+      ],
+      [
+        "u2",
+        "p1"
+      ],
+      [
+        "u3",
+        "p1"
+      ],
+      [
+        "u4",
+        "p1"
+      ],
+      [
+        "u5",
+        "p1"
+      ],
+      [
+        "u6",
+        "p1"
+      ],
+      [
+        "p0",
+        "p1"
+      ],
+      [
+        "p2",
+        "p1"
+      ]
+    ],
+    "argument_strengths": {
+      "u0": 1.0,
+      "u1": 1.0,
+      "u2": 1.0,
+      "u3": 1.0,
+      "u4": 1.0,
+      "u5": 1.0,
+      "u6": 1.0,
+      "p0": 0.9,
+      "p1": 0.8,
+      "p2": 0.7,
+      "d0": 0.4,
+      "d1": 0.3,
+      "d2": 0.5
+    }
+  }
+}

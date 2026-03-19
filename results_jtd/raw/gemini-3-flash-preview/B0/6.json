@@ -1,0 +1,42 @@
+{
+  "tort_id": "6",
+  "method": "B0",
+  "model": "gemini-3-flash-preview",
+  "raw_output": "{\n  \"plaintiff_claims\": {\n    \"p0\": true,\n    \"p1\": true,\n    \"p2\": true,\n    \"p3\": true,\n    \"p4\": true,\n    \"p5\": true,\n    \"p6\": true,\n    \"p7\": true,\n    \"p8\": true,\n    \"p9\": true,\n    \"p10\": true,\n    \"p11\": true,\n    \"p12\": true,\n    \"p13\": true,\n    \"p14\": true,\n    \"p15\": true,\n    \"p16\": true,\n    \"p17\": true,\n    \"p18\": true,\n    \"p19\": true\n  },\n  \"defendant_claims\": {\n    \"d0\": false,\n    \"d1\": false,\n    \"d2\": false,\n    \"d3\": false\n  },\n  \"tort_decision\": true\n}",
+  "usage": {
+    "prompt_tokens": 1327,
+    "completion_tokens": 1320,
+    "total_tokens": 2647
+  },
+  "latency_s": 8.819344997406006,
+  "parse_success": true,
+  "parse_errors": [],
+  "re_predictions": {
+    "p0": true,
+    "p1": true,
+    "p2": true,
+    "p3": true,
+    "p4": true,
+    "p5": true,
+    "p6": true,
+    "p7": true,
+    "p8": true,
+    "p9": true,
+    "p10": true,
+    "p11": true,
+    "p12": true,
+    "p13": true,
+    "p14": true,
+    "p15": true,
+    "p16": true,
+    "p17": true,
+    "p18": true,
+    "p19": true,
+    "d0": false,
+    "d1": false,
+    "d2": false,
+    "d3": false
+  },
+  "tp_a": true,
+  "tp_b": true
+}

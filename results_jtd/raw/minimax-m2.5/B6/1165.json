@@ -1,0 +1,168 @@
+{
+  "tort_id": "1165",
+  "method": "B6",
+  "model": "minimax-m2.5",
+  "raw_output": "{\"argument_strengths\":{\"u0\":1.0,\"u1\":1.0,\"u2\":1.0,\"u3\":1.0,\"p0\":0.8,\"p1\":0.7,\"p2\":0.6,\"p3\":0.7,\"p4\":0.6,\"p5\":0.5,\"p6\":0.6,\"p7\":0.5,\"p8\":0.7,\"p9\":0.8,\"p10\":0.6,\"d0\":0.7,\"d1\":0.7,\"d2\":0.6,\"d3\":0.8,\"d4\":0.6,\"d5\":0.7,\"d6\":0.6,\"d7\":0.7,\"d8\":0.7},\"attacks\":[{\"source\":\"d0\",\"target\":\"p2\"},{\"source\":\"d1\",\"target\":\"p2\"},{\"source\":\"d1\",\"target\":\"p8\"},{\"source\":\"d1\",\"target\":\"p9\"},{\"source\":\"d2\",\"target\":\"p2\"},{\"source\":\"d4\",\"target\":\"p6\"},{\"source\":\"d5\",\"target\":\"p4\"},{\"source\":\"d5\",\"target\":\"p7\"},{\"source\":\"d6\",\"target\":\"p4\"},{\"source\":\"d6\",\"target\":\"p6\"},{\"source\":\"d7\",\"target\":\"p8\"},{\"source\":\"d7\",\"target\":\"p9\"},{\"source\":\"d8\",\"target\":\"p9\"},{\"source\":\"d8\",\"target\":\"p10\"},{\"source\":\"p3\",\"target\":\"d1\"},{\"source\":\"p8\",\"target\":\"d7\"},{\"source\":\"p9\",\"target\":\"d7\"},{\"source\":\"p9\",\"target\":\"d8\"}],\"supports\":[{\"source\":\"u0\",\"target\":\"p0\"},{\"source\":\"u1\",\"target\":\"p0\"},{\"source\":\"u2\",\"target\":\"p0\"},{\"source\":\"u3\",\"target\":\"p0\"},{\"source\":\"u0\",\"target\":\"p1\"},{\"source\":\"p0\",\"target\":\"p9\"},{\"source\":\"p4\",\"target\":\"p9\"},{\"source\":\"p8\",\"target\":\"p9\"},{\"source\":\"p10\",\"target\":\"p9\"},{\"source\":\"p2\",\"target\":\"p3\"},{\"source\":\"p6\",\"target\":\"p4\"},{\"source\":\"p7\",\"target\":\"p4\"},{\"source\":\"d3\",\"target\":\"d0\"},{\"source\":\"d5\",\"target\":\"d1\"},{\"source\":\"d7\",\"target\":\"d1\"},{\"source\":\"d8\",\"target\":\"d7\"}]}",
+  "usage": {
+    "prompt_tokens": 1766,
+    "completion_tokens": 1150,
+    "total_tokens": 2916
+  },
+  "latency_s": 60.25083112716675,
+  "parse_success": true,
+  "parse_errors": [
+    "Unknown source ID in support: u0",
+    "Unknown source ID in support: u1",
+    "Unknown source ID in support: u2",
+    "Unknown source ID in support: u3",
+    "Unknown source ID in support: u0",
+    "Unknown argument ID in strengths: u0",
+    "Unknown argument ID in strengths: u1",
+    "Unknown argument ID in strengths: u2",
+    "Unknown argument ID in strengths: u3"
+  ],
+  "af": {
+    "attacks": [
+      [
+        "d0",
+        "p2"
+      ],
+      [
+        "d1",
+        "p2"
+      ],
+      [
+        "d1",
+        "p8"
+      ],
+      [
+        "d1",
+        "p9"
+      ],
+      [
+        "d2",
+        "p2"
+      ],
+      [
+        "d4",
+        "p6"
+      ],
+      [
+        "d5",
+        "p4"
+      ],
+      [
+        "d5",
+        "p7"
+      ],
+      [
+        "d6",
+        "p4"
+      ],
+      [
+        "d6",
+        "p6"
+      ],
+      [
+        "d7",
+        "p8"
+      ],
+      [
+        "d7",
+        "p9"
+      ],
+      [
+        "d8",
+        "p9"
+      ],
+      [
+        "d8",
+        "p10"
+      ],
+      [
+        "p3",
+        "d1"
+      ],
+      [
+        "p8",
+        "d7"
+      ],
+      [
+        "p9",
+        "d7"
+      ],
+      [
+        "p9",
+        "d8"
+      ]
+    ],
+    "supports": [
+      [
+        "p0",
+        "p9"
+      ],
+      [
+        "p4",
+        "p9"
+      ],
+      [
+        "p8",
+        "p9"
+      ],
+      [
+        "p10",
+        "p9"
+      ],
+      [
+        "p2",
+        "p3"
+      ],
+      [
+        "p6",
+        "p4"
+      ],
+      [
+        "p7",
+        "p4"
+      ],
+      [
+        "d3",
+        "d0"
+      ],
+      [
+        "d5",
+        "d1"
+      ],
+      [
+        "d7",
+        "d1"
+      ],
+      [
+        "d8",
+        "d7"
+      ]
+    ],
+    "argument_strengths": {
+      "p0": 0.8,
+      "p1": 0.7,
+      "p2": 0.6,
+      "p3": 0.7,
+      "p4": 0.6,
+      "p5": 0.5,
+      "p6": 0.6,
+      "p7": 0.5,
+      "p8": 0.7,
+      "p9": 0.8,
+      "p10": 0.6,
+      "d0": 0.7,
+      "d1": 0.7,
+      "d2": 0.6,
+      "d3": 0.8,
+      "d4": 0.6,
+      "d5": 0.7,
+      "d6": 0.6,
+      "d7": 0.7,
+      "d8": 0.7
+    }
+  }
+}

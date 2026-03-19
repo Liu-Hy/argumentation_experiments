@@ -1,0 +1,39 @@
+{
+  "tort_id": "2249",
+  "method": "B5",
+  "model": "minimax-m2.5",
+  "raw_output": "```json\n{\n  \"argument_strengths\": {\n    \"p0\": 0.7,\n    \"p1\": 0.6,\n    \"d0\": 0.9,\n    \"d1\": 0.85,\n    \"d2\": 0.85,\n    \"d3\": 0.8,\n    \"d4\": 0.9,\n    \"d5\": 0.8,\n    \"d6\": 0.75,\n    \"d7\": 0.75\n  },\n  \"attacks\": [\n    {\"source\": \"d1\", \"target\": \"p0\"},\n    {\"source\": \"d2\", \"target\": \"p0\"},\n    {\"source\": \"d3\", \"target\": \"p0\"},\n    {\"source\": \"d5\", \"target\": \"p0\"},\n    {\"source\": \"d1\", \"target\": \"p1\"},\n    {\"source\": \"d2\", \"target\": \"p1\"},\n    {\"source\": \"d3\", \"target\": \"p1\"},\n    {\"source\": \"d5\", \"target\": \"p1\"}\n  ]\n}\n```",
+  "usage": {
+    "prompt_tokens": 669,
+    "completion_tokens": 1043,
+    "total_tokens": 1712
+  },
+  "latency_s": 7.437924385070801,
+  "parse_success": true,
+  "parse_errors": [
+    "Unknown target ID in attack: p0",
+    "Unknown target ID in attack: p0",
+    "Unknown target ID in attack: p0",
+    "Unknown target ID in attack: p0",
+    "Unknown target ID in attack: p1",
+    "Unknown target ID in attack: p1",
+    "Unknown target ID in attack: p1",
+    "Unknown target ID in attack: p1",
+    "Unknown argument ID in strengths: p0",
+    "Unknown argument ID in strengths: p1"
+  ],
+  "af": {
+    "attacks": [],
+    "supports": [],
+    "argument_strengths": {
+      "d0": 0.9,
+      "d1": 0.85,
+      "d2": 0.85,
+      "d3": 0.8,
+      "d4": 0.9,
+      "d5": 0.8,
+      "d6": 0.75,
+      "d7": 0.75
+    }
+  }
+}

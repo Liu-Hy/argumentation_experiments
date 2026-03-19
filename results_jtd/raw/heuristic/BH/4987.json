@@ -1,0 +1,33 @@
+{
+  "tort_id": "4987",
+  "method": "BH",
+  "model": "heuristic",
+  "raw_output": "",
+  "usage": {},
+  "latency_s": 0.0,
+  "parse_success": true,
+  "parse_errors": [],
+  "af": {
+    "attacks": [],
+    "supports": [
+      [
+        "u0",
+        "p2"
+      ],
+      [
+        "u0",
+        "p1"
+      ],
+      [
+        "u0",
+        "p0"
+      ]
+    ],
+    "argument_strengths": {
+      "u0": 1.0,
+      "p0": 0.5,
+      "p1": 0.5,
+      "p2": 0.5
+    }
+  }
+}

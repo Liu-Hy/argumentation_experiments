@@ -1,0 +1,19 @@
+{
+  "tort_id": "412",
+  "method": "B0",
+  "model": "gemini-3-flash-preview",
+  "raw_output": "```json\n{\n  \"plaintiff_claims\": {},\n  \"defendant_claims\": {\n    \"d0\": true\n  },\n  \"tort_decision\": false\n}\n```",
+  "usage": {
+    "prompt_tokens": 280,
+    "completion_tokens": 3728,
+    "total_tokens": 4008
+  },
+  "latency_s": 25.880056858062744,
+  "parse_success": true,
+  "parse_errors": [],
+  "re_predictions": {
+    "d0": true
+  },
+  "tp_a": false,
+  "tp_b": false
+}

@@ -1,0 +1,21 @@
+{
+  "tort_id": "412",
+  "method": "B4",
+  "model": "minimax-m2.5",
+  "raw_output": "I need more information to construct the Bipolar Argumentation Framework. The input only provides a single defendant claim (d0) without any plaintiff claims or undisputed facts. Please provide:\n\n1. **Plaintiff Claims** (p0, p1, p2, etc.)\n2. **Defendant Claims** (beyond d0)\n3. **Undisputed Facts** (u0, u1, etc.)\n\nOnce you provide these elements, I can identify the attack and support relations according to the constraints specified.",
+  "usage": {
+    "prompt_tokens": 345,
+    "completion_tokens": 147,
+    "total_tokens": 492
+  },
+  "latency_s": 7.384388208389282,
+  "parse_success": false,
+  "parse_errors": [
+    "Could not extract JSON from output"
+  ],
+  "af": {
+    "attacks": [],
+    "supports": [],
+    "argument_strengths": {}
+  }
+}

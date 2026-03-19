@@ -1,0 +1,44 @@
+{
+  "tort_id": "3159",
+  "method": "B1",
+  "model": "minimax-m2.5",
+  "step1_raw": "{\"attacks\": [{\"source\": \"p0\", \"target\": \"d1\"}, {\"source\": \"p0\", \"target\": \"d7\"}, {\"source\": \"p0\", \"target\": \"d8\"}, {\"source\": \"p0\", \"target\": \"d10\"}, {\"source\": \"p1\", \"target\": \"d2\"}, {\"source\": \"p1\", \"target\": \"d3\"}, {\"source\": \"p1\", \"target\": \"d4\"}, {\"source\": \"p1\", \"target\": \"d5\"}, {\"source\": \"p1\", \"target\": \"d8\"}, {\"source\": \"p1\", \"target\": \"d9\"}, {\"source\": \"p1\", \"target\": \"d11\"}, {\"source\": \"p3\", \"target\": \"d2\"}, {\"source\": \"p3\", \"target\": \"d3\"}, {\"source\": \"p3\", \"target\": \"d4\"}, {\"source\": \"p3\", \"target\": \"d7\"}, {\"source\": \"p3\", \"target\": \"d8\"}, {\"source\": \"p3\", \"target\": \"d11\"}, {\"source\": \"p4\", \"target\": \"d3\"}, {\"source\": \"p4\", \"target\": \"d4\"}, {\"source\": \"p4\", \"target\": \"d11\"}, {\"source\": \"p5\", \"target\": \"d0\"}, {\"source\": \"p5\", \"target\": \"d1\"}, {\"source\": \"p5\", \"target\": \"d3\"}, {\"source\": \"p5\", \"target\": \"d7\"}, {\"source\": \"p5\", \"target\": \"d8\"}, {\"source\": \"p5\", \"target\": \"d11\"}, {\"source\": \"p7\", \"target\": \"d9\"}, {\"source\": \"d1\", \"target\": \"p0\"}, {\"source\": \"d2\", \"target\": \"p0\"}, {\"source\": \"d2\", \"target\": \"p1\"}, {\"source\": \"d2\", \"target\": \"p3\"}, {\"source\": \"d3\", \"target\": \"p0\"}, {\"source\": \"d3\", \"target\": \"p1\"}, {\"source\": \"d3\", \"target\": \"p3\"}, {\"source\": \"d3\", \"target\": \"p4\"}, {\"source\": \"d3\", \"target\": \"p5\"}, {\"source\": \"d4\", \"target\": \"p0\"}, {\"source\": \"d4\", \"target\": \"p1\"}, {\"source\": \"d4\", \"target\": \"p3\"}, {\"source\": \"d4\", \"target\": \"p4\"}, {\"source\": \"d4\", \"target\": \"p5\"}, {\"source\": \"d5\", \"target\": \"p1\"}, {\"source\": \"d5\", \"target\": \"p4\"}, {\"source\": \"d7\", \"target\": \"p0\"}, {\"source\": \"d7\", \"target\": \"p3\"}, {\"source\": \"d7\", \"target\": \"p5\"}, {\"source\": \"d8\", \"target\": \"p0\"}, {\"source\": \"d8\", \"target\": \"p1\"}, {\"source\": \"d8\", \"target\": \"p3\"}, {\"source\": \"d8\", \"target\": \"p5\"}, {\"source\": \"d9\", \"target\": \"p1\"}, {\"source\": \"d9\", \"target\": \"p7\"}, {\"source\": \"d10\", \"target\": \"p0\"}, {\"source\": \"d11\", \"target\": \"p0\"}, {\"source\": \"d11\", \"target\": \"p1\"}, {\"source\": \"d11\", \"target\": \"p3\"}, {\"source\": \"d11\", \"target\": \"p4\"}, {\"source\": \"d11\", \"target\": \"p5\"}]}",
+  "step2_raw": "{\"plaintiff_claims\":{\"p0\":true,\"p1\":true,\"p2\":false,\"p3\":true,\"p4\":true,\"p5\":true,\"p6\":true,\"p7\":true},\"defendant_claims\":{\"d0\":false,\"d1\":false,\"d2\":false,\"d3\":false,\"d4\":false,\"d5\":false,\"d6\":false,\"d7\":false,\"d8\":false,\"d9\":false,\"d10\":false,\"d11\":false},\"tort_decision\":true}",
+  "step1_usage": {
+    "prompt_tokens": 1348,
+    "completion_tokens": 1412,
+    "total_tokens": 2760
+  },
+  "step2_usage": {
+    "prompt_tokens": 2184,
+    "completion_tokens": 917,
+    "total_tokens": 3101
+  },
+  "latency_s": 51.35656785964966,
+  "parse_success": true,
+  "parse_errors": [],
+  "re_predictions": {
+    "p0": true,
+    "p1": true,
+    "p2": false,
+    "p3": true,
+    "p4": true,
+    "p5": true,
+    "p6": true,
+    "p7": true,
+    "d0": false,
+    "d1": false,
+    "d2": false,
+    "d3": false,
+    "d4": false,
+    "d5": false,
+    "d6": false,
+    "d7": false,
+    "d8": false,
+    "d9": false,
+    "d10": false,
+    "d11": false
+  },
+  "tp_a": true,
+  "tp_b": true
+}

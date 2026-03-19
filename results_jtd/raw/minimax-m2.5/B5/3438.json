@@ -1,0 +1,49 @@
+{
+  "tort_id": "3438",
+  "method": "B5",
+  "model": "minimax-m2.5",
+  "raw_output": "{\"argument_strengths\":{\"p0\":0.7,\"p1\":0.8,\"p2\":0.8,\"p3\":0.7,\"p4\":0.6,\"p5\":0.8,\"p6\":0.7,\"p7\":0.7,\"p8\":0.6,\"p9\":0.7,\"p10\":0.6,\"d0\":0.8,\"d1\":0.7,\"d2\":0.8,\"d3\":0.6,\"d4\":0.7,\"d5\":0.8},\"attacks\":[{\"source\":\"d0\",\"target\":\"p0\"},{\"source\":\"d0\",\"target\":\"p2\"},{\"source\":\"d1\",\"target\":\"p1\"},{\"source\":\"d1\",\"target\":\"p5\"},{\"source\":\"d2\",\"target\":\"p3\"},{\"source\":\"d2\",\"target\":\"p6\"},{\"source\":\"d3\",\"target\":\"p4\"},{\"source\":\"d4\",\"target\":\"p7\"},{\"source\":\"d4\",\"target\":\"p9\"},{\"source\":\"d5\",\"target\":\"p8\"},{\"source\":\"d5\",\"target\":\"p10\"}]}",
+  "usage": {
+    "prompt_tokens": 900,
+    "completion_tokens": 799,
+    "total_tokens": 1699
+  },
+  "latency_s": 20.88989281654358,
+  "parse_success": true,
+  "parse_errors": [
+    "Unknown source ID in attack: d0",
+    "Unknown source ID in attack: d0",
+    "Unknown source ID in attack: d1",
+    "Unknown source ID in attack: d1",
+    "Unknown source ID in attack: d2",
+    "Unknown source ID in attack: d2",
+    "Unknown source ID in attack: d3",
+    "Unknown source ID in attack: d4",
+    "Unknown source ID in attack: d4",
+    "Unknown source ID in attack: d5",
+    "Unknown source ID in attack: d5",
+    "Unknown argument ID in strengths: d0",
+    "Unknown argument ID in strengths: d1",
+    "Unknown argument ID in strengths: d2",
+    "Unknown argument ID in strengths: d3",
+    "Unknown argument ID in strengths: d4",
+    "Unknown argument ID in strengths: d5"
+  ],
+  "af": {
+    "attacks": [],
+    "supports": [],
+    "argument_strengths": {
+      "p0": 0.7,
+      "p1": 0.8,
+      "p2": 0.8,
+      "p3": 0.7,
+      "p4": 0.6,
+      "p5": 0.8,
+      "p6": 0.7,
+      "p7": 0.7,
+      "p8": 0.6,
+      "p9": 0.7,
+      "p10": 0.6
+    }
+  }
+}

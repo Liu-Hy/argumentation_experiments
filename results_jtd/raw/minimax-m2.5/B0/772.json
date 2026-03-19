@@ -1,0 +1,21 @@
+{
+  "tort_id": "772",
+  "method": "B0",
+  "model": "minimax-m2.5",
+  "raw_output": "{\"plaintiff_claims\": {\"p0\": true, \"p1\": true, \"p2\": true}, \"defendant_claims\": {}, \"tort_decision\": true}",
+  "usage": {
+    "prompt_tokens": 380,
+    "completion_tokens": 560,
+    "total_tokens": 940
+  },
+  "latency_s": 6.41363787651062,
+  "parse_success": true,
+  "parse_errors": [],
+  "re_predictions": {
+    "p0": true,
+    "p1": true,
+    "p2": true
+  },
+  "tp_a": true,
+  "tp_b": true
+}

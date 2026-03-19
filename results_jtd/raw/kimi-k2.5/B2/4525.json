@@ -1,0 +1,68 @@
+{
+  "tort_id": "4525",
+  "method": "B2",
+  "model": "kimi-k2.5",
+  "raw_output": "```json\n{\n  \"attacks\": [\n    {\"source\": \"p0\", \"target\": \"d0\"},\n    {\"source\": \"p1\", \"target\": \"d0\"},\n    {\"source\": \"p2\", \"target\": \"d0\"},\n    {\"source\": \"p3\", \"target\": \"d0\"},\n    {\"source\": \"p4\", \"target\": \"d0\"},\n    {\"source\": \"p5\", \"target\": \"d0\"},\n    {\"source\": \"d0\", \"target\": \"p0\"},\n    {\"source\": \"d0\", \"target\": \"p1\"},\n    {\"source\": \"d0\", \"target\": \"p2\"},\n    {\"source\": \"d0\", \"target\": \"p3\"},\n    {\"source\": \"d0\", \"target\": \"p4\"},\n    {\"source\": \"d0\", \"target\": \"p5\"}\n  ]\n}\n```",
+  "usage": {
+    "prompt_tokens": 958,
+    "completion_tokens": 4544,
+    "total_tokens": 5502
+  },
+  "latency_s": 126.32549333572388,
+  "parse_success": true,
+  "parse_errors": [],
+  "af": {
+    "attacks": [
+      [
+        "p0",
+        "d0"
+      ],
+      [
+        "p1",
+        "d0"
+      ],
+      [
+        "p2",
+        "d0"
+      ],
+      [
+        "p3",
+        "d0"
+      ],
+      [
+        "p4",
+        "d0"
+      ],
+      [
+        "p5",
+        "d0"
+      ],
+      [
+        "d0",
+        "p0"
+      ],
+      [
+        "d0",
+        "p1"
+      ],
+      [
+        "d0",
+        "p2"
+      ],
+      [
+        "d0",
+        "p3"
+      ],
+      [
+        "d0",
+        "p4"
+      ],
+      [
+        "d0",
+        "p5"
+      ]
+    ],
+    "supports": [],
+    "argument_strengths": {}
+  }
+}

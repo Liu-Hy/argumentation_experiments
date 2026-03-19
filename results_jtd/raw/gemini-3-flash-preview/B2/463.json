@@ -1,0 +1,24 @@
+{
+  "tort_id": "463",
+  "method": "B2",
+  "model": "gemini-3-flash-preview",
+  "raw_output": "{\n  \"attacks\": [\n    {\"source\": \"d0\", \"target\": \"p0\"}\n  ]\n}",
+  "usage": {
+    "prompt_tokens": 706,
+    "completion_tokens": 579,
+    "total_tokens": 1285
+  },
+  "latency_s": 4.980072975158691,
+  "parse_success": true,
+  "parse_errors": [],
+  "af": {
+    "attacks": [
+      [
+        "d0",
+        "p0"
+      ]
+    ],
+    "supports": [],
+    "argument_strengths": {}
+  }
+}

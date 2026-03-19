@@ -1,0 +1,26 @@
+{
+  "tort_id": "3195",
+  "method": "B5",
+  "model": "minimax-m2.5",
+  "raw_output": "{\"argument_strengths\": {\"p0\": 0.75, \"d0\": 0.65, \"d1\": 0.55}, \"attacks\": [{\"source\": \"d0\", \"target\": \"p0\"}, {\"source\": \"d1\", \"target\": \"p0\"}]}",
+  "usage": {
+    "prompt_tokens": 357,
+    "completion_tokens": 709,
+    "total_tokens": 1066
+  },
+  "latency_s": 9.928967237472534,
+  "parse_success": true,
+  "parse_errors": [
+    "Unknown source ID in attack: d0",
+    "Unknown source ID in attack: d1",
+    "Unknown argument ID in strengths: d0",
+    "Unknown argument ID in strengths: d1"
+  ],
+  "af": {
+    "attacks": [],
+    "supports": [],
+    "argument_strengths": {
+      "p0": 0.75
+    }
+  }
+}

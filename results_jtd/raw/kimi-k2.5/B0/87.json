@@ -1,0 +1,21 @@
+{
+  "tort_id": "87",
+  "method": "B0",
+  "model": "kimi-k2.5",
+  "raw_output": " {\n  \"plaintiff_claims\": {},\n  \"defendant_claims\": {\n    \"d0\": true,\n    \"d1\": true,\n    \"d2\": false\n  },\n  \"tort_decision\": false\n}",
+  "usage": {
+    "prompt_tokens": 340,
+    "completion_tokens": 3632,
+    "total_tokens": 3972
+  },
+  "latency_s": 87.70374798774719,
+  "parse_success": true,
+  "parse_errors": [],
+  "re_predictions": {
+    "d0": true,
+    "d1": true,
+    "d2": false
+  },
+  "tp_a": false,
+  "tp_b": false
+}

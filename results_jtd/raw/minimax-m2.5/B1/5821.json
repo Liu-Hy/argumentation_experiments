@@ -1,0 +1,31 @@
+{
+  "tort_id": "5821",
+  "method": "B1",
+  "model": "minimax-m2.5",
+  "step1_raw": "{\"attacks\":[{\"source\":\"p0\",\"target\":\"d0\"},{\"source\":\"p1\",\"target\":\"d2\"},{\"source\":\"p2\",\"target\":\"d3\"},{\"source\":\"d2\",\"target\":\"p1\"},{\"source\":\"d0\",\"target\":\"p0\"},{\"source\":\"d1\",\"target\":\"p1\"},{\"source\":\"d3\",\"target\":\"p2\"}]}",
+  "step2_raw": "{\"plaintiff_claims\":{\"p0\":true,\"p1\":true,\"p2\":true},\"defendant_claims\":{\"d0\":false,\"d1\":false,\"d2\":false,\"d3\":false},\"tort_decision\":true}",
+  "step1_usage": {
+    "prompt_tokens": 686,
+    "completion_tokens": 730,
+    "total_tokens": 1416
+  },
+  "step2_usage": {
+    "prompt_tokens": 780,
+    "completion_tokens": 929,
+    "total_tokens": 1709
+  },
+  "latency_s": 114.32585430145264,
+  "parse_success": true,
+  "parse_errors": [],
+  "re_predictions": {
+    "p0": true,
+    "p1": true,
+    "p2": true,
+    "d0": false,
+    "d1": false,
+    "d2": false,
+    "d3": false
+  },
+  "tp_a": true,
+  "tp_b": true
+}

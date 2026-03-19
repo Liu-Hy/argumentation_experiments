@@ -1,0 +1,22 @@
+{
+  "tort_id": "5560",
+  "method": "B5",
+  "model": "gemini-3-flash-preview",
+  "raw_output": "{\n  \"argument_strengths\": {\n    \"p0\": 0.7,\n    \"p1\": 0.3\n  },\n  \"attacks\": []\n}",
+  "usage": {
+    "prompt_tokens": 369,
+    "completion_tokens": 3019,
+    "total_tokens": 3388
+  },
+  "latency_s": 18.679941654205322,
+  "parse_success": true,
+  "parse_errors": [],
+  "af": {
+    "attacks": [],
+    "supports": [],
+    "argument_strengths": {
+      "p0": 0.7,
+      "p1": 0.3
+    }
+  }
+}

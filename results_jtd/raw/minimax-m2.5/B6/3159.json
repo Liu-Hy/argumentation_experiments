@@ -1,0 +1,198 @@
+{
+  "tort_id": "3159",
+  "method": "B6",
+  "model": "minimax-m2.5",
+  "raw_output": "{\"argument_strengths\": {\"u0\": 1.0, \"u1\": 1.0, \"u2\": 1.0, \"p0\": 0.7, \"p1\": 0.7, \"p2\": 0.6, \"p3\": 0.8, \"p4\": 0.8, \"p5\": 0.8, \"p6\": 0.7, \"p7\": 0.6, \"d0\": 0.6, \"d1\": 0.7, \"d2\": 0.7, \"d3\": 0.5, \"d4\": 0.5, \"d5\": 0.7, \"d6\": 0.6, \"d7\": 0.6, \"d8\": 0.5, \"d9\": 0.7, \"d10\": 0.7, \"d11\": 0.4}, \"attacks\": [{\"source\": \"p0\", \"target\": \"d1\"}, {\"source\": \"p0\", \"target\": \"d7\"}, {\"source\": \"p0\", \"target\": \"d10\"}, {\"source\": \"p1\", \"target\": \"d2\"}, {\"source\": \"p1\", \"target\": \"d8\"}, {\"source\": \"p1\", \"target\": \"d9\"}, {\"source\": \"p3\", \"target\": \"d1\"}, {\"source\": \"p3\", \"target\": \"d4\"}, {\"source\": \"p3\", \"target\": \"d7\"}, {\"source\": \"p3\", \"target\": \"d8\"}, {\"source\": \"p4\", \"target\": \"d3\"}, {\"source\": \"p4\", \"target\": \"d11\"}, {\"source\": \"p5\", \"target\": \"d3\"}, {\"source\": \"p5\", \"target\": \"d7\"}, {\"source\": \"p5\", \"target\": \"d8\"}, {\"source\": \"p7\", \"target\": \"d9\"}, {\"source\": \"d1\", \"target\": \"p0\"}, {\"source\": \"d2\", \"target\": \"p1\"}, {\"source\": \"d3\", \"target\": \"p3\"}, {\"source\": \"d3\", \"target\": \"p5\"}, {\"source\": \"d4\", \"target\": \"p3\"}, {\"source\": \"d7\", \"target\": \"p0\"}, {\"source\": \"d7\", \"target\": \"p5\"}, {\"source\": \"d8\", \"target\": \"p1\"}, {\"source\": \"d8\", \"target\": \"p3\"}, {\"source\": \"d9\", \"target\": \"p1\"}, {\"source\": \"d11\", \"target\": \"p4\"}], \"supports\": [{\"source\": \"u0\", \"target\": \"p0\"}, {\"source\": \"u0\", \"target\": \"p1\"}, {\"source\": \"u0\", \"target\": \"d1\"}, {\"source\": \"u0\", \"target\": \"d2\"}, {\"source\": \"u1\", \"target\": \"d0\"}, {\"source\": \"u1\", \"target\": \"d3\"}, {\"source\": \"u1\", \"target\": \"d4\"}, {\"source\": \"u1\", \"target\": \"d5\"}, {\"source\": \"u1\", \"target\": \"d8\"}, {\"source\": \"u1\", \"target\": \"d11\"}, {\"source\": \"u2\", \"target\": \"p6\"}, {\"source\": \"u2\", \"target\": \"d6\"}, {\"source\": \"p4\", \"target\": \"p3\"}, {\"source\": \"p4\", \"target\": \"p5\"}, {\"source\": \"p5\", \"target\": \"p3\"}, {\"source\": \"d0\", \"target\": \"d1\"}, {\"source\": \"d1\", \"target\": \"d10\"}, {\"source\": \"d2\", \"target\": \"d7\"}, {\"source\": \"d5\", \"target\": \"d3\"}, {\"source\": \"d5\", \"target\": \"d4\"}]}",
+  "usage": {
+    "prompt_tokens": 1489,
+    "completion_tokens": 1619,
+    "total_tokens": 3108
+  },
+  "latency_s": 28.186725854873657,
+  "parse_success": true,
+  "parse_errors": [
+    "Unknown source ID in support: u0",
+    "Unknown source ID in support: u0",
+    "Unknown source ID in support: u0",
+    "Unknown source ID in support: u0",
+    "Unknown source ID in support: u1",
+    "Unknown source ID in support: u1",
+    "Unknown source ID in support: u1",
+    "Unknown source ID in support: u1",
+    "Unknown source ID in support: u1",
+    "Unknown source ID in support: u1",
+    "Unknown source ID in support: u2",
+    "Unknown source ID in support: u2",
+    "Unknown argument ID in strengths: u0",
+    "Unknown argument ID in strengths: u1",
+    "Unknown argument ID in strengths: u2"
+  ],
+  "af": {
+    "attacks": [
+      [
+        "p0",
+        "d1"
+      ],
+      [
+        "p0",
+        "d7"
+      ],
+      [
+        "p0",
+        "d10"
+      ],
+      [
+        "p1",
+        "d2"
+      ],
+      [
+        "p1",
+        "d8"
+      ],
+      [
+        "p1",
+        "d9"
+      ],
+      [
+        "p3",
+        "d1"
+      ],
+      [
+        "p3",
+        "d4"
+      ],
+      [
+        "p3",
+        "d7"
+      ],
+      [
+        "p3",
+        "d8"
+      ],
+      [
+        "p4",
+        "d3"
+      ],
+      [
+        "p4",
+        "d11"
+      ],
+      [
+        "p5",
+        "d3"
+      ],
+      [
+        "p5",
+        "d7"
+      ],
+      [
+        "p5",
+        "d8"
+      ],
+      [
+        "p7",
+        "d9"
+      ],
+      [
+        "d1",
+        "p0"
+      ],
+      [
+        "d2",
+        "p1"
+      ],
+      [
+        "d3",
+        "p3"
+      ],
+      [
+        "d3",
+        "p5"
+      ],
+      [
+        "d4",
+        "p3"
+      ],
+      [
+        "d7",
+        "p0"
+      ],
+      [
+        "d7",
+        "p5"
+      ],
+      [
+        "d8",
+        "p1"
+      ],
+      [
+        "d8",
+        "p3"
+      ],
+      [
+        "d9",
+        "p1"
+      ],
+      [
+        "d11",
+        "p4"
+      ]
+    ],
+    "supports": [
+      [
+        "p4",
+        "p3"
+      ],
+      [
+        "p4",
+        "p5"
+      ],
+      [
+        "p5",
+        "p3"
+      ],
+      [
+        "d0",
+        "d1"
+      ],
+      [
+        "d1",
+        "d10"
+      ],
+      [
+        "d2",
+        "d7"
+      ],
+      [
+        "d5",
+        "d3"
+      ],
+      [
+        "d5",
+        "d4"
+      ]
+    ],
+    "argument_strengths": {
+      "p0": 0.7,
+      "p1": 0.7,
+      "p2": 0.6,
+      "p3": 0.8,
+      "p4": 0.8,
+      "p5": 0.8,
+      "p6": 0.7,
+      "p7": 0.6,
+      "d0": 0.6,
+      "d1": 0.7,
+      "d2": 0.7,
+      "d3": 0.5,
+      "d4": 0.5,
+      "d5": 0.7,
+      "d6": 0.6,
+      "d7": 0.6,
+      "d8": 0.5,
+      "d9": 0.7,
+      "d10": 0.7,
+      "d11": 0.4
+    }
+  }
+}

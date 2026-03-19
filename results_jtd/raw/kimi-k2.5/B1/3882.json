@@ -1,0 +1,33 @@
+{
+  "tort_id": "3882",
+  "method": "B1",
+  "model": "kimi-k2.5",
+  "step1_raw": " ```json\n{\n  \"attacks\": [\n    {\"source\": \"d0\", \"target\": \"p0\"},\n    {\"source\": \"d1\", \"target\": \"p0\"},\n    {\"source\": \"d2\", \"target\": \"p0\"},\n    {\"source\": \"d3\", \"target\": \"p0\"},\n    {\"source\": \"d4\", \"target\": \"p0\"},\n    {\"source\": \"d2\", \"target\": \"p2\"},\n    {\"source\": \"d5\", \"target\": \"p1\"},\n    {\"source\": \"d5\", \"target\": \"p2\"},\n    {\"source\": \"p0\", \"target\": \"d0\"},\n    {\"source\": \"p0\", \"target\": \"d1\"},\n    {\"source\": \"p0\", \"target\": \"d2\"},\n    {\"source\": \"p0\", \"target\": \"d3\"},\n    {\"source\": \"p0\", \"target\": \"d4\"},\n    {\"source\": \"p1\", \"target\": \"d5\"},\n    {\"source\": \"p2\", \"target\": \"d2\"},\n    {\"source\": \"p2\", \"target\": \"d5\"}\n  ]\n}\n```",
+  "step2_raw": " ```json\n{\n  \"plaintiff_claims\": {\"p0\": true, \"p1\": true, \"p2\": true},\n  \"defendant_claims\": {\"d0\": false, \"d1\": false, \"d2\": false, \"d3\": false, \"d4\": false, \"d5\": false},\n  \"tort_decision\": true\n}\n```",
+  "step1_usage": {
+    "prompt_tokens": 1075,
+    "completion_tokens": 7917,
+    "total_tokens": 8992
+  },
+  "step2_usage": {
+    "prompt_tokens": 1347,
+    "completion_tokens": 3549,
+    "total_tokens": 4896
+  },
+  "latency_s": 439.00111293792725,
+  "parse_success": true,
+  "parse_errors": [],
+  "re_predictions": {
+    "p0": true,
+    "p1": true,
+    "p2": true,
+    "d0": false,
+    "d1": false,
+    "d2": false,
+    "d3": false,
+    "d4": false,
+    "d5": false
+  },
+  "tp_a": true,
+  "tp_b": true
+}

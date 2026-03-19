@@ -1,0 +1,24 @@
+{
+  "tort_id": "5433",
+  "method": "B5",
+  "model": "minimax-m2.5",
+  "raw_output": "{\"argument_strengths\": {\"p0\": 0.8, \"p1\": 0.7, \"p2\": 0.75}, \"attacks\": []}",
+  "usage": {
+    "prompt_tokens": 323,
+    "completion_tokens": 645,
+    "total_tokens": 968
+  },
+  "latency_s": 5.240397930145264,
+  "parse_success": true,
+  "parse_errors": [
+    "Unknown argument ID in strengths: p1",
+    "Unknown argument ID in strengths: p2"
+  ],
+  "af": {
+    "attacks": [],
+    "supports": [],
+    "argument_strengths": {
+      "p0": 0.8
+    }
+  }
+}

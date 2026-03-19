@@ -1,0 +1,28 @@
+{
+  "tort_id": "6350",
+  "method": "B6",
+  "model": "kimi-k2.5",
+  "raw_output": "```json\n{\n  \"argument_strengths\": {\n    \"u0\": 1.0,\n    \"u1\": 1.0,\n    \"p0\": 0.6,\n    \"d0\": 0.9\n  },\n  \"attacks\": [\n    {\"source\": \"d0\", \"target\": \"p0\"}\n  ],\n  \"supports\": [\n    {\"source\": \"u0\", \"target\": \"d0\"},\n    {\"source\": \"u1\", \"target\": \"d0\"}\n  ]\n}\n```",
+  "usage": {
+    "prompt_tokens": 454,
+    "completion_tokens": 3995,
+    "total_tokens": 4449
+  },
+  "latency_s": 200.53753304481506,
+  "parse_success": true,
+  "parse_errors": [
+    "Unknown target ID in attack: p0",
+    "Unknown source ID in support: u0",
+    "Unknown source ID in support: u1",
+    "Unknown argument ID in strengths: u0",
+    "Unknown argument ID in strengths: u1",
+    "Unknown argument ID in strengths: p0"
+  ],
+  "af": {
+    "attacks": [],
+    "supports": [],
+    "argument_strengths": {
+      "d0": 0.9
+    }
+  }
+}

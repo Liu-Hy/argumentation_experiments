@@ -1,0 +1,56 @@
+{
+  "tort_id": "6",
+  "method": "B3",
+  "model": "minimax-m2.5",
+  "raw_output": "```json\n{\n  \"attacks\": [\n    {\"source\": \"d0\", \"target\": \"p2\"},\n    {\"source\": \"d2\", \"target\": \"p1\"},\n    {\"source\": \"d2\", \"target\": \"p12\"},\n    {\"source\": \"d2\", \"target\": \"p13\"},\n    {\"source\": \"d1\", \"target\": \"p17\"},\n    {\"source\": \"d1\", \"target\": \"p18\"},\n    {\"source\": \"d3\", \"target\": \"p8\"},\n    {\"source\": \"p10\", \"target\": \"d1\"},\n    {\"source\": \"p19\", \"target\": \"d1\"}\n  ]\n}\n```",
+  "usage": {
+    "prompt_tokens": 1122,
+    "completion_tokens": 734,
+    "total_tokens": 1856
+  },
+  "latency_s": 22.70530414581299,
+  "parse_success": true,
+  "parse_errors": [],
+  "af": {
+    "attacks": [
+      [
+        "d0",
+        "p2"
+      ],
+      [
+        "d2",
+        "p1"
+      ],
+      [
+        "d2",
+        "p12"
+      ],
+      [
+        "d2",
+        "p13"
+      ],
+      [
+        "d1",
+        "p17"
+      ],
+      [
+        "d1",
+        "p18"
+      ],
+      [
+        "d3",
+        "p8"
+      ],
+      [
+        "p10",
+        "d1"
+      ],
+      [
+        "p19",
+        "d1"
+      ]
+    ],
+    "supports": [],
+    "argument_strengths": {}
+  }
+}

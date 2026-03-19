@@ -1,0 +1,29 @@
+{
+  "tort_id": "3438",
+  "method": "B0",
+  "model": "minimax-m2.5",
+  "raw_output": "{\"plaintiff_claims\": {\"p0\": true, \"p1\": true, \"p2\": true, \"p3\": true, \"p4\": true, \"p5\": true, \"p6\": true, \"p7\": true, \"p8\": true, \"p9\": true, \"p10\": true}, \"defendant_claims\": {}, \"tort_decision\": true}",
+  "usage": {
+    "prompt_tokens": 859,
+    "completion_tokens": 900,
+    "total_tokens": 1759
+  },
+  "latency_s": 2.6171364784240723,
+  "parse_success": true,
+  "parse_errors": [],
+  "re_predictions": {
+    "p0": true,
+    "p1": true,
+    "p2": true,
+    "p3": true,
+    "p4": true,
+    "p5": true,
+    "p6": true,
+    "p7": true,
+    "p8": true,
+    "p9": true,
+    "p10": true
+  },
+  "tp_a": true,
+  "tp_b": true
+}

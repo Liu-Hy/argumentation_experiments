@@ -1,0 +1,112 @@
+{
+  "tort_id": "425",
+  "method": "B6",
+  "model": "kimi-k2.5",
+  "raw_output": " ```json\n{\n  \"argument_strengths\": {\n    \"u0\": 1.0,\n    \"u1\": 1.0,\n    \"u2\": 1.0,\n    \"u3\": 1.0,\n    \"u4\": 1.0,\n    \"u5\": 1.0,\n    \"u6\": 1.0,\n    \"u7\": 1.0,\n    \"u8\": 1.0,\n    \"u9\": 1.0,\n    \"p0\": 0.8,\n    \"p1\": 0.9,\n    \"p2\": 0.9,\n    \"p3\": 0.85,\n    \"p4\": 0.75,\n    \"p5\": 0.9,\n    \"p6\": 0.7,\n    \"d0\": 0.3,\n    \"d1\": 0.4,\n    \"d2\": 0.6\n  },\n  \"attacks\": [\n    {\"source\": \"d0\", \"target\": \"p3\"},\n    {\"source\": \"d0\", \"target\": \"p4\"},\n    {\"source\": \"d1\", \"target\": \"p4\"},\n    {\"source\": \"d1\", \"target\": \"p6\"},\n    {\"source\": \"d2\", \"target\": \"p6\"},\n    {\"source\": \"p5\", \"target\": \"d1\"}\n  ],\n  \"supports\": [\n    {\"source\": \"u0\", \"target\": \"p1\"},\n    {\"source\": \"u0\", \"target\": \"p2\"},\n    {\"source\": \"u0\", \"target\": \"p3\"},\n    {\"source\": \"u2\", \"target\": \"p2\"},\n    {\"source\": \"u7\", \"target\": \"p0\"},\n    {\"source\": \"u7\", \"target\": \"p3\"},\n    {\"source\": \"u3\", \"target\": \"p4\"},\n    {\"source\": \"u4\", \"target\": \"p4\"},\n    {\"source\": \"u8\", \"target\": \"p4\"},\n    {\"source\": \"u9\", \"target\": \"p4\"},\n    {\"source\": \"p0\", \"target\": \"p3\"},\n    {\"source\": \"p1\", \"target\": \"p3\"},\n    {\"source\": \"p2\", \"target\": \"p3\"},\n    {\"source\": \"p3\", \"target\": \"p4\"},\n    {\"source\": \"p4\", \"target\": \"p6\"},\n    {\"source\": \"p5\", \"target\": \"p6\"}\n  ]\n}\n```",
+  "usage": {
+    "prompt_tokens": 1495,
+    "completion_tokens": 3834,
+    "total_tokens": 5329
+  },
+  "latency_s": 89.17833352088928,
+  "parse_success": true,
+  "parse_errors": [
+    "Unknown source ID in attack: d0",
+    "Unknown source ID in attack: d0",
+    "Unknown source ID in attack: d1",
+    "Unknown source ID in attack: d1",
+    "Unknown source ID in attack: d2",
+    "Unknown target ID in attack: d1",
+    "Unknown argument ID in strengths: d0",
+    "Unknown argument ID in strengths: d1",
+    "Unknown argument ID in strengths: d2"
+  ],
+  "af": {
+    "attacks": [],
+    "supports": [
+      [
+        "u0",
+        "p1"
+      ],
+      [
+        "u0",
+        "p2"
+      ],
+      [
+        "u0",
+        "p3"
+      ],
+      [
+        "u2",
+        "p2"
+      ],
+      [
+        "u7",
+        "p0"
+      ],
+      [
+        "u7",
+        "p3"
+      ],
+      [
+        "u3",
+        "p4"
+      ],
+      [
+        "u4",
+        "p4"
+      ],
+      [
+        "u8",
+        "p4"
+      ],
+      [
+        "u9",
+        "p4"
+      ],
+      [
+        "p0",
+        "p3"
+      ],
+      [
+        "p1",
+        "p3"
+      ],
+      [
+        "p2",
+        "p3"
+      ],
+      [
+        "p3",
+        "p4"
+      ],
+      [
+        "p4",
+        "p6"
+      ],
+      [
+        "p5",
+        "p6"
+      ]
+    ],
+    "argument_strengths": {
+      "u0": 1.0,
+      "u1": 1.0,
+      "u2": 1.0,
+      "u3": 1.0,
+      "u4": 1.0,
+      "u5": 1.0,
+      "u6": 1.0,
+      "u7": 1.0,
+      "u8": 1.0,
+      "u9": 1.0,
+      "p0": 0.8,
+      "p1": 0.9,
+      "p2": 0.9,
+      "p3": 0.85,
+      "p4": 0.75,
+      "p5": 0.9,
+      "p6": 0.7
+    }
+  }
+}

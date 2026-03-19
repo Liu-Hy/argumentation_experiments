@@ -1,0 +1,20 @@
+{
+  "tort_id": "4568",
+  "method": "B0",
+  "model": "kimi-k2.5",
+  "raw_output": " {\n  \"plaintiff_claims\": {\"p0\": true},\n  \"defendant_claims\": {\"d0\": false},\n  \"tort_decision\": true\n}",
+  "usage": {
+    "prompt_tokens": 400,
+    "completion_tokens": 4737,
+    "total_tokens": 5137
+  },
+  "latency_s": 145.42362546920776,
+  "parse_success": true,
+  "parse_errors": [],
+  "re_predictions": {
+    "p0": true,
+    "d0": false
+  },
+  "tp_a": true,
+  "tp_b": true
+}

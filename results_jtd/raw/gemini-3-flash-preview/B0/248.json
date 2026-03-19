@@ -1,0 +1,21 @@
+{
+  "tort_id": "248",
+  "method": "B0",
+  "model": "gemini-3-flash-preview",
+  "raw_output": "{\n  \"plaintiff_claims\": {\n    \"p0\": false,\n    \"p1\": false,\n    \"p2\": false\n  },\n  \"defendant_claims\": {},\n  \"tort_decision\": false\n}",
+  "usage": {
+    "prompt_tokens": 493,
+    "completion_tokens": 812,
+    "total_tokens": 1305
+  },
+  "latency_s": 7.4108970165252686,
+  "parse_success": true,
+  "parse_errors": [],
+  "re_predictions": {
+    "p0": false,
+    "p1": false,
+    "p2": false
+  },
+  "tp_a": false,
+  "tp_b": false
+}

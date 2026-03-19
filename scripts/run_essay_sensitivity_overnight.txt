@@ -1,0 +1,10 @@
+# 5-phase overnight sensitivity run (paste on server)
+#
+# 1) Start run in background:
+mkdir -p logs && nohup bash scripts/run_essay_sensitivity.sh > "logs/launcher_$(date +%Y%m%d_%H%M%S).log" 2>&1 < /dev/null & echo "Started scripts/run_essay_sensitivity.sh with PID $!"
+#
+# 2) Monitor latest experiment log (optional):
+tail -f "$(ls -t logs/sensitivity_*.log | head -1)"
+#
+# 3) Stop the job if needed (optional):
+# kill <PID>

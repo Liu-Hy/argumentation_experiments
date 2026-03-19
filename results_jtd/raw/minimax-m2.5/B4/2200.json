@@ -1,0 +1,53 @@
+{
+  "tort_id": "2200",
+  "method": "B4",
+  "model": "minimax-m2.5",
+  "raw_output": "{\"attacks\":[{\"source\":\"d0\",\"target\":\"p0\"},{\"source\":\"d0\",\"target\":\"p1\"},{\"source\":\"d0\",\"target\":\"p2\"},{\"source\":\"d1\",\"target\":\"p3\"}],\"supports\":[{\"source\":\"u0\",\"target\":\"d0\"},{\"source\":\"p0\",\"target\":\"p1\"},{\"source\":\"p1\",\"target\":\"p2\"},{\"source\":\"p2\",\"target\":\"p3\"}]}",
+  "usage": {
+    "prompt_tokens": 750,
+    "completion_tokens": 925,
+    "total_tokens": 1675
+  },
+  "latency_s": 37.311707496643066,
+  "parse_success": true,
+  "parse_errors": [],
+  "af": {
+    "attacks": [
+      [
+        "d0",
+        "p0"
+      ],
+      [
+        "d0",
+        "p1"
+      ],
+      [
+        "d0",
+        "p2"
+      ],
+      [
+        "d1",
+        "p3"
+      ]
+    ],
+    "supports": [
+      [
+        "u0",
+        "d0"
+      ],
+      [
+        "p0",
+        "p1"
+      ],
+      [
+        "p1",
+        "p2"
+      ],
+      [
+        "p2",
+        "p3"
+      ]
+    ],
+    "argument_strengths": {}
+  }
+}

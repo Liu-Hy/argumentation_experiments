@@ -1,0 +1,22 @@
+{
+  "tort_id": "3693",
+  "method": "B4",
+  "model": "gemini-3-flash-preview",
+  "raw_output": "{\n  \"attacks\": [],\n  \"supports\": [\n    {\n      \"source\": \"u1\",\n      \"target\": \"u3\"\n    },\n    {\n      \"source\": \"u2\",\n      \"target\": \"u3\"\n    }\n  ]\n}",
+  "usage": {
+    "prompt_tokens": 612,
+    "completion_tokens": 7928,
+    "total_tokens": 8540
+  },
+  "latency_s": 46.717402935028076,
+  "parse_success": true,
+  "parse_errors": [
+    "Dropped invalid support targeting undisputed fact: u1 -> u3",
+    "Dropped invalid support targeting undisputed fact: u2 -> u3"
+  ],
+  "af": {
+    "attacks": [],
+    "supports": [],
+    "argument_strengths": {}
+  }
+}

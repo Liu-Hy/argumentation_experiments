@@ -1,0 +1,153 @@
+{
+  "tort_id": "5026",
+  "method": "B4",
+  "model": "minimax-m2.5",
+  "raw_output": "{\"attacks\":[{\"source\":\"d0\",\"target\":\"p0\"},{\"source\":\"d1\",\"target\":\"p0\"},{\"source\":\"d2\",\"target\":\"p0\"},{\"source\":\"d3\",\"target\":\"p0\"},{\"source\":\"d4\",\"target\":\"p0\"},{\"source\":\"d1\",\"target\":\"p1\"},{\"source\":\"d2\",\"target\":\"p1\"},{\"source\":\"d3\",\"target\":\"p1\"},{\"source\":\"d5\",\"target\":\"p1\"},{\"source\":\"d1\",\"target\":\"p2\"},{\"source\":\"d2\",\"target\":\"p2\"},{\"source\":\"d3\",\"target\":\"p2\"},{\"source\":\"d4\",\"target\":\"p2\"},{\"source\":\"d5\",\"target\":\"p2\"},{\"source\":\"d0\",\"target\":\"p3\"},{\"source\":\"d1\",\"target\":\"p3\"},{\"source\":\"d2\",\"target\":\"p3\"},{\"source\":\"d3\",\"target\":\"p3\"},{\"source\":\"d4\",\"target\":\"p3\"},{\"source\":\"d6\",\"target\":\"p3\"},{\"source\":\"d1\",\"target\":\"p4\"},{\"source\":\"d2\",\"target\":\"p4\"},{\"source\":\"d3\",\"target\":\"p4\"},{\"source\":\"d4\",\"target\":\"p4\"},{\"source\":\"d1\",\"target\":\"p5\"},{\"source\":\"d2\",\"target\":\"p5\"},{\"source\":\"d3\",\"target\":\"p5\"},{\"source\":\"d4\",\"target\":\"p5\"}],\"supports\":[{\"source\":\"d2\",\"target\":\"d0\"},{\"source\":\"d2\",\"target\":\"d1\"},{\"source\":\"d2\",\"target\":\"d3\"},{\"source\":\"d2\",\"target\":\"d4\"},{\"source\":\"d2\",\"target\":\"d5\"}]}",
+  "usage": {
+    "prompt_tokens": 1015,
+    "completion_tokens": 1290,
+    "total_tokens": 2305
+  },
+  "latency_s": 19.910828113555908,
+  "parse_success": true,
+  "parse_errors": [],
+  "af": {
+    "attacks": [
+      [
+        "d0",
+        "p0"
+      ],
+      [
+        "d1",
+        "p0"
+      ],
+      [
+        "d2",
+        "p0"
+      ],
+      [
+        "d3",
+        "p0"
+      ],
+      [
+        "d4",
+        "p0"
+      ],
+      [
+        "d1",
+        "p1"
+      ],
+      [
+        "d2",
+        "p1"
+      ],
+      [
+        "d3",
+        "p1"
+      ],
+      [
+        "d5",
+        "p1"
+      ],
+      [
+        "d1",
+        "p2"
+      ],
+      [
+        "d2",
+        "p2"
+      ],
+      [
+        "d3",
+        "p2"
+      ],
+      [
+        "d4",
+        "p2"
+      ],
+      [
+        "d5",
+        "p2"
+      ],
+      [
+        "d0",
+        "p3"
+      ],
+      [
+        "d1",
+        "p3"
+      ],
+      [
+        "d2",
+        "p3"
+      ],
+      [
+        "d3",
+        "p3"
+      ],
+      [
+        "d4",
+        "p3"
+      ],
+      [
+        "d6",
+        "p3"
+      ],
+      [
+        "d1",
+        "p4"
+      ],
+      [
+        "d2",
+        "p4"
+      ],
+      [
+        "d3",
+        "p4"
+      ],
+      [
+        "d4",
+        "p4"
+      ],
+      [
+        "d1",
+        "p5"
+      ],
+      [
+        "d2",
+        "p5"
+      ],
+      [
+        "d3",
+        "p5"
+      ],
+      [
+        "d4",
+        "p5"
+      ]
+    ],
+    "supports": [
+      [
+        "d2",
+        "d0"
+      ],
+      [
+        "d2",
+        "d1"
+      ],
+      [
+        "d2",
+        "d3"
+      ],
+      [
+        "d2",
+        "d4"
+      ],
+      [
+        "d2",
+        "d5"
+      ]
+    ],
+    "argument_strengths": {}
+  }
+}

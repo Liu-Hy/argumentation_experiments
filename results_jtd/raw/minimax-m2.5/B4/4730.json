@@ -1,0 +1,63 @@
+{
+  "tort_id": "4730",
+  "method": "B4",
+  "model": "minimax-m2.5",
+  "raw_output": "```json\n{\n  \"attacks\": [\n    {\"source\": \"d0\", \"target\": \"p0\"},\n    {\"source\": \"d0\", \"target\": \"p4\"},\n    {\"source\": \"d0\", \"target\": \"p7\"},\n    {\"source\": \"d0\", \"target\": \"p8\"}\n  ],\n  \"supports\": [\n    {\"source\": \"u0\", \"target\": \"p8\"},\n    {\"source\": \"p0\", \"target\": \"p4\"},\n    {\"source\": \"p2\", \"target\": \"p3\"},\n    {\"source\": \"p3\", \"target\": \"p4\"},\n    {\"source\": \"p5\", \"target\": \"p6\"},\n    {\"source\": \"p6\", \"target\": \"p7\"},\n    {\"source\": \"p7\", \"target\": \"p8\"}\n  ]\n}\n```",
+  "usage": {
+    "prompt_tokens": 820,
+    "completion_tokens": 998,
+    "total_tokens": 1818
+  },
+  "latency_s": 11.07819652557373,
+  "parse_success": true,
+  "parse_errors": [
+    "Unknown source ID in support: u0"
+  ],
+  "af": {
+    "attacks": [
+      [
+        "d0",
+        "p0"
+      ],
+      [
+        "d0",
+        "p4"
+      ],
+      [
+        "d0",
+        "p7"
+      ],
+      [
+        "d0",
+        "p8"
+      ]
+    ],
+    "supports": [
+      [
+        "p0",
+        "p4"
+      ],
+      [
+        "p2",
+        "p3"
+      ],
+      [
+        "p3",
+        "p4"
+      ],
+      [
+        "p5",
+        "p6"
+      ],
+      [
+        "p6",
+        "p7"
+      ],
+      [
+        "p7",
+        "p8"
+      ]
+    ],
+    "argument_strengths": {}
+  }
+}

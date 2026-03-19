@@ -1,0 +1,43 @@
+{
+  "tort_id": "5736",
+  "method": "B6",
+  "model": "minimax-m2.5",
+  "raw_output": "{\"argument_strengths\": {\"u0\": 1.0, \"u1\": 1.0, \"u2\": 1.0, \"p0\": 0.85, \"p1\": 0.75, \"p2\": 0.7, \"d0\": 0.75, \"d1\": 0.65, \"d2\": 0.6, \"d3\": 0.55}, \"attacks\": [{\"source\": \"d0\", \"target\": \"p0\"}, {\"source\": \"d1\", \"target\": \"p1\"}, {\"source\": \"d2\", \"target\": \"p1\"}, {\"source\": \"d3\", \"target\": \"p1\"}, {\"source\": \"p0\", \"target\": \"d0\"}, {\"source\": \"p0\", \"target\": \"d1\"}, {\"source\": \"p0\", \"target\": \"d2\"}], \"supports\": [{\"source\": \"u0\", \"target\": \"p0\"}, {\"source\": \"u1\", \"target\": \"p0\"}, {\"source\": \"u0\", \"target\": \"p1\"}, {\"source\": \"p0\", \"target\": \"p1\"}, {\"source\": \"p1\", \"target\": \"p2\"}]}",
+  "usage": {
+    "prompt_tokens": 468,
+    "completion_tokens": 993,
+    "total_tokens": 1461
+  },
+  "latency_s": 55.11369800567627,
+  "parse_success": true,
+  "parse_errors": [
+    "Unknown source ID in attack: d0",
+    "Unknown source ID in attack: d1",
+    "Unknown source ID in attack: d2",
+    "Unknown source ID in attack: d3",
+    "Unknown target ID in attack: d0",
+    "Unknown target ID in attack: d1",
+    "Unknown target ID in attack: d2",
+    "Unknown source ID in support: u0",
+    "Unknown source ID in support: u1",
+    "Unknown source ID in support: u0",
+    "Unknown target ID in support: p1",
+    "Unknown source ID in support: p1",
+    "Unknown argument ID in strengths: u0",
+    "Unknown argument ID in strengths: u1",
+    "Unknown argument ID in strengths: u2",
+    "Unknown argument ID in strengths: p1",
+    "Unknown argument ID in strengths: p2",
+    "Unknown argument ID in strengths: d0",
+    "Unknown argument ID in strengths: d1",
+    "Unknown argument ID in strengths: d2",
+    "Unknown argument ID in strengths: d3"
+  ],
+  "af": {
+    "attacks": [],
+    "supports": [],
+    "argument_strengths": {
+      "p0": 0.85
+    }
+  }
+}

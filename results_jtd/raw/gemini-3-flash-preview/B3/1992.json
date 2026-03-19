@@ -1,0 +1,24 @@
+{
+  "tort_id": "1992",
+  "method": "B3",
+  "model": "gemini-3-flash-preview",
+  "raw_output": "{\n  \"attacks\": [\n    {\n      \"source\": \"d0\",\n      \"target\": \"p0\"\n    }\n  ]\n}",
+  "usage": {
+    "prompt_tokens": 354,
+    "completion_tokens": 828,
+    "total_tokens": 1182
+  },
+  "latency_s": 7.847413778305054,
+  "parse_success": true,
+  "parse_errors": [],
+  "af": {
+    "attacks": [
+      [
+        "d0",
+        "p0"
+      ]
+    ],
+    "supports": [],
+    "argument_strengths": {}
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "tort_id": "533",
+  "method": "B4",
+  "model": "kimi-k2.5",
+  "raw_output": " ```json\n{\n  \"attacks\": [\n    {\"source\": \"p0\", \"target\": \"d2\"},\n    {\"source\": \"d2\", \"target\": \"p0\"}\n  ],\n  \"supports\": [\n    {\"source\": \"d0\", \"target\": \"d1\"},\n    {\"source\": \"d2\", \"target\": \"d1\"}\n  ]\n}\n```",
+  "usage": {
+    "prompt_tokens": 585,
+    "completion_tokens": 3713,
+    "total_tokens": 4298
+  },
+  "latency_s": 52.21246552467346,
+  "parse_success": true,
+  "parse_errors": [],
+  "af": {
+    "attacks": [
+      [
+        "p0",
+        "d2"
+      ],
+      [
+        "d2",
+        "p0"
+      ]
+    ],
+    "supports": [
+      [
+        "d0",
+        "d1"
+      ],
+      [
+        "d2",
+        "d1"
+      ]
+    ],
+    "argument_strengths": {}
+  }
+}

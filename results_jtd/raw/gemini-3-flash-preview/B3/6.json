@@ -1,0 +1,60 @@
+{
+  "tort_id": "6",
+  "method": "B3",
+  "model": "gemini-3-flash-preview",
+  "raw_output": "{\n  \"attacks\": [\n    {\"source\": \"d0\", \"target\": \"p2\"},\n    {\"source\": \"d1\", \"target\": \"p4\"},\n    {\"source\": \"d1\", \"target\": \"p5\"},\n    {\"source\": \"d1\", \"target\": \"p6\"},\n    {\"source\": \"d1\", \"target\": \"p15\"},\n    {\"source\": \"d1\", \"target\": \"p16\"},\n    {\"source\": \"d2\", \"target\": \"p1\"},\n    {\"source\": \"d2\", \"target\": \"p12\"},\n    {\"source\": \"d2\", \"target\": \"p13\"},\n    {\"source\": \"d3\", \"target\": \"p8\"}\n  ]\n}",
+  "usage": {
+    "prompt_tokens": 1316,
+    "completion_tokens": 2124,
+    "total_tokens": 3440
+  },
+  "latency_s": 13.699043035507202,
+  "parse_success": true,
+  "parse_errors": [],
+  "af": {
+    "attacks": [
+      [
+        "d0",
+        "p2"
+      ],
+      [
+        "d1",
+        "p4"
+      ],
+      [
+        "d1",
+        "p5"
+      ],
+      [
+        "d1",
+        "p6"
+      ],
+      [
+        "d1",
+        "p15"
+      ],
+      [
+        "d1",
+        "p16"
+      ],
+      [
+        "d2",
+        "p1"
+      ],
+      [
+        "d2",
+        "p12"
+      ],
+      [
+        "d2",
+        "p13"
+      ],
+      [
+        "d3",
+        "p8"
+      ]
+    ],
+    "supports": [],
+    "argument_strengths": {}
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "tort_id": "452",
+  "method": "B1",
+  "model": "kimi-k2.5",
+  "step1_raw": "{\n  \"attacks\": []\n}",
+  "step2_raw": " ```json\n{\n  \"plaintiff_claims\": {\"p0\": true},\n  \"defendant_claims\": {},\n  \"tort_decision\": true\n}\n```",
+  "step1_usage": {
+    "prompt_tokens": 420,
+    "completion_tokens": 2485,
+    "total_tokens": 2905
+  },
+  "step2_usage": {
+    "prompt_tokens": 446,
+    "completion_tokens": 2161,
+    "total_tokens": 2607
+  },
+  "latency_s": 44.3797447681427,
+  "parse_success": true,
+  "parse_errors": [],
+  "re_predictions": {
+    "p0": true
+  },
+  "tp_a": true,
+  "tp_b": true
+}

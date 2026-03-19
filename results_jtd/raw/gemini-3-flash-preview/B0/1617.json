@@ -1,0 +1,19 @@
+{
+  "tort_id": "1617",
+  "method": "B0",
+  "model": "gemini-3-flash-preview",
+  "raw_output": "{\n  \"plaintiff_claims\": {\n    \"p0\": true\n  },\n  \"defendant_claims\": {},\n  \"tort_decision\": true\n}",
+  "usage": {
+    "prompt_tokens": 425,
+    "completion_tokens": 759,
+    "total_tokens": 1184
+  },
+  "latency_s": 5.858175277709961,
+  "parse_success": true,
+  "parse_errors": [],
+  "re_predictions": {
+    "p0": true
+  },
+  "tp_a": true,
+  "tp_b": true
+}

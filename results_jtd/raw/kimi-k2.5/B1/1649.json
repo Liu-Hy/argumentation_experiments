@@ -1,0 +1,33 @@
+{
+  "tort_id": "1649",
+  "method": "B1",
+  "model": "kimi-k2.5",
+  "step1_raw": " ```json\n{\n  \"attacks\": [\n    {\"source\": \"d0\", \"target\": \"p0\"},\n    {\"source\": \"d1\", \"target\": \"p0\"},\n    {\"source\": \"d2\", \"target\": \"p0\"},\n    {\"source\": \"d3\", \"target\": \"p0\"},\n    {\"source\": \"p0\", \"target\": \"d0\"},\n    {\"source\": \"p0\", \"target\": \"d1\"},\n    {\"source\": \"p0\", \"target\": \"d2\"},\n    {\"source\": \"p0\", \"target\": \"d3\"}\n  ]\n}\n```",
+  "step2_raw": " ```json\n{\n  \"plaintiff_claims\": {\n    \"p0\": true,\n    \"p1\": true\n  },\n  \"defendant_claims\": {\n    \"d0\": false,\n    \"d1\": false\n  },\n  \"tort_claim_affirmed\": true\n}\n```",
+  "step1_usage": {
+    "prompt_tokens": 993,
+    "completion_tokens": 4680,
+    "total_tokens": 5673
+  },
+  "step2_usage": {
+    "prompt_tokens": 1145,
+    "completion_tokens": 3695,
+    "total_tokens": 4840
+  },
+  "latency_s": 335.4085781574249,
+  "parse_success": true,
+  "parse_errors": [
+    "Missing prediction for d2",
+    "Missing prediction for d3",
+    "Missing tort_decision"
+  ],
+  "re_predictions": {
+    "p0": true,
+    "d0": false,
+    "d1": false,
+    "d2": false,
+    "d3": false
+  },
+  "tp_a": null,
+  "tp_b": null
+}

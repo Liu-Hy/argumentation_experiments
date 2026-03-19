@@ -1,0 +1,24 @@
+{
+  "tort_id": "463",
+  "method": "B3",
+  "model": "kimi-k2.5",
+  "raw_output": "{\n  \"attacks\": [\n    {\"source\": \"d0\", \"target\": \"p0\"}\n  ]\n}",
+  "usage": {
+    "prompt_tokens": 857,
+    "completion_tokens": 1344,
+    "total_tokens": 2201
+  },
+  "latency_s": 54.6987509727478,
+  "parse_success": true,
+  "parse_errors": [],
+  "af": {
+    "attacks": [
+      [
+        "d0",
+        "p0"
+      ]
+    ],
+    "supports": [],
+    "argument_strengths": {}
+  }
+}

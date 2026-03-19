@@ -1,0 +1,41 @@
+{
+  "tort_id": "4012",
+  "method": "B4",
+  "model": "minimax-m2.5",
+  "raw_output": "{\"attacks\":[{\"source\":\"d0\",\"target\":\"p0\"},{\"source\":\"d1\",\"target\":\"p0\"},{\"source\":\"d2\",\"target\":\"p0\"}],\"supports\":[{\"source\":\"u4\",\"target\":\"p1\"},{\"source\":\"p1\",\"target\":\"p0\"}]}",
+  "usage": {
+    "prompt_tokens": 812,
+    "completion_tokens": 735,
+    "total_tokens": 1547
+  },
+  "latency_s": 7.606496334075928,
+  "parse_success": true,
+  "parse_errors": [],
+  "af": {
+    "attacks": [
+      [
+        "d0",
+        "p0"
+      ],
+      [
+        "d1",
+        "p0"
+      ],
+      [
+        "d2",
+        "p0"
+      ]
+    ],
+    "supports": [
+      [
+        "u4",
+        "p1"
+      ],
+      [
+        "p1",
+        "p0"
+      ]
+    ],
+    "argument_strengths": {}
+  }
+}

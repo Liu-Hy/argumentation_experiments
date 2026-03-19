@@ -1,0 +1,17 @@
+{
+  "tort_id": "3195",
+  "method": "BH",
+  "model": "heuristic",
+  "raw_output": "",
+  "usage": {},
+  "latency_s": 0.0,
+  "parse_success": true,
+  "parse_errors": [],
+  "af": {
+    "attacks": [],
+    "supports": [],
+    "argument_strengths": {
+      "p0": 0.5
+    }
+  }
+}

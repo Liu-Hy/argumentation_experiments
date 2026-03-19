@@ -1,0 +1,88 @@
+{
+  "tort_id": "5582",
+  "method": "B6",
+  "model": "gemini-3-flash-preview",
+  "raw_output": "{\n  \"argument_strengths\": {\n    \"u0\": 1.0,\n    \"u1\": 1.0,\n    \"u2\": 1.0,\n    \"u3\": 1.0,\n    \"u4\": 1.0,\n    \"u5\": 1.0,\n    \"u6\": 1.0,\n    \"p0\": 0.7,\n    \"p1\": 0.7,\n    \"p2\": 0.6,\n    \"d0\": 0.5,\n    \"d1\": 0.6,\n    \"d2\": 0.6,\n    \"d3\": 0.6\n  },\n  \"attacks\": [\n    {\n      \"source\": \"d1\",\n      \"target\": \"p1\"\n    },\n    {\n      \"source\": \"d1\",\n      \"target\": \"p2\"\n    },\n    {\n      \"source\": \"d2\",\n      \"target\": \"p1\"\n    },\n    {\n      \"source\": \"d3\",\n      \"target\": \"p2\"\n    },\n    {\n      \"source\": \"d0\",\n      \"target\": \"p0\"\n    },\n    {\n      \"source\": \"d0\",\n      \"target\": \"p1\"\n    }\n  ],\n  \"supports\": [\n    {\n      \"source\": \"u3\",\n      \"target\": \"p0\"\n    },\n    {\n      \"source\": \"u3\",\n      \"target\": \"p1\"\n    },\n    {\n      \"source\": \"p0\",\n      \"target\": \"p2\"\n    },\n    {\n      \"source\": \"p1\",\n      \"target\": \"p2\"\n    },\n    {\n      \"source\": \"d1\",\n      \"target\": \"d3\"\n    },\n    {\n      \"source\": \"d2\",\n      \"target\": \"d3\"\n    },\n    {\n      \"source\": \"u0\",\n      \"target\": \"u3\"\n    },\n    {\n      \"source\": \"u1\",\n      \"target\": \"u5\"\n    },\n    {\n      \"source\": \"u2\",\n      \"target\": \"u5\"\n    }\n  ]\n}",
+  "usage": {
+    "prompt_tokens": 1344,
+    "completion_tokens": 4114,
+    "total_tokens": 5458
+  },
+  "latency_s": 33.55529260635376,
+  "parse_success": true,
+  "parse_errors": [
+    "Dropped invalid support targeting undisputed fact: u0 -> u3",
+    "Dropped invalid support targeting undisputed fact: u1 -> u5",
+    "Dropped invalid support targeting undisputed fact: u2 -> u5"
+  ],
+  "af": {
+    "attacks": [
+      [
+        "d1",
+        "p1"
+      ],
+      [
+        "d1",
+        "p2"
+      ],
+      [
+        "d2",
+        "p1"
+      ],
+      [
+        "d3",
+        "p2"
+      ],
+      [
+        "d0",
+        "p0"
+      ],
+      [
+        "d0",
+        "p1"
+      ]
+    ],
+    "supports": [
+      [
+        "u3",
+        "p0"
+      ],
+      [
+        "u3",
+        "p1"
+      ],
+      [
+        "p0",
+        "p2"
+      ],
+      [
+        "p1",
+        "p2"
+      ],
+      [
+        "d1",
+        "d3"
+      ],
+      [
+        "d2",
+        "d3"
+      ]
+    ],
+    "argument_strengths": {
+      "u0": 1.0,
+      "u1": 1.0,
+      "u2": 1.0,
+      "u3": 1.0,
+      "u4": 1.0,
+      "u5": 1.0,
+      "u6": 1.0,
+      "p0": 0.7,
+      "p1": 0.7,
+      "p2": 0.6,
+      "d0": 0.5,
+      "d1": 0.6,
+      "d2": 0.6,
+      "d3": 0.6
+    }
+  }
+}

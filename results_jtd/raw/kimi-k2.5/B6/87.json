@@ -1,0 +1,43 @@
+{
+  "tort_id": "87",
+  "method": "B6",
+  "model": "kimi-k2.5",
+  "raw_output": " ```json\n{\n  \"argument_strengths\": {\n    \"u0\": 1.0,\n    \"u1\": 1.0,\n    \"p0\": 0.8,\n    \"p1\": 0.6,\n    \"d0\": 0.7,\n    \"d1\": 0.7,\n    \"d2\": 0.6\n  },\n  \"attacks\": [\n    {\"source\": \"p0\", \"target\": \"d0\"},\n    {\"source\": \"p0\", \"target\": \"d1\"},\n    {\"source\": \"p0\", \"target\": \"d2\"},\n    {\"source\": \"p1\", \"target\": \"d2\"}\n  ],\n  \"supports\": [\n    {\"source\": \"u0\", \"target\": \"d0\"},\n    {\"source\": \"u1\", \"target\": \"d1\"},\n    {\"source\": \"d0\", \"target\": \"d2\"},\n    {\"source\": \"d1\", \"target\": \"d2\"}\n  ]\n}\n```",
+  "usage": {
+    "prompt_tokens": 483,
+    "completion_tokens": 6699,
+    "total_tokens": 7182
+  },
+  "latency_s": 44.43042230606079,
+  "parse_success": true,
+  "parse_errors": [
+    "Unknown source ID in attack: p0",
+    "Unknown source ID in attack: p0",
+    "Unknown source ID in attack: p0",
+    "Unknown source ID in attack: p1",
+    "Unknown source ID in support: u0",
+    "Unknown source ID in support: u1",
+    "Unknown argument ID in strengths: u0",
+    "Unknown argument ID in strengths: u1",
+    "Unknown argument ID in strengths: p0",
+    "Unknown argument ID in strengths: p1"
+  ],
+  "af": {
+    "attacks": [],
+    "supports": [
+      [
+        "d0",
+        "d2"
+      ],
+      [
+        "d1",
+        "d2"
+      ]
+    ],
+    "argument_strengths": {
+      "d0": 0.7,
+      "d1": 0.7,
+      "d2": 0.6
+    }
+  }
+}

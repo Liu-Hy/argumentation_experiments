@@ -1,0 +1,19 @@
+{
+  "tort_id": "3916",
+  "method": "B3",
+  "model": "minimax-m2.5",
+  "raw_output": "```json\n{\n  \"attacks\": []\n}\n```",
+  "usage": {
+    "prompt_tokens": 283,
+    "completion_tokens": 500,
+    "total_tokens": 783
+  },
+  "latency_s": 23.096509218215942,
+  "parse_success": true,
+  "parse_errors": [],
+  "af": {
+    "attacks": [],
+    "supports": [],
+    "argument_strengths": {}
+  }
+}

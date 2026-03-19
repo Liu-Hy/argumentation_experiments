@@ -1,0 +1,20 @@
+{
+  "tort_id": "236",
+  "method": "B0",
+  "model": "minimax-m2.5",
+  "raw_output": "```json\n{\n  \"plaintiff_claims\": {\n    \"p0\": true\n  },\n  \"defendant_claims\": {\n    \"d0\": false\n  },\n  \"tort_decision\": false\n}\n```",
+  "usage": {
+    "prompt_tokens": 307,
+    "completion_tokens": 575,
+    "total_tokens": 882
+  },
+  "latency_s": 11.018276453018188,
+  "parse_success": true,
+  "parse_errors": [],
+  "re_predictions": {
+    "p0": true,
+    "d0": false
+  },
+  "tp_a": false,
+  "tp_b": false
+}

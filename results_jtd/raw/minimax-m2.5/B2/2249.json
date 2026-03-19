@@ -1,0 +1,29 @@
+{
+  "tort_id": "2249",
+  "method": "B2",
+  "model": "minimax-m2.5",
+  "raw_output": "{\"attacks\":[{\"source\":\"p0\",\"target\":\"d1\"},{\"source\":\"p0\",\"target\":\"d2\"},{\"source\":\"p0\",\"target\":\"d3\"},{\"source\":\"p0\",\"target\":\"d6\"},{\"source\":\"p0\",\"target\":\"d7\"},{\"source\":\"p1\",\"target\":\"d6\"},{\"source\":\"p1\",\"target\":\"d7\"},{\"source\":\"p2\",\"target\":\"d4\"},{\"source\":\"p2\",\"target\":\"d5\"}]}",
+  "usage": {
+    "prompt_tokens": 624,
+    "completion_tokens": 687,
+    "total_tokens": 1311
+  },
+  "latency_s": 7.467532634735107,
+  "parse_success": true,
+  "parse_errors": [
+    "Unknown source ID in attack: p0",
+    "Unknown source ID in attack: p0",
+    "Unknown source ID in attack: p0",
+    "Unknown source ID in attack: p0",
+    "Unknown source ID in attack: p0",
+    "Unknown source ID in attack: p1",
+    "Unknown source ID in attack: p1",
+    "Unknown source ID in attack: p2",
+    "Unknown source ID in attack: p2"
+  ],
+  "af": {
+    "attacks": [],
+    "supports": [],
+    "argument_strengths": {}
+  }
+}

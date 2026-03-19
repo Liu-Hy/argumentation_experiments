@@ -1,0 +1,21 @@
+{
+  "tort_id": "3438",
+  "method": "B4",
+  "model": "gemini-3-flash-preview",
+  "raw_output": "```json\n{\n  \"attacks\": [],\n  \"supports\": [\n    {\n      \"source\": \"u0\",\n      \"target\": \"p1\"\n    },\n    {\n      \"source\": \"u1\",\n      \"target\": \"p0\"\n    },\n    {\n      \"source\": \"p1\",\n      \"target\": \"p5\"\n    },\n    {\n      \"source\": \"p5\",\n      \"target\": \"p2\"\n    },\n    {\n      \"source\": \"p2\",\n      \"target\": \"p7\"\n    },\n    {\n      \"source\": \"p2\",\n      \"target\": \"p9\"\n    },\n    {\n      \"source\": \"p0\",\n      \"target\": \"p8\"\n    },\n    {\n      \"source\": \"p0\",\n      \"target\": \"p10\"\n    },\n    {\n      \"source\": \"p7\",\n      \"target\": \"p3\"\n    },\n    {\n      \"source\": \"p8\",\n      \"target\": \"p3\"\n    },\n    {\n      \"source\": \"p9\",\n      \"target\": \"p6\"\n    },\n    {\n      \"source\": \"p10\",\n      \"target\": \"p6\"\n    },\n    {\n      \"source\": \"p4\",\n      \"target\": \"p3\"\n",
+  "usage": {
+    "prompt_tokens": 1047,
+    "completion_tokens": 8188,
+    "total_tokens": 9235
+  },
+  "latency_s": 42.04998731613159,
+  "parse_success": false,
+  "parse_errors": [
+    "Could not extract JSON from output"
+  ],
+  "af": {
+    "attacks": [],
+    "supports": [],
+    "argument_strengths": {}
+  }
+}

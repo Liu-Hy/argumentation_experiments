@@ -1,0 +1,88 @@
+{
+  "tort_id": "309",
+  "method": "B2",
+  "model": "minimax-m2.5",
+  "raw_output": "{\"attacks\":[{\"source\":\"p0\",\"target\":\"d0\"},{\"source\":\"p0\",\"target\":\"d1\"},{\"source\":\"p0\",\"target\":\"d2\"},{\"source\":\"p1\",\"target\":\"d3\"},{\"source\":\"p1\",\"target\":\"d4\"},{\"source\":\"p1\",\"target\":\"d5\"},{\"source\":\"p2\",\"target\":\"d4\"},{\"source\":\"p2\",\"target\":\"d5\"},{\"source\":\"p3\",\"target\":\"d5\"},{\"source\":\"d0\",\"target\":\"p0\"},{\"source\":\"d1\",\"target\":\"p0\"},{\"source\":\"d2\",\"target\":\"p0\"},{\"source\":\"d3\",\"target\":\"p1\"},{\"source\":\"d4\",\"target\":\"p1\"},{\"source\":\"d4\",\"target\":\"p2\"},{\"source\":\"d5\",\"target\":\"p1\"},{\"source\":\"d5\",\"target\":\"p2\"}]}",
+  "usage": {
+    "prompt_tokens": 702,
+    "completion_tokens": 1169,
+    "total_tokens": 1871
+  },
+  "latency_s": 5.307104825973511,
+  "parse_success": true,
+  "parse_errors": [],
+  "af": {
+    "attacks": [
+      [
+        "p0",
+        "d0"
+      ],
+      [
+        "p0",
+        "d1"
+      ],
+      [
+        "p0",
+        "d2"
+      ],
+      [
+        "p1",
+        "d3"
+      ],
+      [
+        "p1",
+        "d4"
+      ],
+      [
+        "p1",
+        "d5"
+      ],
+      [
+        "p2",
+        "d4"
+      ],
+      [
+        "p2",
+        "d5"
+      ],
+      [
+        "p3",
+        "d5"
+      ],
+      [
+        "d0",
+        "p0"
+      ],
+      [
+        "d1",
+        "p0"
+      ],
+      [
+        "d2",
+        "p0"
+      ],
+      [
+        "d3",
+        "p1"
+      ],
+      [
+        "d4",
+        "p1"
+      ],
+      [
+        "d4",
+        "p2"
+      ],
+      [
+        "d5",
+        "p1"
+      ],
+      [
+        "d5",
+        "p2"
+      ]
+    ],
+    "supports": [],
+    "argument_strengths": {}
+  }
+}

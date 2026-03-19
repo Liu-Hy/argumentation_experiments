@@ -1,0 +1,17 @@
+{
+  "tort_id": "6087",
+  "method": "B0",
+  "model": "gemini-3-flash-preview",
+  "raw_output": "```json\n{\n  \"plaintiff_claims\": {},\n  \"defendant_claims\": {},\n  \"tort_decision\": false\n}\n```",
+  "usage": {
+    "prompt_tokens": 321,
+    "completion_tokens": 4057,
+    "total_tokens": 4378
+  },
+  "latency_s": 25.957247972488403,
+  "parse_success": false,
+  "parse_errors": [],
+  "re_predictions": {},
+  "tp_a": false,
+  "tp_b": false
+}

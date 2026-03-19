@@ -1,0 +1,85 @@
+{
+  "tort_id": "4268",
+  "method": "B5",
+  "model": "gemini-3-flash-preview",
+  "raw_output": "{\n  \"argument_strengths\": {\n    \"p0\": 0.7,\n    \"p1\": 0.3,\n    \"p2\": 0.5,\n    \"p3\": 0.8,\n    \"p4\": 0.8,\n    \"p5\": 0.5,\n    \"p6\": 0.7,\n    \"p7\": 0.6,\n    \"p8\": 0.7,\n    \"p9\": 0.6,\n    \"p10\": 0.6,\n    \"d0\": 0.7,\n    \"d1\": 0.8,\n    \"d2\": 0.8,\n    \"d3\": 0.8,\n    \"d4\": 0.8,\n    \"d5\": 0.8,\n    \"d6\": 0.6,\n    \"d7\": 0.6,\n    \"d8\": 0.7\n  },\n  \"attacks\": [\n    {\n      \"source\": \"d4\",\n      \"target\": \"p1\"\n    },\n    {\n      \"source\": \"d4\",\n      \"target\": \"p2\"\n    },\n    {\n      \"source\": \"d5\",\n      \"target\": \"p5\"\n    },\n    {\n      \"source\": \"d6\",\n      \"target\": \"p9\"\n    },\n    {\n      \"source\": \"d7\",\n      \"target\": \"p7\"\n    },\n    {\n      \"source\": \"d7\",\n      \"target\": \"p8\"\n    },\n    {\n      \"source\": \"d8\",\n      \"target\": \"p6\"\n    },\n    {\n      \"source\": \"d8\",\n      \"target\": \"p7\"\n    },\n    {\n      \"source\": \"d8\",\n      \"target\": \"p8\"\n    },\n    {\n      \"source\": \"d8\",\n      \"target\": \"p9\"\n    },\n    {\n      \"source\": \"d8\",\n      \"target\": \"p10\"\n    }\n  ]\n}",
+  "usage": {
+    "prompt_tokens": 2766,
+    "completion_tokens": 2416,
+    "total_tokens": 5182
+  },
+  "latency_s": 15.799789667129517,
+  "parse_success": true,
+  "parse_errors": [],
+  "af": {
+    "attacks": [
+      [
+        "d4",
+        "p1"
+      ],
+      [
+        "d4",
+        "p2"
+      ],
+      [
+        "d5",
+        "p5"
+      ],
+      [
+        "d6",
+        "p9"
+      ],
+      [
+        "d7",
+        "p7"
+      ],
+      [
+        "d7",
+        "p8"
+      ],
+      [
+        "d8",
+        "p6"
+      ],
+      [
+        "d8",
+        "p7"
+      ],
+      [
+        "d8",
+        "p8"
+      ],
+      [
+        "d8",
+        "p9"
+      ],
+      [
+        "d8",
+        "p10"
+      ]
+    ],
+    "supports": [],
+    "argument_strengths": {
+      "p0": 0.7,
+      "p1": 0.3,
+      "p2": 0.5,
+      "p3": 0.8,
+      "p4": 0.8,
+      "p5": 0.5,
+      "p6": 0.7,
+      "p7": 0.6,
+      "p8": 0.7,
+      "p9": 0.6,
+      "p10": 0.6,
+      "d0": 0.7,
+      "d1": 0.8,
+      "d2": 0.8,
+      "d3": 0.8,
+      "d4": 0.8,
+      "d5": 0.8,
+      "d6": 0.6,
+      "d7": 0.6,
+      "d8": 0.7
+    }
+  }
+}

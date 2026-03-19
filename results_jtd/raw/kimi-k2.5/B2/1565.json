@@ -1,0 +1,136 @@
+{
+  "tort_id": "1565",
+  "method": "B2",
+  "model": "kimi-k2.5",
+  "raw_output": " ```json\n{\n  \"attacks\": [\n    {\"source\": \"d0\", \"target\": \"p0\"},\n    {\"source\": \"d1\", \"target\": \"p0\"},\n    {\"source\": \"d2\", \"target\": \"p0\"},\n    {\"source\": \"d3\", \"target\": \"p2\"},\n    {\"source\": \"d3\", \"target\": \"p4\"},\n    {\"source\": \"d6\", \"target\": \"p6\"},\n    {\"source\": \"d7\", \"target\": \"p6\"},\n    {\"source\": \"d8\", \"target\": \"p1\"},\n    {\"source\": \"d9\", \"target\": \"p12\"},\n    {\"source\": \"d9\", \"target\": \"p13\"},\n    {\"source\": \"d9\", \"target\": \"p14\"},\n    {\"source\": \"d9\", \"target\": \"p15\"},\n    {\"source\": \"d9\", \"target\": \"p16\"},\n    {\"source\": \"d9\", \"target\": \"p17\"},\n    {\"source\": \"d10\", \"target\": \"p10\"},\n    {\"source\": \"d10\", \"target\": \"p11\"},\n    {\"source\": \"d10\", \"target\": \"p19\"},\n    {\"source\": \"d11\", \"target\": \"p19\"},\n    {\"source\": \"p0\", \"target\": \"d0\"},\n    {\"source\": \"p0\", \"target\": \"d1\"},\n    {\"source\": \"p0\", \"target\": \"d2\"},\n    {\"source\": \"p1\", \"target\": \"d8\"},\n    {\"source\": \"p2\", \"target\": \"d3\"},\n    {\"source\": \"p4\", \"target\": \"d3\"},\n    {\"source\": \"p6\", \"target\": \"d6\"},\n    {\"source\": \"p6\", \"target\": \"d7\"},\n    {\"source\": \"p10\", \"target\": \"d10\"},\n    {\"source\": \"p11\", \"target\": \"d10\"},\n    {\"source\": \"p19\", \"target\": \"d10\"}\n  ]\n}\n```",
+  "usage": {
+    "prompt_tokens": 2244,
+    "completion_tokens": 7512,
+    "total_tokens": 9756
+  },
+  "latency_s": 199.5576367378235,
+  "parse_success": true,
+  "parse_errors": [],
+  "af": {
+    "attacks": [
+      [
+        "d0",
+        "p0"
+      ],
+      [
+        "d1",
+        "p0"
+      ],
+      [
+        "d2",
+        "p0"
+      ],
+      [
+        "d3",
+        "p2"
+      ],
+      [
+        "d3",
+        "p4"
+      ],
+      [
+        "d6",
+        "p6"
+      ],
+      [
+        "d7",
+        "p6"
+      ],
+      [
+        "d8",
+        "p1"
+      ],
+      [
+        "d9",
+        "p12"
+      ],
+      [
+        "d9",
+        "p13"
+      ],
+      [
+        "d9",
+        "p14"
+      ],
+      [
+        "d9",
+        "p15"
+      ],
+      [
+        "d9",
+        "p16"
+      ],
+      [
+        "d9",
+        "p17"
+      ],
+      [
+        "d10",
+        "p10"
+      ],
+      [
+        "d10",
+        "p11"
+      ],
+      [
+        "d10",
+        "p19"
+      ],
+      [
+        "d11",
+        "p19"
+      ],
+      [
+        "p0",
+        "d0"
+      ],
+      [
+        "p0",
+        "d1"
+      ],
+      [
+        "p0",
+        "d2"
+      ],
+      [
+        "p1",
+        "d8"
+      ],
+      [
+        "p2",
+        "d3"
+      ],
+      [
+        "p4",
+        "d3"
+      ],
+      [
+        "p6",
+        "d6"
+      ],
+      [
+        "p6",
+        "d7"
+      ],
+      [
+        "p10",
+        "d10"
+      ],
+      [
+        "p11",
+        "d10"
+      ],
+      [
+        "p19",
+        "d10"
+      ]
+    ],
+    "supports": [],
+    "argument_strengths": {}
+  }
+}

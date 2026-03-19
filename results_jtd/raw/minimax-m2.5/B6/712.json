@@ -1,0 +1,101 @@
+{
+  "tort_id": "712",
+  "method": "B6",
+  "model": "minimax-m2.5",
+  "raw_output": "{\"argument_strengths\":{\"u0\":1.0,\"p0\":0.6,\"p1\":0.7,\"p2\":0.5,\"p3\":0.7,\"p4\":0.6,\"p5\":0.5,\"p6\":0.8,\"d0\":0.7,\"d1\":0.6,\"d2\":0.9},\"attacks\":[{\"source\":\"d0\",\"target\":\"p4\"},{\"source\":\"d0\",\"target\":\"p3\"},{\"source\":\"d1\",\"target\":\"p6\"},{\"source\":\"d2\",\"target\":\"p3\"},{\"source\":\"d2\",\"target\":\"p4\"},{\"source\":\"p6\",\"target\":\"d1\"},{\"source\":\"p3\",\"target\":\"d2\"},{\"source\":\"p4\",\"target\":\"d0\"}],\"supports\":[{\"source\":\"u0\",\"target\":\"p0\"},{\"source\":\"u0\",\"target\":\"p3\"},{\"source\":\"u0\",\"target\":\"p4\"},{\"source\":\"p1\",\"target\":\"p0\"},{\"source\":\"p2\",\"target\":\"p0\"},{\"source\":\"p5\",\"target\":\"p0\"},{\"source\":\"p6\",\"target\":\"p3\"},{\"source\":\"p6\",\"target\":\"p4\"},{\"source\":\"d2\",\"target\":\"d0\"}]}",
+  "usage": {
+    "prompt_tokens": 982,
+    "completion_tokens": 737,
+    "total_tokens": 1719
+  },
+  "latency_s": 9.04440426826477,
+  "parse_success": true,
+  "parse_errors": [],
+  "af": {
+    "attacks": [
+      [
+        "d0",
+        "p4"
+      ],
+      [
+        "d0",
+        "p3"
+      ],
+      [
+        "d1",
+        "p6"
+      ],
+      [
+        "d2",
+        "p3"
+      ],
+      [
+        "d2",
+        "p4"
+      ],
+      [
+        "p6",
+        "d1"
+      ],
+      [
+        "p3",
+        "d2"
+      ],
+      [
+        "p4",
+        "d0"
+      ]
+    ],
+    "supports": [
+      [
+        "u0",
+        "p0"
+      ],
+      [
+        "u0",
+        "p3"
+      ],
+      [
+        "u0",
+        "p4"
+      ],
+      [
+        "p1",
+        "p0"
+      ],
+      [
+        "p2",
+        "p0"
+      ],
+      [
+        "p5",
+        "p0"
+      ],
+      [
+        "p6",
+        "p3"
+      ],
+      [
+        "p6",
+        "p4"
+      ],
+      [
+        "d2",
+        "d0"
+      ]
+    ],
+    "argument_strengths": {
+      "u0": 1.0,
+      "p0": 0.6,
+      "p1": 0.7,
+      "p2": 0.5,
+      "p3": 0.7,
+      "p4": 0.6,
+      "p5": 0.5,
+      "p6": 0.8,
+      "d0": 0.7,
+      "d1": 0.6,
+      "d2": 0.9
+    }
+  }
+}

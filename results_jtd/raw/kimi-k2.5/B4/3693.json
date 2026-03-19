@@ -1,0 +1,29 @@
+{
+  "tort_id": "3693",
+  "method": "B4",
+  "model": "kimi-k2.5",
+  "raw_output": "{\n  \"attacks\": [\n    {\"source\": \"d0\", \"target\": \"p2\"},\n    {\"source\": \"d1\", \"target\": \"p2\"},\n    {\"source\": \"d2\", \"target\": \"p3\"}\n  ],\n  \"supports\": [\n    {\"source\": \"u0\", \"target\": \"p0\"},\n    {\"source\": \"u1\", \"target\": \"p1\"},\n    {\"source\": \"u2\", \"target\": \"p1\"},\n    {\"source\": \"u3\", \"target\": \"p1\"},\n    {\"source\": \"p0\", \"target\": \"p2\"},\n    {\"source\": \"p1\", \"target\": \"p2\"}\n  ]\n}",
+  "usage": {
+    "prompt_tokens": 712,
+    "completion_tokens": 3706,
+    "total_tokens": 4418
+  },
+  "latency_s": 132.64509344100952,
+  "parse_success": true,
+  "parse_errors": [
+    "Unknown source ID in attack: d0",
+    "Unknown source ID in attack: d1",
+    "Unknown source ID in attack: d2",
+    "Unknown target ID in support: p0",
+    "Unknown target ID in support: p1",
+    "Unknown target ID in support: p1",
+    "Unknown target ID in support: p1",
+    "Unknown source ID in support: p0",
+    "Unknown source ID in support: p1"
+  ],
+  "af": {
+    "attacks": [],
+    "supports": [],
+    "argument_strengths": {}
+  }
+}

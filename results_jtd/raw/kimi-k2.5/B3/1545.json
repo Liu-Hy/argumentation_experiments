@@ -1,0 +1,21 @@
+{
+  "tort_id": "1545",
+  "method": "B3",
+  "model": "kimi-k2.5",
+  "raw_output": "",
+  "usage": {
+    "prompt_tokens": 1187,
+    "completion_tokens": 8192,
+    "total_tokens": 9379
+  },
+  "latency_s": 106.35130977630615,
+  "parse_success": false,
+  "parse_errors": [
+    "Could not extract JSON from output"
+  ],
+  "af": {
+    "attacks": [],
+    "supports": [],
+    "argument_strengths": {}
+  }
+}

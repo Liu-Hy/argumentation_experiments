@@ -1,0 +1,34 @@
+{
+  "tort_id": "712",
+  "method": "B1",
+  "model": "gemini-3-flash-preview",
+  "step1_raw": "{\n  \"attacks\": [\n    {\"source\": \"p0\", \"target\": \"d0\"},\n    {\"source\": \"p0\", \"target\": \"d1\"},\n    {\"source\": \"p1\", \"target\": \"d0\"},\n    {\"source\": \"p1\", \"target\": \"d1\"},\n    {\"source\": \"p2\", \"target\": \"d0\"},\n    {\"source\": \"p2\", \"target\": \"d1\"},\n    {\"source\": \"p3\", \"target\": \"d0\"},\n    {\"source\": \"p3\", \"target\": \"d1\"},\n    {\"source\": \"p3\", \"target\": \"d2\"},\n    {\"source\": \"p4\", \"target\": \"d0\"},\n    {\"source\": \"p4\", \"target\": \"d2\"},\n    {\"source\": \"p5\", \"target\": \"d0\"},\n    {\"source\": \"p5\", \"target\": \"d1\"},\n    {\"source\": \"p6\", \"target\": \"d0\"},\n    {\"source\": \"p6\", \"target\": \"d1\"},\n    {\"source\": \"d0\", \"target\": \"p0\"},\n    {\"source\": \"d0\", \"target\": \"p1\"},\n    {\"source\": \"d0\", \"target\": \"p2\"},\n    {\"source\": \"d0\", \"target\": \"p3\"},\n    {\"source\": \"d0\", \"target\": \"p4\"},\n    {\"source\": \"d0\", \"target\": \"p5\"},\n    {\"source\": \"d0\", \"target\": \"p6\"},\n    {\"source\": \"d1\", \"target\": \"p0\"},\n    {\"source\": \"d1\", \"target\": \"p1\"},\n    {\"source\": \"d1\", \"target\": \"p2\"},\n    {\"source\": \"d1\", \"target\": \"p3\"},\n    {\"source\": \"d1\", \"target\": \"p5\"},\n    {\"source\": \"d1\", \"target\": \"p6\"},\n    {\"source\": \"d2\", \"target\": \"p3\"},\n    {\"source\": \"d2\", \"target\": \"p4\"}\n  ]\n}",
+  "step2_raw": "{\n  \"plaintiff_claims\": {\n    \"p0\": false,\n    \"p1\": false,\n    \"p2\": false,\n    \"p3\": false,\n    \"p4\": false,\n    \"p5\": false,\n    \"p6\": false\n  },\n  \"defendant_claims\": {\n    \"d0\": true,\n    \"d1\": true,\n    \"d2\": true\n  },\n  \"tort_decision\": false\n}",
+  "step1_usage": {
+    "prompt_tokens": 967,
+    "completion_tokens": 3220,
+    "total_tokens": 4187
+  },
+  "step2_usage": {
+    "prompt_tokens": 1485,
+    "completion_tokens": 2336,
+    "total_tokens": 3821
+  },
+  "latency_s": 33.07407736778259,
+  "parse_success": true,
+  "parse_errors": [],
+  "re_predictions": {
+    "p0": false,
+    "p1": false,
+    "p2": false,
+    "p3": false,
+    "p4": false,
+    "p5": false,
+    "p6": false,
+    "d0": true,
+    "d1": true,
+    "d2": true
+  },
+  "tp_a": false,
+  "tp_b": false
+}

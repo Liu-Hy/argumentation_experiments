@@ -1,0 +1,21 @@
+{
+  "tort_id": "1683",
+  "method": "B6",
+  "model": "minimax-m2.5",
+  "raw_output": "{\"argument_strengths\": {\"u0\": 1.0, \"u1\": 1.0, \"u2\": 1.0, \"p0\": 0.85, \"p1\": 0.6, \"p2\": 0.8, \"d0\": 0.7, \"d1\": 0.65, \"d2\": 0.75, \"d3\": 0.7, \"d4\": 0.7, \"d5\": 0.75, \"d6\": 0.8, \"d7\": 0.7, \"d8\": 0.65}, \"attacks\": [{\"source\": \"d0\", \"target\": \"p0\"}, {\"source\": \"d1\", \"target\": \"p0\"}, {\"source\": \"p2\", \"target\": \"d0\"}, {\"source\": \"p2\", \"target\": \"d1\"}, {\"source\": \"d5\", \"target\": \"p1\"}, {\"source\": \"d6\", \"target\": \"p1\"}, {\"source\": \"d7\", \"target\": \"p2\"}, {\"source\": \"d8\", \"target\": \"p2\"}, {\"source\": \"p0\", \"target\": \"d0\"}, {\"source\": \"p0\", \"target\": \"d1\"}], \"supports\": [{\"source\": \"u0\", \"target\": \"p0\"}, {\"source\": \"u0\", \"target\": \"d0\"}, {\"source\": \"u1\", \"target\": \"d2\"}, {\"source\": \"u1\", \"target\": \"d3\"}, {\"source",
+  "usage": {
+    "prompt_tokens": 2602,
+    "completion_tokens": 1582,
+    "total_tokens": 4184
+  },
+  "latency_s": 233.62840867042542,
+  "parse_success": false,
+  "parse_errors": [
+    "Could not extract JSON from output"
+  ],
+  "af": {
+    "attacks": [],
+    "supports": [],
+    "argument_strengths": {}
+  }
+}

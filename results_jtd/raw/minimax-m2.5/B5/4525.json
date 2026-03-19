@@ -1,0 +1,44 @@
+{
+  "tort_id": "4525",
+  "method": "B5",
+  "model": "minimax-m2.5",
+  "raw_output": "```json\n{\n  \"argument_strengths\": {\n    \"p0\": 0.7,\n    \"p1\": 0.6,\n    \"p2\": 0.65,\n    \"p3\": 0.7,\n    \"p4\": 0.55,\n    \"p5\": 0.5,\n    \"d0\": 0.75\n  },\n  \"attacks\": [\n    {\"source\": \"d0\", \"target\": \"p0\"},\n    {\"source\": \"d0\", \"target\": \"p2\"},\n    {\"source\": \"d0\", \"target\": \"p3\"},\n    {\"source\": \"d0\", \"target\": \"p4\"}\n  ]\n}\n```",
+  "usage": {
+    "prompt_tokens": 766,
+    "completion_tokens": 856,
+    "total_tokens": 1622
+  },
+  "latency_s": 38.40494155883789,
+  "parse_success": true,
+  "parse_errors": [],
+  "af": {
+    "attacks": [
+      [
+        "d0",
+        "p0"
+      ],
+      [
+        "d0",
+        "p2"
+      ],
+      [
+        "d0",
+        "p3"
+      ],
+      [
+        "d0",
+        "p4"
+      ]
+    ],
+    "supports": [],
+    "argument_strengths": {
+      "p0": 0.7,
+      "p1": 0.6,
+      "p2": 0.65,
+      "p3": 0.7,
+      "p4": 0.55,
+      "p5": 0.5,
+      "d0": 0.75
+    }
+  }
+}

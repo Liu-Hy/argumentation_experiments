@@ -1,0 +1,19 @@
+{
+  "tort_id": "412",
+  "method": "B0",
+  "model": "minimax-m2.5",
+  "raw_output": "{\"plaintiff_claims\":{},\"defendant_claims\":{\"d0\":true},\"tort_decision\":true}",
+  "usage": {
+    "prompt_tokens": 269,
+    "completion_tokens": 583,
+    "total_tokens": 852
+  },
+  "latency_s": 16.68673801422119,
+  "parse_success": true,
+  "parse_errors": [],
+  "re_predictions": {
+    "d0": true
+  },
+  "tp_a": true,
+  "tp_b": true
+}

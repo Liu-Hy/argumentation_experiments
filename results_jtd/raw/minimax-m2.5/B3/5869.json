@@ -1,0 +1,24 @@
+{
+  "tort_id": "5869",
+  "method": "B3",
+  "model": "minimax-m2.5",
+  "raw_output": "{\"attacks\": [{\"source\": \"d0\", \"target\": \"p0\"}]}",
+  "usage": {
+    "prompt_tokens": 307,
+    "completion_tokens": 1299,
+    "total_tokens": 1606
+  },
+  "latency_s": 34.34317350387573,
+  "parse_success": true,
+  "parse_errors": [],
+  "af": {
+    "attacks": [
+      [
+        "d0",
+        "p0"
+      ]
+    ],
+    "supports": [],
+    "argument_strengths": {}
+  }
+}

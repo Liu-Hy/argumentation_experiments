@@ -1,0 +1,64 @@
+{
+  "tort_id": "4012",
+  "method": "B6",
+  "model": "gemini-3-flash-preview",
+  "raw_output": "{\n  \"argument_strengths\": {\n    \"u0\": 1.0,\n    \"u1\": 1.0,\n    \"u2\": 1.0,\n    \"u3\": 1.0,\n    \"u4\": 1.0,\n    \"p0\": 0.5,\n    \"p1\": 0.8,\n    \"d0\": 0.8,\n    \"d1\": 0.6,\n    \"d2\": 0.7\n  },\n  \"attacks\": [\n    {\n      \"source\": \"d0\",\n      \"target\": \"p0\"\n    },\n    {\n      \"source\": \"d2\",\n      \"target\": \"p0\"\n    },\n    {\n      \"source\": \"p0\",\n      \"target\": \"d2\"\n    }\n  ],\n  \"supports\": [\n    {\n      \"source\": \"u4\",\n      \"target\": \"p1\"\n    },\n    {\n      \"source\": \"u4\",\n      \"target\": \"d0\"\n    },\n    {\n      \"source\": \"u1\",\n      \"target\": \"p0\"\n    },\n    {\n      \"source\": \"d0\",\n      \"target\": \"d2\"\n    },\n    {\n      \"source\": \"d1\",\n      \"target\": \"d2\"\n    }\n  ]\n}",
+  "usage": {
+    "prompt_tokens": 964,
+    "completion_tokens": 2510,
+    "total_tokens": 3474
+  },
+  "latency_s": 16.480226516723633,
+  "parse_success": true,
+  "parse_errors": [],
+  "af": {
+    "attacks": [
+      [
+        "d0",
+        "p0"
+      ],
+      [
+        "d2",
+        "p0"
+      ],
+      [
+        "p0",
+        "d2"
+      ]
+    ],
+    "supports": [
+      [
+        "u4",
+        "p1"
+      ],
+      [
+        "u4",
+        "d0"
+      ],
+      [
+        "u1",
+        "p0"
+      ],
+      [
+        "d0",
+        "d2"
+      ],
+      [
+        "d1",
+        "d2"
+      ]
+    ],
+    "argument_strengths": {
+      "u0": 1.0,
+      "u1": 1.0,
+      "u2": 1.0,
+      "u3": 1.0,
+      "u4": 1.0,
+      "p0": 0.5,
+      "p1": 0.8,
+      "d0": 0.8,
+      "d1": 0.6,
+      "d2": 0.7
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "tort_id": "2006",
+  "method": "B0",
+  "model": "gemini-3-flash-preview",
+  "raw_output": "```json\n{\n  \"plaintiff_claims\": {\n    \"p0\": false,\n    \"p1\": false\n  },\n  \"defendant_claims\": {},\n  \"tort_decision\": false\n}\n```",
+  "usage": {
+    "prompt_tokens": 565,
+    "completion_tokens": 3709,
+    "total_tokens": 4274
+  },
+  "latency_s": 26.281344413757324,
+  "parse_success": true,
+  "parse_errors": [],
+  "re_predictions": {
+    "p0": false,
+    "p1": false
+  },
+  "tp_a": false,
+  "tp_b": false
+}

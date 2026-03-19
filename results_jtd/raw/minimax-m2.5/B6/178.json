@@ -1,0 +1,21 @@
+{
+  "tort_id": "178",
+  "method": "B6",
+  "model": "minimax-m2.5",
+  "raw_output": "```json\n{\n  \"argument_strengths\": {\n    \"u0\": 1.0,\n    \"u1\": 1.0,\n    \"p0\": 0.7,\n    \"p1\": 0.8,\n    \"p2\": 0.7,\n    \"p3\": 0.7,\n    \"p4\": 0.6,\n    \"p5\": 0.8,\n    \"p6\": 0.7,\n    \"p7\": 0.",
+  "usage": {
+    "prompt_tokens": 1872,
+    "completion_tokens": 131,
+    "total_tokens": 2003
+  },
+  "latency_s": 1.6939773559570312,
+  "parse_success": false,
+  "parse_errors": [
+    "Could not extract JSON from output"
+  ],
+  "af": {
+    "attacks": [],
+    "supports": [],
+    "argument_strengths": {}
+  }
+}

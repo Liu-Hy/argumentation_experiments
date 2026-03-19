@@ -1,0 +1,21 @@
+{
+  "tort_id": "3195",
+  "method": "B5",
+  "model": "gemini-3-flash-preview",
+  "raw_output": "```json\n{\n  \"argument_strengths\": {\n    \"p0\": 0.7\n  },\n  \"attacks\": []\n}\n```",
+  "usage": {
+    "prompt_tokens": 375,
+    "completion_tokens": 2398,
+    "total_tokens": 2773
+  },
+  "latency_s": 15.25246787071228,
+  "parse_success": true,
+  "parse_errors": [],
+  "af": {
+    "attacks": [],
+    "supports": [],
+    "argument_strengths": {
+      "p0": 0.7
+    }
+  }
+}

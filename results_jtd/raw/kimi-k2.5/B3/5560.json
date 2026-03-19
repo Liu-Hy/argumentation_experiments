@@ -1,0 +1,19 @@
+{
+  "tort_id": "5560",
+  "method": "B3",
+  "model": "kimi-k2.5",
+  "raw_output": " ```json\n{\n  \"attacks\": []\n}\n```",
+  "usage": {
+    "prompt_tokens": 353,
+    "completion_tokens": 4086,
+    "total_tokens": 4439
+  },
+  "latency_s": 85.22452163696289,
+  "parse_success": true,
+  "parse_errors": [],
+  "af": {
+    "attacks": [],
+    "supports": [],
+    "argument_strengths": {}
+  }
+}

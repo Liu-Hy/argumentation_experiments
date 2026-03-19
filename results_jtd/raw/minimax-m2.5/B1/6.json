@@ -1,0 +1,48 @@
+{
+  "tort_id": "6",
+  "method": "B1",
+  "model": "minimax-m2.5",
+  "step1_raw": "```json\n{\n  \"attacks\": [\n    {\"source\": \"p2\", \"target\": \"d0\"},\n    {\"source\": \"d0\", \"target\": \"p2\"},\n    {\"source\": \"p2\", \"target\": \"d1\"},\n    {\"source\": \"p2\", \"target\": \"d2\"},\n    {\"source\": \"p9\", \"target\": \"d1\"},\n    {\"source\": \"p10\", \"target\": \"d1\"},\n    {\"source\": \"p10\", \"target\": \"d2\"},\n    {\"source\": \"p11\", \"target\": \"d1\"},\n    {\"source\": \"p12\", \"target\": \"d2\"},\n    {\"source\": \"p17\", \"target\": \"d1\"},\n    {\"source\": \"p18\", \"target\": \"d1\"},\n    {\"source\": \"p19\", \"target\": \"d1\"},\n    {\"source\": \"d1\", \"target\": \"p0\"},\n    {\"source\": \"d2\", \"target\": \"p1\"},\n    {\"source\": \"d3\", \"target\": \"p8\"}\n  ]\n}\n```",
+  "step2_raw": "{\"plaintiff_claims\":{\"p0\":true,\"p1\":true,\"p2\":true,\"p3\":true,\"p4\":true,\"p5\":true,\"p6\":true,\"p7\":true,\"p8\":true,\"p9\":true,\"p10\":true,\"p11\":true,\"p12\":true,\"p13\":true,\"p14\":true,\"p15\":true,\"p16\":true,\"p17\":true,\"p18\":true,\"p19\":true},\"defendant_claims\":{\"d0\":false,\"d1\":false,\"d2\":false,\"d3\":false},\"tort_decision\":true}",
+  "step1_usage": {
+    "prompt_tokens": 1122,
+    "completion_tokens": 1086,
+    "total_tokens": 2208
+  },
+  "step2_usage": {
+    "prompt_tokens": 1379,
+    "completion_tokens": 1051,
+    "total_tokens": 2430
+  },
+  "latency_s": 77.68200588226318,
+  "parse_success": true,
+  "parse_errors": [],
+  "re_predictions": {
+    "p0": true,
+    "p1": true,
+    "p2": true,
+    "p3": true,
+    "p4": true,
+    "p5": true,
+    "p6": true,
+    "p7": true,
+    "p8": true,
+    "p9": true,
+    "p10": true,
+    "p11": true,
+    "p12": true,
+    "p13": true,
+    "p14": true,
+    "p15": true,
+    "p16": true,
+    "p17": true,
+    "p18": true,
+    "p19": true,
+    "d0": false,
+    "d1": false,
+    "d2": false,
+    "d3": false
+  },
+  "tp_a": true,
+  "tp_b": true
+}

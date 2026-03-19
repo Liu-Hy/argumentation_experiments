@@ -1,0 +1,61 @@
+{
+  "tort_id": "4730",
+  "method": "B4",
+  "model": "gemini-3-flash-preview",
+  "raw_output": "{\n  \"attacks\": [\n    {\n      \"source\": \"d0\",\n      \"target\": \"p8\"\n    }\n  ],\n  \"supports\": [\n    {\n      \"source\": \"p1\",\n      \"target\": \"p0\"\n    },\n    {\n      \"source\": \"p0\",\n      \"target\": \"p4\"\n    },\n    {\n      \"source\": \"p2\",\n      \"target\": \"p4\"\n    },\n    {\n      \"source\": \"p2\",\n      \"target\": \"p3\"\n    },\n    {\n      \"source\": \"p3\",\n      \"target\": \"p8\"\n    },\n    {\n      \"source\": \"p4\",\n      \"target\": \"p8\"\n    },\n    {\n      \"source\": \"p5\",\n      \"target\": \"p6\"\n    },\n    {\n      \"source\": \"p6\",\n      \"target\": \"p7\"\n    },\n    {\n      \"source\": \"p7\",\n      \"target\": \"p8\"\n    }\n  ]\n}",
+  "usage": {
+    "prompt_tokens": 926,
+    "completion_tokens": 5235,
+    "total_tokens": 6161
+  },
+  "latency_s": 28.70212149620056,
+  "parse_success": true,
+  "parse_errors": [],
+  "af": {
+    "attacks": [
+      [
+        "d0",
+        "p8"
+      ]
+    ],
+    "supports": [
+      [
+        "p1",
+        "p0"
+      ],
+      [
+        "p0",
+        "p4"
+      ],
+      [
+        "p2",
+        "p4"
+      ],
+      [
+        "p2",
+        "p3"
+      ],
+      [
+        "p3",
+        "p8"
+      ],
+      [
+        "p4",
+        "p8"
+      ],
+      [
+        "p5",
+        "p6"
+      ],
+      [
+        "p6",
+        "p7"
+      ],
+      [
+        "p7",
+        "p8"
+      ]
+    ],
+    "argument_strengths": {}
+  }
+}

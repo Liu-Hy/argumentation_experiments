@@ -1,0 +1,34 @@
+{
+  "tort_id": "2789",
+  "method": "B5",
+  "model": "gemini-3-flash-preview",
+  "raw_output": "```json\n{\n  \"argument_strengths\": {\n    \"p0\": 0.8,\n    \"p1\": 0.7,\n    \"p2\": 0.85,\n    \"p3\": 0.8,\n    \"p4\": 0.8,\n    \"p5\": 0.75,\n    \"p6\": 0.75,\n    \"p7\": 0.8,\n    \"p8\": 0.85,\n    \"p9\": 0.85,\n    \"p10\": 0.7,\n    \"p11\": 0.9,\n    \"p12\": 0.8,\n    \"p13\": 0.9\n  },\n  \"attacks\": []\n}\n```",
+  "usage": {
+    "prompt_tokens": 1369,
+    "completion_tokens": 5728,
+    "total_tokens": 7097
+  },
+  "latency_s": 35.29222559928894,
+  "parse_success": true,
+  "parse_errors": [],
+  "af": {
+    "attacks": [],
+    "supports": [],
+    "argument_strengths": {
+      "p0": 0.8,
+      "p1": 0.7,
+      "p2": 0.85,
+      "p3": 0.8,
+      "p4": 0.8,
+      "p5": 0.75,
+      "p6": 0.75,
+      "p7": 0.8,
+      "p8": 0.85,
+      "p9": 0.85,
+      "p10": 0.7,
+      "p11": 0.9,
+      "p12": 0.8,
+      "p13": 0.9
+    }
+  }
+}

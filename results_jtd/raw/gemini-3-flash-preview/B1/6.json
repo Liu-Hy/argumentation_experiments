@@ -1,0 +1,48 @@
+{
+  "tort_id": "6",
+  "method": "B1",
+  "model": "gemini-3-flash-preview",
+  "step1_raw": "{\n  \"attacks\": [\n    {\n      \"source\": \"d0\",\n      \"target\": \"p2\"\n    },\n    {\n      \"source\": \"d1\",\n      \"target\": \"p4\"\n    },\n    {\n      \"source\": \"d1\",\n      \"target\": \"p5\"\n    },\n    {\n      \"source\": \"d1\",\n      \"target\": \"p6\"\n    },\n    {\n      \"source\": \"d1\",\n      \"target\": \"p15\"\n    },\n    {\n      \"source\": \"d1\",\n      \"target\": \"p16\"\n    },\n    {\n      \"source\": \"d2\",\n      \"target\": \"p1\"\n    },\n    {\n      \"source\": \"d2\",\n      \"target\": \"p12\"\n    },\n    {\n      \"source\": \"d2\",\n      \"target\": \"p13\"\n    },\n    {\n      \"source\": \"d3\",\n      \"target\": \"p8\"\n    }\n  ]\n}",
+  "step2_raw": "{\n  \"plaintiff_claims\": {\n    \"p0\": true,\n    \"p1\": true,\n    \"p2\": true,\n    \"p3\": true,\n    \"p4\": true,\n    \"p5\": true,\n    \"p6\": true,\n    \"p7\": true,\n    \"p8\": true,\n    \"p9\": true,\n    \"p10\": true,\n    \"p11\": true,\n    \"p12\": true,\n    \"p13\": true,\n    \"p14\": true,\n    \"p15\": true,\n    \"p16\": true,\n    \"p17\": true,\n    \"p18\": true,\n    \"p19\": true\n  },\n  \"defendant_claims\": {\n    \"d0\": false,\n    \"d1\": false,\n    \"d2\": false,\n    \"d3\": false\n  },\n  \"tort_decision\": true\n}",
+  "step1_usage": {
+    "prompt_tokens": 1318,
+    "completion_tokens": 3299,
+    "total_tokens": 4617
+  },
+  "step2_usage": {
+    "prompt_tokens": 1598,
+    "completion_tokens": 1559,
+    "total_tokens": 3157
+  },
+  "latency_s": 30.07519221305847,
+  "parse_success": true,
+  "parse_errors": [],
+  "re_predictions": {
+    "p0": true,
+    "p1": true,
+    "p2": true,
+    "p3": true,
+    "p4": true,
+    "p5": true,
+    "p6": true,
+    "p7": true,
+    "p8": true,
+    "p9": true,
+    "p10": true,
+    "p11": true,
+    "p12": true,
+    "p13": true,
+    "p14": true,
+    "p15": true,
+    "p16": true,
+    "p17": true,
+    "p18": true,
+    "p19": true,
+    "d0": false,
+    "d1": false,
+    "d2": false,
+    "d3": false
+  },
+  "tp_a": true,
+  "tp_b": true
+}

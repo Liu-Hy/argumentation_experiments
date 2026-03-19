@@ -1,0 +1,44 @@
+{
+  "tort_id": "4268",
+  "method": "B1",
+  "model": "minimax-m2.5",
+  "step1_raw": "{\"attacks\":[{\"source\":\"d4\",\"target\":\"p1\"},{\"source\":\"d4\",\"target\":\"p2\"},{\"source\":\"d5\",\"target\":\"p5\"},{\"source\":\"d8\",\"target\":\"p4\"},{\"source\":\"d8\",\"target\":\"p5\"}]}",
+  "step2_raw": "{\"plaintiff_claims\":{\"p0\":true,\"p1\":false,\"p2\":false,\"p3\":true,\"p4\":true,\"p5\":false,\"p6\":true,\"p7\":true,\"p8\":true,\"p9\":true,\"p10\":true},\"defendant_claims\":{\"d0\":true,\"d1\":true,\"d2\":true,\"d3\":true,\"d4\":true,\"d5\":true,\"d6\":true,\"d7\":true,\"d8\":true},\"tort_decision\":false}",
+  "step1_usage": {
+    "prompt_tokens": 2290,
+    "completion_tokens": 634,
+    "total_tokens": 2924
+  },
+  "step2_usage": {
+    "prompt_tokens": 2364,
+    "completion_tokens": 752,
+    "total_tokens": 3116
+  },
+  "latency_s": 74.42803883552551,
+  "parse_success": true,
+  "parse_errors": [],
+  "re_predictions": {
+    "p0": true,
+    "p1": false,
+    "p2": false,
+    "p3": true,
+    "p4": true,
+    "p5": false,
+    "p6": true,
+    "p7": true,
+    "p8": true,
+    "p9": true,
+    "p10": true,
+    "d0": true,
+    "d1": true,
+    "d2": true,
+    "d3": true,
+    "d4": true,
+    "d5": true,
+    "d6": true,
+    "d7": true,
+    "d8": true
+  },
+  "tp_a": false,
+  "tp_b": false
+}

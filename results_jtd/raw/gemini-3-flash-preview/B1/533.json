@@ -1,0 +1,28 @@
+{
+  "tort_id": "533",
+  "method": "B1",
+  "model": "gemini-3-flash-preview",
+  "step1_raw": "{\n  \"attacks\": [\n    {\"source\": \"p0\", \"target\": \"d1\"},\n    {\"source\": \"p0\", \"target\": \"d2\"},\n    {\"source\": \"d2\", \"target\": \"p0\"}\n  ]\n}",
+  "step2_raw": "```json\n{\n  \"plaintiff_claims\": {\n    \"p0\": true\n  },\n  \"defendant_claims\": {\n    \"d0\": false,\n    \"d1\": false,\n    \"d2\": false\n  },\n  \"tort_decision\": false\n}\n```",
+  "step1_usage": {
+    "prompt_tokens": 439,
+    "completion_tokens": 2541,
+    "total_tokens": 2980
+  },
+  "step2_usage": {
+    "prompt_tokens": 525,
+    "completion_tokens": 3923,
+    "total_tokens": 4448
+  },
+  "latency_s": 43.01563811302185,
+  "parse_success": true,
+  "parse_errors": [],
+  "re_predictions": {
+    "p0": true,
+    "d0": false,
+    "d1": false,
+    "d2": false
+  },
+  "tp_a": false,
+  "tp_b": false
+}

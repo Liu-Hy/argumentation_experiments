@@ -1,0 +1,27 @@
+{
+  "tort_id": "5654",
+  "method": "B5",
+  "model": "minimax-m2.5",
+  "raw_output": "{\"argument_strengths\":{\"p0\":0.7,\"d0\":0.6},\"attacks\":[{\"source\":\"d0\",\"target\":\"p0\"}]}",
+  "usage": {
+    "prompt_tokens": 361,
+    "completion_tokens": 384,
+    "total_tokens": 745
+  },
+  "latency_s": 16.17097306251526,
+  "parse_success": true,
+  "parse_errors": [],
+  "af": {
+    "attacks": [
+      [
+        "d0",
+        "p0"
+      ]
+    ],
+    "supports": [],
+    "argument_strengths": {
+      "p0": 0.7,
+      "d0": 0.6
+    }
+  }
+}

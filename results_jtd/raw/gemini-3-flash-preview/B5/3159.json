@@ -1,0 +1,165 @@
+{
+  "tort_id": "3159",
+  "method": "B5",
+  "model": "gemini-3-flash-preview",
+  "raw_output": "{\n  \"argument_strengths\": {\n    \"p0\": 0.8,\n    \"p1\": 0.7,\n    \"p2\": 0.6,\n    \"p3\": 0.7,\n    \"p4\": 0.8,\n    \"p5\": 0.8,\n    \"p6\": 0.6,\n    \"p7\": 0.6,\n    \"d0\": 0.4,\n    \"d1\": 0.5,\n    \"d2\": 0.6,\n    \"d3\": 0.5,\n    \"d4\": 0.5,\n    \"d5\": 0.6,\n    \"d6\": 0.6,\n    \"d7\": 0.5,\n    \"d8\": 0.5,\n    \"d9\": 0.6,\n    \"d10\": 0.5,\n    \"d11\": 0.5\n  },\n  \"attacks\": [\n    {\"source\": \"d0\", \"target\": \"p0\"},\n    {\"source\": \"d0\", \"target\": \"p5\"},\n    {\"source\": \"d1\", \"target\": \"p0\"},\n    {\"source\": \"d1\", \"target\": \"p3\"},\n    {\"source\": \"d2\", \"target\": \"p1\"},\n    {\"source\": \"d2\", \"target\": \"p3\"},\n    {\"source\": \"d3\", \"target\": \"p1\"},\n    {\"source\": \"d3\", \"target\": \"p5\"},\n    {\"source\": \"d4\", \"target\": \"p1\"},\n    {\"source\": \"d4\", \"target\": \"p3\"},\n    {\"source\": \"d6\", \"target\": \"p2\"},\n    {\"source\": \"d6\", \"target\": \"p6\"},\n    {\"source\": \"d7\", \"target\": \"p0\"},\n    {\"source\": \"d7\", \"target\": \"p3\"},\n    {\"source\": \"d7\", \"target\": \"p5\"},\n    {\"source\": \"d8\", \"target\": \"p1\"},\n    {\"source\": \"d8\", \"target\": \"p3\"},\n    {\"source\": \"d8\", \"target\": \"p5\"},\n    {\"source\": \"d9\", \"target\": \"p1\"},\n    {\"source\": \"d11\", \"target\": \"p1\"},\n    {\"source\": \"d11\", \"target\": \"p5\"},\n    {\"source\": \"p4\", \"target\": \"d3\"},\n    {\"source\": \"p4\", \"target\": \"d4\"},\n    {\"source\": \"p4\", \"target\": \"d5\"},\n    {\"source\": \"p4\", \"target\": \"d8\"},\n    {\"source\": \"p4\", \"target\": \"d11\"},\n    {\"source\": \"p5\", \"target\": \"d0\"},\n    {\"source\": \"p5\", \"target\": \"d3\"},\n    {\"source\": \"p5\", \"target\": \"d7\"},\n    {\"source\": \"p5\", \"target\": \"d11\"},\n    {\"source\": \"p7\", \"target\": \"d9\"}\n  ]\n}",
+  "usage": {
+    "prompt_tokens": 1629,
+    "completion_tokens": 2736,
+    "total_tokens": 4365
+  },
+  "latency_s": 16.616589784622192,
+  "parse_success": true,
+  "parse_errors": [],
+  "af": {
+    "attacks": [
+      [
+        "d0",
+        "p0"
+      ],
+      [
+        "d0",
+        "p5"
+      ],
+      [
+        "d1",
+        "p0"
+      ],
+      [
+        "d1",
+        "p3"
+      ],
+      [
+        "d2",
+        "p1"
+      ],
+      [
+        "d2",
+        "p3"
+      ],
+      [
+        "d3",
+        "p1"
+      ],
+      [
+        "d3",
+        "p5"
+      ],
+      [
+        "d4",
+        "p1"
+      ],
+      [
+        "d4",
+        "p3"
+      ],
+      [
+        "d6",
+        "p2"
+      ],
+      [
+        "d6",
+        "p6"
+      ],
+      [
+        "d7",
+        "p0"
+      ],
+      [
+        "d7",
+        "p3"
+      ],
+      [
+        "d7",
+        "p5"
+      ],
+      [
+        "d8",
+        "p1"
+      ],
+      [
+        "d8",
+        "p3"
+      ],
+      [
+        "d8",
+        "p5"
+      ],
+      [
+        "d9",
+        "p1"
+      ],
+      [
+        "d11",
+        "p1"
+      ],
+      [
+        "d11",
+        "p5"
+      ],
+      [
+        "p4",
+        "d3"
+      ],
+      [
+        "p4",
+        "d4"
+      ],
+      [
+        "p4",
+        "d5"
+      ],
+      [
+        "p4",
+        "d8"
+      ],
+      [
+        "p4",
+        "d11"
+      ],
+      [
+        "p5",
+        "d0"
+      ],
+      [
+        "p5",
+        "d3"
+      ],
+      [
+        "p5",
+        "d7"
+      ],
+      [
+        "p5",
+        "d11"
+      ],
+      [
+        "p7",
+        "d9"
+      ]
+    ],
+    "supports": [],
+    "argument_strengths": {
+      "p0": 0.8,
+      "p1": 0.7,
+      "p2": 0.6,
+      "p3": 0.7,
+      "p4": 0.8,
+      "p5": 0.8,
+      "p6": 0.6,
+      "p7": 0.6,
+      "d0": 0.4,
+      "d1": 0.5,
+      "d2": 0.6,
+      "d3": 0.5,
+      "d4": 0.5,
+      "d5": 0.6,
+      "d6": 0.6,
+      "d7": 0.5,
+      "d8": 0.5,
+      "d9": 0.6,
+      "d10": 0.5,
+      "d11": 0.5
+    }
+  }
+}

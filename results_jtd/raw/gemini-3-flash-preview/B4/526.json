@@ -1,0 +1,101 @@
+{
+  "tort_id": "526",
+  "method": "B4",
+  "model": "gemini-3-flash-preview",
+  "raw_output": "{\n  \"attacks\": [\n    {\n      \"source\": \"d0\",\n      \"target\": \"p0\"\n    },\n    {\n      \"source\": \"d0\",\n      \"target\": \"p1\"\n    },\n    {\n      \"source\": \"d1\",\n      \"target\": \"p1\"\n    },\n    {\n      \"source\": \"d2\",\n      \"target\": \"p2\"\n    }\n  ],\n  \"supports\": [\n    {\n      \"source\": \"u0\",\n      \"target\": \"p0\"\n    },\n    {\n      \"source\": \"u1\",\n      \"target\": \"p0\"\n    },\n    {\n      \"source\": \"u2\",\n      \"target\": \"p0\"\n    },\n    {\n      \"source\": \"u3\",\n      \"target\": \"p0\"\n    },\n    {\n      \"source\": \"u4\",\n      \"target\": \"p0\"\n    },\n    {\n      \"source\": \"u5\",\n      \"target\": \"p0\"\n    },\n    {\n      \"source\": \"u6\",\n      \"target\": \"p0\"\n    },\n    {\n      \"source\": \"u0\",\n      \"target\": \"p1\"\n    },\n    {\n      \"source\": \"u1\",\n      \"target\": \"p1\"\n    },\n    {\n      \"source\": \"u2\",\n      \"target\": \"p1\"\n    },\n    {\n      \"source\": \"u4\",\n      \"target\": \"p1\"\n    },\n    {\n      \"source\": \"u5\",\n      \"target\": \"p1\"\n    },\n    {\n      \"source\": \"u6\",\n      \"target\": \"p1\"\n    },\n    {\n      \"source\": \"p0\",\n      \"target\": \"p1\"\n    },\n    {\n      \"source\": \"p2\",\n      \"target\": \"p1\"\n    },\n    {\n      \"source\": \"d0\",\n      \"target\": \"d1\"\n    }\n  ]\n}",
+  "usage": {
+    "prompt_tokens": 777,
+    "completion_tokens": 4860,
+    "total_tokens": 5637
+  },
+  "latency_s": 28.721085786819458,
+  "parse_success": true,
+  "parse_errors": [],
+  "af": {
+    "attacks": [
+      [
+        "d0",
+        "p0"
+      ],
+      [
+        "d0",
+        "p1"
+      ],
+      [
+        "d1",
+        "p1"
+      ],
+      [
+        "d2",
+        "p2"
+      ]
+    ],
+    "supports": [
+      [
+        "u0",
+        "p0"
+      ],
+      [
+        "u1",
+        "p0"
+      ],
+      [
+        "u2",
+        "p0"
+      ],
+      [
+        "u3",
+        "p0"
+      ],
+      [
+        "u4",
+        "p0"
+      ],
+      [
+        "u5",
+        "p0"
+      ],
+      [
+        "u6",
+        "p0"
+      ],
+      [
+        "u0",
+        "p1"
+      ],
+      [
+        "u1",
+        "p1"
+      ],
+      [
+        "u2",
+        "p1"
+      ],
+      [
+        "u4",
+        "p1"
+      ],
+      [
+        "u5",
+        "p1"
+      ],
+      [
+        "u6",
+        "p1"
+      ],
+      [
+        "p0",
+        "p1"
+      ],
+      [
+        "p2",
+        "p1"
+      ],
+      [
+        "d0",
+        "d1"
+      ]
+    ],
+    "argument_strengths": {}
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "tort_id": "772",
+  "method": "B6",
+  "model": "minimax-m2.5",
+  "raw_output": "{\"argument_strengths\": {\"u0\": 1.0, \"u1\": 1.0, \"p0\": 0.7, \"p1\": 0.65, \"p2\": 0.6, \"d0\": 0.5, \"d1\": 0.55}, \"attacks\": [{\"source\": \"d0\", \"target\": \"p0\"}, {\"source\": \"d1\", \"target\": \"p1\"}, {\"source\": \"d0\", \"target\": \"p2\"}], \"supports\": [{\"source\": \"u0\", \"target\": \"p0\"}, {\"source\": \"u1\", \"target\": \"p1\"}, {\"source\": \"u0\", \"target\": \"p2\"}]}",
+  "usage": {
+    "prompt_tokens": 517,
+    "completion_tokens": 682,
+    "total_tokens": 1199
+  },
+  "latency_s": 21.912442684173584,
+  "parse_success": true,
+  "parse_errors": [
+    "Unknown source ID in attack: d0",
+    "Unknown source ID in attack: d1",
+    "Unknown source ID in attack: d0",
+    "Unknown source ID in support: u0",
+    "Unknown source ID in support: u1",
+    "Unknown source ID in support: u0",
+    "Unknown argument ID in strengths: u0",
+    "Unknown argument ID in strengths: u1",
+    "Unknown argument ID in strengths: d0",
+    "Unknown argument ID in strengths: d1"
+  ],
+  "af": {
+    "attacks": [],
+    "supports": [],
+    "argument_strengths": {
+      "p0": 0.7,
+      "p1": 0.65,
+      "p2": 0.6
+    }
+  }
+}

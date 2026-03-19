@@ -1,0 +1,91 @@
+{
+  "tort_id": "2249",
+  "method": "B6",
+  "model": "kimi-k2.5",
+  "raw_output": " ```json\n{\n  \"argument_strengths\": {\n    \"u0\": 1.0,\n    \"u1\": 1.0,\n    \"u2\": 1.0,\n    \"u3\": 1.0,\n    \"u4\": 1.0,\n    \"u5\": 1.0,\n    \"u6\": 1.0,\n    \"d0\": 0.9,\n    \"d1\": 0.8,\n    \"d2\": 0.8,\n    \"d3\": 0.7,\n    \"d4\": 0.9,\n    \"d5\": 0.8,\n    \"d6\": 0.7,\n    \"d7\": 0.7,\n    \"p0\": 0.6,\n    \"p1\": 0.6,\n    \"p2\": 0.5,\n    \"p3\": 0.5,\n    \"p4\": 0.5\n  },\n  \"attacks\": [\n    {\"source\": \"p0\", \"target\": \"d1\"},\n    {\"source\": \"p1\", \"target\": \"d2\"},\n    {\"source\": \"p2\", \"target\": \"d3\"},\n    {\"source\": \"p3\", \"target\": \"d6\"},\n    {\"source\": \"p3\", \"target\": \"d7\"},\n    {\"source\": \"p4\", \"target\": \"d6\"},\n    {\"source\": \"p0\", \"target\": \"d6\"},\n    {\"source\": \"p1\", \"target\": \"d6\"},\n    {\"source\": \"p2\", \"target\": \"d7\"}\n  ],\n  \"supports\": [\n    {\"source\": \"u0\", \"target\": \"d0\"},\n    {\"source\": \"u1\", \"target\": \"d0\"},\n    {\"source\": \"u2\", \"target\": \"d4\"},\n    {\"source\": \"u3\", \"target\": \"d1\"},\n    {\"source\": \"u3\", \"target\": \"d2\"},\n    {\"source\": \"u3\", \"target\": \"d5\"},\n    {\"source\": \"u4\", \"target\": \"d6\"},\n    {\"source\": \"u4\", \"target\": \"d7\"},\n    {\"source\": \"u5\", \"target\": \"d6\"},\n    {\"source\": \"u5\", \"target\": \"d7\"},\n    {\"source\": \"u6\", \"target\": \"d6\"},\n    {\"source\": \"u6\", \"target\": \"d7\"},\n    {\"source\": \"d0\", \"target\": \"d3\"},\n    {\"source\": \"d1\", \"target\": \"d6\"},\n    {\"source\": \"d2\", \"target\": \"d6\"},\n    {\"source\": \"d3\", \"target\": \"d7\"},\n    {\"source\": \"d4\", \"target\": \"d6\"},\n    {\"source\": \"d4\", \"target\": \"d7\"},\n    {\"source\": \"d5\", \"target\": \"d6\"}\n  ]\n}\n```",
+  "usage": {
+    "prompt_tokens": 1065,
+    "completion_tokens": 5523,
+    "total_tokens": 6588
+  },
+  "latency_s": 73.39711904525757,
+  "parse_success": true,
+  "parse_errors": [
+    "Unknown source ID in attack: p0",
+    "Unknown source ID in attack: p1",
+    "Unknown source ID in attack: p2",
+    "Unknown source ID in attack: p3",
+    "Unknown source ID in attack: p3",
+    "Unknown source ID in attack: p4",
+    "Unknown source ID in attack: p0",
+    "Unknown source ID in attack: p1",
+    "Unknown source ID in attack: p2",
+    "Unknown source ID in support: u0",
+    "Unknown source ID in support: u1",
+    "Unknown source ID in support: u2",
+    "Unknown source ID in support: u3",
+    "Unknown source ID in support: u3",
+    "Unknown source ID in support: u3",
+    "Unknown source ID in support: u4",
+    "Unknown source ID in support: u4",
+    "Unknown source ID in support: u5",
+    "Unknown source ID in support: u5",
+    "Unknown source ID in support: u6",
+    "Unknown source ID in support: u6",
+    "Unknown argument ID in strengths: u0",
+    "Unknown argument ID in strengths: u1",
+    "Unknown argument ID in strengths: u2",
+    "Unknown argument ID in strengths: u3",
+    "Unknown argument ID in strengths: u4",
+    "Unknown argument ID in strengths: u5",
+    "Unknown argument ID in strengths: u6",
+    "Unknown argument ID in strengths: p0",
+    "Unknown argument ID in strengths: p1",
+    "Unknown argument ID in strengths: p2",
+    "Unknown argument ID in strengths: p3",
+    "Unknown argument ID in strengths: p4"
+  ],
+  "af": {
+    "attacks": [],
+    "supports": [
+      [
+        "d0",
+        "d3"
+      ],
+      [
+        "d1",
+        "d6"
+      ],
+      [
+        "d2",
+        "d6"
+      ],
+      [
+        "d3",
+        "d7"
+      ],
+      [
+        "d4",
+        "d6"
+      ],
+      [
+        "d4",
+        "d7"
+      ],
+      [
+        "d5",
+        "d6"
+      ]
+    ],
+    "argument_strengths": {
+      "d0": 0.9,
+      "d1": 0.8,
+      "d2": 0.8,
+      "d3": 0.7,
+      "d4": 0.9,
+      "d5": 0.8,
+      "d6": 0.7,
+      "d7": 0.7
+    }
+  }
+}

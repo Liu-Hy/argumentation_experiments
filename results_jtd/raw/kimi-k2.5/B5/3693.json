@@ -1,0 +1,30 @@
+{
+  "tort_id": "3693",
+  "method": "B5",
+  "model": "kimi-k2.5",
+  "raw_output": " ```json\n{\n  \"argument_strengths\": {\n    \"p0\": 0.6,\n    \"p1\": 0.5,\n    \"p2\": 0.4,\n    \"d0\": 0.5,\n    \"d1\": 0.8,\n    \"d2\": 0.6\n  },\n  \"attacks\": [\n    {\"source\": \"d0\", \"target\": \"p0\"},\n    {\"source\": \"d0\", \"target\": \"p1\"},\n    {\"source\": \"d1\", \"target\": \"p0\"},\n    {\"source\": \"d2\", \"target\": \"p2\"}\n  ]\n}\n```",
+  "usage": {
+    "prompt_tokens": 671,
+    "completion_tokens": 2902,
+    "total_tokens": 3573
+  },
+  "latency_s": 71.64456033706665,
+  "parse_success": true,
+  "parse_errors": [
+    "Unknown source ID in attack: d0",
+    "Unknown source ID in attack: d0",
+    "Unknown source ID in attack: d1",
+    "Unknown source ID in attack: d2",
+    "Unknown argument ID in strengths: p0",
+    "Unknown argument ID in strengths: p1",
+    "Unknown argument ID in strengths: p2",
+    "Unknown argument ID in strengths: d0",
+    "Unknown argument ID in strengths: d1",
+    "Unknown argument ID in strengths: d2"
+  ],
+  "af": {
+    "attacks": [],
+    "supports": [],
+    "argument_strengths": {}
+  }
+}

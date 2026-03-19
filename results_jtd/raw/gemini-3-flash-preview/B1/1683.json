@@ -1,0 +1,36 @@
+{
+  "tort_id": "1683",
+  "method": "B1",
+  "model": "gemini-3-flash-preview",
+  "step1_raw": "{\n  \"attacks\": [\n    {\"source\": \"d0\", \"target\": \"p0\"},\n    {\"source\": \"d1\", \"target\": \"p0\"},\n    {\"source\": \"d8\", \"target\": \"p0\"},\n    {\"source\": \"p1\", \"target\": \"d5\"},\n    {\"source\": \"p1\", \"target\": \"d6\"},\n    {\"source\": \"d2\", \"target\": \"p1\"},\n    {\"source\": \"d3\", \"target\": \"p1\"},\n    {\"source\": \"d4\", \"target\": \"p1\"},\n    {\"source\": \"d5\", \"target\": \"p1\"},\n    {\"source\": \"d6\", \"target\": \"p1\"},\n    {\"source\": \"d6\", \"target\": \"p2\"},\n    {\"source\": \"d8\", \"target\": \"p2\"}\n  ]\n}",
+  "step2_raw": "{\n  \"plaintiff_claims\": {\n    \"p0\": true,\n    \"p1\": false,\n    \"p2\": true\n  },\n  \"defendant_claims\": {\n    \"d0\": false,\n    \"d1\": false,\n    \"d2\": true,\n    \"d3\": true,\n    \"d4\": true,\n    \"d5\": true,\n    \"d6\": false,\n    \"d7\": true,\n    \"d8\": false\n  },\n  \"tort_decision\": true\n}",
+  "step1_usage": {
+    "prompt_tokens": 1565,
+    "completion_tokens": 2150,
+    "total_tokens": 3715
+  },
+  "step2_usage": {
+    "prompt_tokens": 1797,
+    "completion_tokens": 2258,
+    "total_tokens": 4055
+  },
+  "latency_s": 27.65476632118225,
+  "parse_success": true,
+  "parse_errors": [],
+  "re_predictions": {
+    "p0": true,
+    "p1": false,
+    "p2": true,
+    "d0": false,
+    "d1": false,
+    "d2": true,
+    "d3": true,
+    "d4": true,
+    "d5": true,
+    "d6": false,
+    "d7": true,
+    "d8": false
+  },
+  "tp_a": true,
+  "tp_b": true
+}

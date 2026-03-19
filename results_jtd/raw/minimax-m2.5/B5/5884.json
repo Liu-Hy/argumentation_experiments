@@ -1,0 +1,98 @@
+{
+  "tort_id": "5884",
+  "method": "B5",
+  "model": "minimax-m2.5",
+  "raw_output": "{\"argument_strengths\": {\"p0\": 0.7, \"p1\": 0.8, \"p2\": 0.6, \"p3\": 0.7, \"p4\": 0.65, \"p5\": 0.7, \"p6\": 0.75, \"d0\": 0.6, \"d1\": 0.75, \"d2\": 0.5, \"d3\": 0.65, \"d4\": 0.7, \"d5\": 0.6}, \"attacks\": [{\"source\": \"d0\", \"target\": \"p0\"}, {\"source\": \"d0\", \"target\": \"p1\"}, {\"source\": \"d1\", \"target\": \"p2\"}, {\"source\": \"d3\", \"target\": \"p3\"}, {\"source\": \"d3\", \"target\": \"p4\"}, {\"source\": \"d4\", \"target\": \"p5\"}, {\"source\": \"d5\", \"target\": \"p6\"}, {\"source\": \"p0\", \"target\": \"d0\"}, {\"source\": \"p1\", \"target\": \"d0\"}, {\"source\": \"p2\", \"target\": \"d1\"}, {\"source\": \"p3\", \"target\": \"d3\"}, {\"source\": \"p3\", \"target\": \"d4\"}, {\"source\": \"p4\", \"target\": \"d3\"}, {\"source\": \"p4\", \"target\": \"d4\"}, {\"source\": \"p5\", \"target\": \"d4\"}, {\"source\": \"p6\", \"target\": \"d5\"}]}",
+  "usage": {
+    "prompt_tokens": 884,
+    "completion_tokens": 1073,
+    "total_tokens": 1957
+  },
+  "latency_s": 44.65388059616089,
+  "parse_success": true,
+  "parse_errors": [],
+  "af": {
+    "attacks": [
+      [
+        "d0",
+        "p0"
+      ],
+      [
+        "d0",
+        "p1"
+      ],
+      [
+        "d1",
+        "p2"
+      ],
+      [
+        "d3",
+        "p3"
+      ],
+      [
+        "d3",
+        "p4"
+      ],
+      [
+        "d4",
+        "p5"
+      ],
+      [
+        "d5",
+        "p6"
+      ],
+      [
+        "p0",
+        "d0"
+      ],
+      [
+        "p1",
+        "d0"
+      ],
+      [
+        "p2",
+        "d1"
+      ],
+      [
+        "p3",
+        "d3"
+      ],
+      [
+        "p3",
+        "d4"
+      ],
+      [
+        "p4",
+        "d3"
+      ],
+      [
+        "p4",
+        "d4"
+      ],
+      [
+        "p5",
+        "d4"
+      ],
+      [
+        "p6",
+        "d5"
+      ]
+    ],
+    "supports": [],
+    "argument_strengths": {
+      "p0": 0.7,
+      "p1": 0.8,
+      "p2": 0.6,
+      "p3": 0.7,
+      "p4": 0.65,
+      "p5": 0.7,
+      "p6": 0.75,
+      "d0": 0.6,
+      "d1": 0.75,
+      "d2": 0.5,
+      "d3": 0.65,
+      "d4": 0.7,
+      "d5": 0.6
+    }
+  }
+}

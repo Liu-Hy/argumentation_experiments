@@ -1,0 +1,43 @@
+{
+  "tort_id": "4730",
+  "method": "B5",
+  "model": "minimax-m2.5",
+  "raw_output": "{\"argument_strengths\":{\"p0\":0.6,\"p1\":0.7,\"p2\":0.6,\"p3\":0.75,\"p4\":0.7,\"p5\":0.5,\"p6\":0.8,\"p7\":0.85,\"p8\":0.8,\"d0\":0.65},\"attacks\":[{\"source\":\"p4\",\"target\":\"d0\"},{\"source\":\"p6\",\"target\":\"d0\"},{\"source\":\"p7\",\"target\":\"d0\"}]}",
+  "usage": {
+    "prompt_tokens": 785,
+    "completion_tokens": 868,
+    "total_tokens": 1653
+  },
+  "latency_s": 17.83108115196228,
+  "parse_success": true,
+  "parse_errors": [],
+  "af": {
+    "attacks": [
+      [
+        "p4",
+        "d0"
+      ],
+      [
+        "p6",
+        "d0"
+      ],
+      [
+        "p7",
+        "d0"
+      ]
+    ],
+    "supports": [],
+    "argument_strengths": {
+      "p0": 0.6,
+      "p1": 0.7,
+      "p2": 0.6,
+      "p3": 0.75,
+      "p4": 0.7,
+      "p5": 0.5,
+      "p6": 0.8,
+      "p7": 0.85,
+      "p8": 0.8,
+      "d0": 0.65
+    }
+  }
+}

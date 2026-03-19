@@ -1,0 +1,59 @@
+{
+  "tort_id": "425",
+  "method": "B4",
+  "model": "minimax-m2.5",
+  "raw_output": "{\"attacks\": [{\"source\": \"d1\", \"target\": \"p4\"}, {\"source\": \"d1\", \"target\": \"p5\"}], \"supports\": [{\"source\": \"u0\", \"target\": \"p1\"}, {\"source\": \"u1\", \"target\": \"p0\"}, {\"source\": \"u7\", \"target\": \"p0\"}, {\"source\": \"p0\", \"target\": \"p1\"}, {\"source\": \"p1\", \"target\": \"p2\"}, {\"source\": \"p2\", \"target\": \"p3\"}, {\"source\": \"p3\", \"target\": \"p4\"}, {\"source\": \"u2\", \"target\": \"p2\"}, {\"source\": \"p5\", \"target\": \"p6\"}]}",
+  "usage": {
+    "prompt_tokens": 1035,
+    "completion_tokens": 811,
+    "total_tokens": 1846
+  },
+  "latency_s": 7.8709588050842285,
+  "parse_success": true,
+  "parse_errors": [
+    "Unknown source ID in attack: d1",
+    "Unknown source ID in attack: d1"
+  ],
+  "af": {
+    "attacks": [],
+    "supports": [
+      [
+        "u0",
+        "p1"
+      ],
+      [
+        "u1",
+        "p0"
+      ],
+      [
+        "u7",
+        "p0"
+      ],
+      [
+        "p0",
+        "p1"
+      ],
+      [
+        "p1",
+        "p2"
+      ],
+      [
+        "p2",
+        "p3"
+      ],
+      [
+        "p3",
+        "p4"
+      ],
+      [
+        "u2",
+        "p2"
+      ],
+      [
+        "p5",
+        "p6"
+      ]
+    ],
+    "argument_strengths": {}
+  }
+}

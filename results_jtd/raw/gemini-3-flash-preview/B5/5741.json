@@ -1,0 +1,82 @@
+{
+  "tort_id": "5741",
+  "method": "B5",
+  "model": "gemini-3-flash-preview",
+  "raw_output": "{\n  \"argument_strengths\": {\n    \"p0\": 0.4,\n    \"p1\": 0.5,\n    \"p2\": 0.4,\n    \"p3\": 0.7,\n    \"p4\": 0.5,\n    \"p5\": 0.4,\n    \"p6\": 0.5,\n    \"d0\": 0.7,\n    \"d1\": 0.6,\n    \"d2\": 0.8,\n    \"d3\": 0.4,\n    \"d4\": 0.7,\n    \"d5\": 0.6,\n    \"d6\": 0.6,\n    \"d7\": 0.6,\n    \"d8\": 0.6,\n    \"d9\": 0.7\n  },\n  \"attacks\": [\n    {\n      \"source\": \"d0\",\n      \"target\": \"p0\"\n    },\n    {\n      \"source\": \"d0\",\n      \"target\": \"p1\"\n    },\n    {\n      \"source\": \"d1\",\n      \"target\": \"p1\"\n    },\n    {\n      \"source\": \"d2\",\n      \"target\": \"p2\"\n    },\n    {\n      \"source\": \"d3\",\n      \"target\": \"p3\"\n    },\n    {\n      \"source\": \"d4\",\n      \"target\": \"p4\"\n    },\n    {\n      \"source\": \"d5\",\n      \"target\": \"p5\"\n    },\n    {\n      \"source\": \"d6\",\n      \"target\": \"p5\"\n    },\n    {\n      \"source\": \"d7\",\n      \"target\": \"p5\"\n    },\n    {\n      \"source\": \"d8\",\n      \"target\": \"p5\"\n    },\n    {\n      \"source\": \"d9\",\n      \"target\": \"p6\"\n    }\n  ]\n}",
+  "usage": {
+    "prompt_tokens": 1820,
+    "completion_tokens": 1668,
+    "total_tokens": 3488
+  },
+  "latency_s": 11.36054253578186,
+  "parse_success": true,
+  "parse_errors": [],
+  "af": {
+    "attacks": [
+      [
+        "d0",
+        "p0"
+      ],
+      [
+        "d0",
+        "p1"
+      ],
+      [
+        "d1",
+        "p1"
+      ],
+      [
+        "d2",
+        "p2"
+      ],
+      [
+        "d3",
+        "p3"
+      ],
+      [
+        "d4",
+        "p4"
+      ],
+      [
+        "d5",
+        "p5"
+      ],
+      [
+        "d6",
+        "p5"
+      ],
+      [
+        "d7",
+        "p5"
+      ],
+      [
+        "d8",
+        "p5"
+      ],
+      [
+        "d9",
+        "p6"
+      ]
+    ],
+    "supports": [],
+    "argument_strengths": {
+      "p0": 0.4,
+      "p1": 0.5,
+      "p2": 0.4,
+      "p3": 0.7,
+      "p4": 0.5,
+      "p5": 0.4,
+      "p6": 0.5,
+      "d0": 0.7,
+      "d1": 0.6,
+      "d2": 0.8,
+      "d3": 0.4,
+      "d4": 0.7,
+      "d5": 0.6,
+      "d6": 0.6,
+      "d7": 0.6,
+      "d8": 0.6,
+      "d9": 0.7
+    }
+  }
+}

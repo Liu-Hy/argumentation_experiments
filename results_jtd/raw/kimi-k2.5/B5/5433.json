@@ -1,0 +1,24 @@
+{
+  "tort_id": "5433",
+  "method": "B5",
+  "model": "kimi-k2.5",
+  "raw_output": "{\n  \"argument_strengths\": {\n    \"p0\": 0.8,\n    \"d0\": 0.5\n  },\n  \"attacks\": [\n    {\"source\": \"d0\", \"target\": \"p0\"}\n  ]\n}",
+  "usage": {
+    "prompt_tokens": 357,
+    "completion_tokens": 3097,
+    "total_tokens": 3454
+  },
+  "latency_s": 69.24554109573364,
+  "parse_success": true,
+  "parse_errors": [
+    "Unknown source ID in attack: d0",
+    "Unknown argument ID in strengths: d0"
+  ],
+  "af": {
+    "attacks": [],
+    "supports": [],
+    "argument_strengths": {
+      "p0": 0.8
+    }
+  }
+}

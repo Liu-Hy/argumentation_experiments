@@ -1,0 +1,21 @@
+{
+  "tort_id": "3916",
+  "method": "B5",
+  "model": "minimax-m2.5",
+  "raw_output": "{\n  \"argument_strengths\": {\n    \"p0\": 0.7\n  },\n  \"attacks\": []\n}",
+  "usage": {
+    "prompt_tokens": 328,
+    "completion_tokens": 575,
+    "total_tokens": 903
+  },
+  "latency_s": 10.231915712356567,
+  "parse_success": true,
+  "parse_errors": [],
+  "af": {
+    "attacks": [],
+    "supports": [],
+    "argument_strengths": {
+      "p0": 0.7
+    }
+  }
+}

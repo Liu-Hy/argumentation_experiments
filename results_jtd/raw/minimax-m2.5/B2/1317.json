@@ -1,0 +1,22 @@
+{
+  "tort_id": "1317",
+  "method": "B2",
+  "model": "minimax-m2.5",
+  "raw_output": "{\"attacks\":[{\"source\":\"p0\",\"target\":\"d2\"},{\"source\":\"d1\",\"target\":\"p0\"}]}",
+  "usage": {
+    "prompt_tokens": 377,
+    "completion_tokens": 483,
+    "total_tokens": 860
+  },
+  "latency_s": 8.452452182769775,
+  "parse_success": true,
+  "parse_errors": [
+    "Unknown target ID in attack: d2",
+    "Unknown source ID in attack: d1"
+  ],
+  "af": {
+    "attacks": [],
+    "supports": [],
+    "argument_strengths": {}
+  }
+}

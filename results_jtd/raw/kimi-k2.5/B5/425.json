@@ -1,0 +1,42 @@
+{
+  "tort_id": "425",
+  "method": "B5",
+  "model": "kimi-k2.5",
+  "raw_output": " ```json\n{\n  \"argument_strengths\": {\n    \"p0\": 0.8,\n    \"p1\": 0.9,\n    \"p2\": 0.9,\n    \"p3\": 0.85,\n    \"p4\": 0.7,\n    \"p5\": 0.9,\n    \"p6\": 0.6,\n    \"d0\": 0.3,\n    \"d1\": 0.4,\n    \"d2\": 0.5,\n    \"d3\": 0.5\n  },\n  \"attacks\": [\n    {\"source\": \"d0\", \"target\": \"p0\"},\n    {\"source\": \"d0\", \"target\": \"p3\"},\n    {\"source\": \"d1\", \"target\": \"p4\"},\n    {\"source\": \"d2\", \"target\": \"p6\"},\n    {\"source\": \"d3\", \"target\": \"p6\"},\n    {\"source\": \"p0\", \"target\": \"d0\"},\n    {\"source\": \"p3\", \"target\": \"d0\"},\n    {\"source\": \"p4\", \"target\": \"d1\"},\n    {\"source\": \"p6\", \"target\": \"d2\"},\n    {\"source\": \"p6\", \"target\": \"d3\"}\n  ]\n}\n```",
+  "usage": {
+    "prompt_tokens": 1393,
+    "completion_tokens": 5202,
+    "total_tokens": 6595
+  },
+  "latency_s": 184.4224979877472,
+  "parse_success": true,
+  "parse_errors": [
+    "Unknown source ID in attack: d0",
+    "Unknown source ID in attack: d0",
+    "Unknown source ID in attack: d1",
+    "Unknown source ID in attack: d2",
+    "Unknown source ID in attack: d3",
+    "Unknown target ID in attack: d0",
+    "Unknown target ID in attack: d0",
+    "Unknown target ID in attack: d1",
+    "Unknown target ID in attack: d2",
+    "Unknown target ID in attack: d3",
+    "Unknown argument ID in strengths: d0",
+    "Unknown argument ID in strengths: d1",
+    "Unknown argument ID in strengths: d2",
+    "Unknown argument ID in strengths: d3"
+  ],
+  "af": {
+    "attacks": [],
+    "supports": [],
+    "argument_strengths": {
+      "p0": 0.8,
+      "p1": 0.9,
+      "p2": 0.9,
+      "p3": 0.85,
+      "p4": 0.7,
+      "p5": 0.9,
+      "p6": 0.6
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "tort_id": "5560",
+  "method": "B4",
+  "model": "minimax-m2.5",
+  "raw_output": "```json\n{\n  \"attacks\": [\n    {\"source\": \"d1\", \"target\": \"p0\"},\n    {\"source\": \"d1\", \"target\": \"p1\"}\n  ],\n  \"supports\": [\n    {\"source\": \"u0\", \"target\": \"p1\"},\n    {\"source\": \"p0\", \"target\": \"p1\"}\n  ]\n}\n```",
+  "usage": {
+    "prompt_tokens": 386,
+    "completion_tokens": 548,
+    "total_tokens": 934
+  },
+  "latency_s": 36.32860541343689,
+  "parse_success": true,
+  "parse_errors": [
+    "Unknown source ID in attack: d1",
+    "Unknown source ID in attack: d1",
+    "Unknown source ID in support: u0"
+  ],
+  "af": {
+    "attacks": [],
+    "supports": [
+      [
+        "p0",
+        "p1"
+      ]
+    ],
+    "argument_strengths": {}
+  }
+}

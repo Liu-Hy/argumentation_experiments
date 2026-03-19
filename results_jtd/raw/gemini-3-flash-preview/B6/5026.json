@@ -1,0 +1,117 @@
+{
+  "tort_id": "5026",
+  "method": "B6",
+  "model": "gemini-3-flash-preview",
+  "raw_output": "{\n  \"argument_strengths\": {\n    \"u0\": 1.0,\n    \"u1\": 1.0,\n    \"u2\": 1.0,\n    \"p0\": 0.8,\n    \"p1\": 0.7,\n    \"p2\": 0.8,\n    \"p3\": 0.7,\n    \"p4\": 0.6,\n    \"p5\": 0.5,\n    \"d0\": 0.6,\n    \"d1\": 0.6,\n    \"d2\": 0.7,\n    \"d3\": 0.5,\n    \"d4\": 0.6,\n    \"d5\": 0.6,\n    \"d6\": 0.5\n  },\n  \"attacks\": [\n    {\n      \"source\": \"d0\",\n      \"target\": \"p0\"\n    },\n    {\n      \"source\": \"d1\",\n      \"target\": \"p1\"\n    },\n    {\n      \"source\": \"d5\",\n      \"target\": \"p1\"\n    },\n    {\n      \"source\": \"d5\",\n      \"target\": \"p2\"\n    },\n    {\n      \"source\": \"d6\",\n      \"target\": \"p0\"\n    },\n    {\n      \"source\": \"d6\",\n      \"target\": \"p3\"\n    },\n    {\n      \"source\": \"d2\",\n      \"target\": \"p0\"\n    },\n    {\n      \"source\": \"d2\",\n      \"target\": \"p1\"\n    },\n    {\n      \"source\": \"d2\",\n      \"target\": \"p3\"\n    },\n    {\n      \"source\": \"d3\",\n      \"target\": \"p0\"\n    },\n    {\n      \"source\": \"d4\",\n      \"target\": \"p2\"\n    }\n  ],\n  \"supports\": [\n    {\n      \"source\": \"u0\",\n      \"target\": \"p0\"\n    },\n    {\n      \"source\": \"u0\",\n      \"target\": \"d0\"\n    },\n    {\n      \"source\": \"u1\",\n      \"target\": \"p1\"\n    },\n    {\n      \"source\": \"u1\",\n      \"target\": \"p2\"\n    },\n    {\n      \"source\": \"u1\",\n      \"target\": \"d5\"\n    },\n    {\n      \"source\": \"u2\",\n      \"target\": \"d2\"\n    },\n    {\n      \"source\": \"d2\",\n      \"target\": \"d0\"\n    },\n    {\n      \"source\": \"d2\",\n      \"target\": \"d1\"\n    },\n    {\n      \"source\": \"d2\",\n      \"target\": \"d3\"\n    },\n    {\n      \"source\": \"d2\",\n      \"target\": \"d4\"\n    },\n    {\n      \"source\": \"p5\",\n      \"target\": \"p0\"\n    },\n    {\n      \"source\": \"p5\",\n      \"target\": \"p1\"\n    },\n    {\n      \"source\": \"p5\",\n      \"target\": \"p2\"\n    }\n  ]\n}",
+  "usage": {
+    "prompt_tokens": 1218,
+    "completion_tokens": 2827,
+    "total_tokens": 4045
+  },
+  "latency_s": 19.35937786102295,
+  "parse_success": true,
+  "parse_errors": [
+    "Unknown source ID in support: u0",
+    "Unknown source ID in support: u0",
+    "Unknown source ID in support: u1",
+    "Unknown source ID in support: u1",
+    "Unknown source ID in support: u1",
+    "Unknown source ID in support: u2",
+    "Unknown argument ID in strengths: u0",
+    "Unknown argument ID in strengths: u1",
+    "Unknown argument ID in strengths: u2"
+  ],
+  "af": {
+    "attacks": [
+      [
+        "d0",
+        "p0"
+      ],
+      [
+        "d1",
+        "p1"
+      ],
+      [
+        "d5",
+        "p1"
+      ],
+      [
+        "d5",
+        "p2"
+      ],
+      [
+        "d6",
+        "p0"
+      ],
+      [
+        "d6",
+        "p3"
+      ],
+      [
+        "d2",
+        "p0"
+      ],
+      [
+        "d2",
+        "p1"
+      ],
+      [
+        "d2",
+        "p3"
+      ],
+      [
+        "d3",
+        "p0"
+      ],
+      [
+        "d4",
+        "p2"
+      ]
+    ],
+    "supports": [
+      [
+        "d2",
+        "d0"
+      ],
+      [
+        "d2",
+        "d1"
+      ],
+      [
+        "d2",
+        "d3"
+      ],
+      [
+        "d2",
+        "d4"
+      ],
+      [
+        "p5",
+        "p0"
+      ],
+      [
+        "p5",
+        "p1"
+      ],
+      [
+        "p5",
+        "p2"
+      ]
+    ],
+    "argument_strengths": {
+      "p0": 0.8,
+      "p1": 0.7,
+      "p2": 0.8,
+      "p3": 0.7,
+      "p4": 0.6,
+      "p5": 0.5,
+      "d0": 0.6,
+      "d1": 0.6,
+      "d2": 0.7,
+      "d3": 0.5,
+      "d4": 0.6,
+      "d5": 0.6,
+      "d6": 0.5
+    }
+  }
+}

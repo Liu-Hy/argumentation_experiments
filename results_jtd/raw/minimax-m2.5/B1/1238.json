@@ -1,0 +1,51 @@
+{
+  "tort_id": "1238",
+  "method": "B1",
+  "model": "minimax-m2.5",
+  "step1_raw": "{\"attacks\":[{\"source\":\"d1\",\"target\":\"p0\"},{\"source\":\"d2\",\"target\":\"p0\"},{\"source\":\"d3\",\"target\":\"p0\"},{\"source\":\"d4\",\"target\":\"p0\"},{\"source\":\"d5\",\"target\":\"p0\"},{\"source\":\"d6\",\"target\":\"p0\"},{\"source\":\"d7\",\"target\":\"p0\"},{\"source\":\"d8\",\"target\":\"p0\"},{\"source\":\"d9\",\"target\":\"p0\"},{\"source\":\"d10\",\"target\":\"p0\"},{\"source\":\"d11\",\"target\":\"p0\"},{\"source\":\"d12\",\"target\":\"p0\"},{\"source\":\"d13\",\"target\":\"p0\"},{\"source\":\"d14\",\"target\":\"p0\"},{\"source\":\"d15\",\"target\":\"p0\"},{\"source\":\"d16\",\"target\":\"p0\"},{\"source\":\"d17\",\"target\":\"p0\"},{\"source\":\"d18\",\"target\":\"p0\"},{\"source\":\"d0\",\"target\":\"p1\"},{\"source\":\"d1\",\"target\":\"p1\"},{\"source\":\"p1\",\"target\":\"d1\"},{\"source\":\"d2\",\"target\":\"p2\"},{\"source\":\"d3\",\"target\":\"p2\"},{\"source\":\"d4\",\"target\":\"p2\"},{\"source\":\"d14\",\"target\":\"p2\"},{\"source\":\"d15\",\"target\":\"p2\"},{\"source\":\"d16\",\"target\":\"p2\"},{\"source\":\"d17\",\"target\":\"p2\"},{\"source\":\"d3\",\"target\":\"p4\"},{\"source\":\"d4\",\"target\":\"p4\"},{\"source\":\"d5\",\"target\":\"p4\"},{\"source\":\"d10\",\"target\":\"p4\"},{\"source\":\"d11\",\"target\":\"p4\"},{\"source\":\"d13\",\"target\":\"p4\"},{\"source\":\"d3\",\"target\":\"p5\"},{\"source\":\"d4\",\"target\":\"p5\"},{\"source\":\"d10\",\"target\":\"p5\"},{\"source\":\"d11\",\"target\":\"p5\"},{\"source\":\"d12\",\"target\":\"p5\"},{\"source\":\"d13\",\"target\":\"p5\"},{\"source\":\"p2\",\"target\":\"d2\"},{\"source\":\"p3\",\"target\":\"d2\"},{\"source\":\"p4\",\"target\":\"d2\"},{\"source\":\"p5\",\"target\":\"d2\"},{\"source\":\"d1\",\"target\":\"p6\"},{\"source\":\"d2\",\"target\":\"p6\"},{\"source\":\"d3\",\"target\":\"p6\"},{\"source\":\"d4\",\"target\":\"p6\"},{\"source\":\"d5\",\"target\":\"p6\"},{\"source\":\"d6\",\"target\":\"p6\"},{\"source\":\"d7\",\"target\":\"p6\"},{\"source\":\"d8\",\"target\":\"p6\"},{\"source\":\"d9\",\"target\":\"p6\"},{\"source\":\"d10\",\"target\":\"p6\"},{\"source\":\"d11\",\"target\":\"p6\"},{\"source\":\"d12\",\"target\":\"p6\"},{\"source\":\"d13\",\"target\":\"p6\"},{\"source\":\"d14\",\"target\":\"p6\"},{\"source\":\"d15\",\"target\":\"p6\"},{\"source\":\"d16\",\"target\":\"p6\"},{\"source\":\"d17\",\"target\":\"p6\"},{\"source\":\"d18\",\"target\":\"p6\"},{\"source\":\"d1\",\"target\":\"p7\"},{\"source\":\"d2\",\"target\":\"p7\"},{\"source\":\"d3\",\"target\":\"p7\"},{\"source\":\"d4\",\"target\":\"p7\"},{\"source\":\"d5\",\"target\":\"p7\"},{\"source\":\"d6\",\"target\":\"p7\"},{\"source\":\"d7\",\"target\":\"p7\"},{\"source\":\"d8\",\"target\":\"p7\"},{\"source\":\"d9\",\"target\":\"p7\"},{\"source\":\"d10\",\"target\":\"p7\"},{\"source\":\"d11\",\"target\":\"p7\"},{\"source\":\"d12\",\"target\":\"p7\"},{\"source\":\"d13\",\"target\":\"p7\"},{\"source\":\"d14\",\"target\":\"p7\"},{\"source\":\"d15\",\"target\":\"p7\"},{\"source\":\"d16\",\"target\":\"p7\"},{\"source\":\"d17\",\"target\":\"p7\"},{\"source\":\"d18\",\"target\":\"p7\"}]}",
+  "step2_raw": "{\"plaintiff_claims\":{\"p0\":false,\"p1\":false,\"p2\":false,\"p3\":true,\"p4\":false,\"p5\":false,\"p6\":false,\"p7\":false},\"defendant_claims\":{\"d0\":true,\"d1\":true,\"d2\":true,\"d3\":true,\"d4\":true,\"d5\":true,\"d6\":true,\"d7\":true,\"d8\":true,\"d9\":true,\"d10\":true,\"d11\":true,\"d12\":true,\"d13\":true,\"d14\":true,\"d15\":true,\"d16\":true,\"d17\":true,\"d18\":true},\"tort_decision\":false}",
+  "step1_usage": {
+    "prompt_tokens": 2272,
+    "completion_tokens": 1543,
+    "total_tokens": 3815
+  },
+  "step2_usage": {
+    "prompt_tokens": 3096,
+    "completion_tokens": 839,
+    "total_tokens": 3935
+  },
+  "latency_s": 101.8448965549469,
+  "parse_success": true,
+  "parse_errors": [],
+  "re_predictions": {
+    "p0": false,
+    "p1": false,
+    "p2": false,
+    "p3": true,
+    "p4": false,
+    "p5": false,
+    "p6": false,
+    "p7": false,
+    "d0": true,
+    "d1": true,
+    "d2": true,
+    "d3": true,
+    "d4": true,
+    "d5": true,
+    "d6": true,
+    "d7": true,
+    "d8": true,
+    "d9": true,
+    "d10": true,
+    "d11": true,
+    "d12": true,
+    "d13": true,
+    "d14": true,
+    "d15": true,
+    "d16": true,
+    "d17": true,
+    "d18": true
+  },
+  "tp_a": false,
+  "tp_b": false
+}

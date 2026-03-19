@@ -1,0 +1,125 @@
+{
+  "tort_id": "712",
+  "method": "B4",
+  "model": "kimi-k2.5",
+  "raw_output": "```json\n{\n  \"attacks\": [\n    {\"source\": \"d0\", \"target\": \"p0\"},\n    {\"source\": \"d0\", \"target\": \"p4\"},\n    {\"source\": \"d0\", \"target\": \"p6\"},\n    {\"source\": \"d1\", \"target\": \"p0\"},\n    {\"source\": \"d1\", \"target\": \"p3\"},\n    {\"source\": \"d1\", \"target\": \"p6\"},\n    {\"source\": \"d2\", \"target\": \"p4\"},\n    {\"source\": \"p0\", \"target\": \"d0\"},\n    {\"source\": \"p0\", \"target\": \"d1\"},\n    {\"source\": \"p3\", \"target\": \"d0\"},\n    {\"source\": \"p3\", \"target\": \"d1\"},\n    {\"source\": \"p4\", \"target\": \"d0\"},\n    {\"source\": \"p6\", \"target\": \"d0\"},\n    {\"source\": \"p6\", \"target\": \"d1\"}\n  ],\n  \"supports\": [\n    {\"source\": \"u0\", \"target\": \"p0\"},\n    {\"source\": \"u0\", \"target\": \"p3\"},\n    {\"source\": \"u0\", \"target\": \"p4\"},\n    {\"source\": \"u0\", \"target\": \"p5\"},\n    {\"source\": \"p0\", \"target\": \"p4\"},\n    {\"source\": \"p1\", \"target\": \"p2\"},\n    {\"source\": \"p2\", \"target\": \"p4\"},\n    {\"source\": \"p3\", \"target\": \"p4\"},\n    {\"source\": \"p5\", \"target\": \"p3\"},\n    {\"source\": \"p6\", \"target\": \"p0\"},\n    {\"source\": \"p6\", \"target\": \"p4\"},\n    {\"source\": \"d1\", \"target\": \"d0\"}\n  ]\n}\n```",
+  "usage": {
+    "prompt_tokens": 1290,
+    "completion_tokens": 9154,
+    "total_tokens": 10444
+  },
+  "latency_s": 501.741512298584,
+  "parse_success": true,
+  "parse_errors": [],
+  "af": {
+    "attacks": [
+      [
+        "d0",
+        "p0"
+      ],
+      [
+        "d0",
+        "p4"
+      ],
+      [
+        "d0",
+        "p6"
+      ],
+      [
+        "d1",
+        "p0"
+      ],
+      [
+        "d1",
+        "p3"
+      ],
+      [
+        "d1",
+        "p6"
+      ],
+      [
+        "d2",
+        "p4"
+      ],
+      [
+        "p0",
+        "d0"
+      ],
+      [
+        "p0",
+        "d1"
+      ],
+      [
+        "p3",
+        "d0"
+      ],
+      [
+        "p3",
+        "d1"
+      ],
+      [
+        "p4",
+        "d0"
+      ],
+      [
+        "p6",
+        "d0"
+      ],
+      [
+        "p6",
+        "d1"
+      ]
+    ],
+    "supports": [
+      [
+        "u0",
+        "p0"
+      ],
+      [
+        "u0",
+        "p3"
+      ],
+      [
+        "u0",
+        "p4"
+      ],
+      [
+        "u0",
+        "p5"
+      ],
+      [
+        "p0",
+        "p4"
+      ],
+      [
+        "p1",
+        "p2"
+      ],
+      [
+        "p2",
+        "p4"
+      ],
+      [
+        "p3",
+        "p4"
+      ],
+      [
+        "p5",
+        "p3"
+      ],
+      [
+        "p6",
+        "p0"
+      ],
+      [
+        "p6",
+        "p4"
+      ],
+      [
+        "d1",
+        "d0"
+      ]
+    ],
+    "argument_strengths": {}
+  }
+}

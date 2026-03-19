@@ -1,0 +1,51 @@
+{
+  "tort_id": "1238",
+  "method": "B1",
+  "model": "gemini-3-flash-preview",
+  "step1_raw": "{\n  \"attacks\": [\n    {\"source\": \"d0\", \"target\": \"p0\"},\n    {\"source\": \"d1\", \"target\": \"p0\"},\n    {\"source\": \"d2\", \"target\": \"p0\"},\n    {\"source\": \"d3\", \"target\": \"p0\"},\n    {\"source\": \"d4\", \"target\": \"p0\"},\n    {\"source\": \"d5\", \"target\": \"p0\"},\n    {\"source\": \"d6\", \"target\": \"p0\"},\n    {\"source\": \"d7\", \"target\": \"p0\"},\n    {\"source\": \"d8\", \"target\": \"p0\"},\n    {\"source\": \"d9\", \"target\": \"p0\"},\n    {\"source\": \"d10\", \"target\": \"p0\"},\n    {\"source\": \"d11\", \"target\": \"p0\"},\n    {\"source\": \"d13\", \"target\": \"p0\"},\n    {\"source\": \"d15\", \"target\": \"p0\"},\n    {\"source\": \"d17\", \"target\": \"p0\"},\n    {\"source\": \"d18\", \"target\": \"p0\"},\n    {\"source\": \"p1\", \"target\": \"d1\"},\n    {\"source\": \"p1\", \"target\": \"d2\"},\n    {\"source\": \"p1\", \"target\": \"d3\"},\n    {\"source\": \"p1\", \"target\": \"d4\"},\n    {\"source\": \"d14\", \"target\": \"p1\"},\n    {\"source\": \"d16\", \"target\": \"p2\"},\n    {\"source\": \"d10\", \"target\": \"p4\"},\n    {\"source\": \"d11\", \"target\": \"p4\"},\n    {\"source\": \"d12\", \"target\": \"p4\"},\n    {\"source\": \"d13\", \"target\": \"p4\"},\n    {\"source\": \"d16\", \"target\": \"p5\"},\n    {\"source\": \"d1\", \"target\": \"p6\"},\n    {\"source\": \"d16\", \"target\": \"p6\"},\n    {\"source\": \"d1\", \"target\": \"p7\"},\n    {\"source\": \"d16\", \"target\": \"p7\"}\n  ]\n}",
+  "step2_raw": "{\n  \"plaintiff_claims\": {\n    \"p0\": false,\n    \"p1\": false,\n    \"p2\": false,\n    \"p3\": true,\n    \"p4\": false,\n    \"p5\": false,\n    \"p6\": false,\n    \"p7\": false\n  },\n  \"defendant_claims\": {\n    \"d0\": false,\n    \"d1\": true,\n    \"d2\": true,\n    \"d3\": true,\n    \"d4\": true,\n    \"d5\": true,\n    \"d6\": true,\n    \"d7\": true,\n    \"d8\": false,\n    \"d9\": true,\n    \"d10\": true,\n    \"d11\": true,\n    \"d12\": true,\n    \"d13\": true,\n    \"d14\": true,\n    \"d15\": true,\n    \"d16\": true,\n    \"d17\": true,\n    \"d18\": true\n  },\n  \"tort_decision\": false\n}",
+  "step1_usage": {
+    "prompt_tokens": 2639,
+    "completion_tokens": 4288,
+    "total_tokens": 6927
+  },
+  "step2_usage": {
+    "prompt_tokens": 3186,
+    "completion_tokens": 2547,
+    "total_tokens": 5733
+  },
+  "latency_s": 39.70434093475342,
+  "parse_success": true,
+  "parse_errors": [],
+  "re_predictions": {
+    "p0": false,
+    "p1": false,
+    "p2": false,
+    "p3": true,
+    "p4": false,
+    "p5": false,
+    "p6": false,
+    "p7": false,
+    "d0": false,
+    "d1": true,
+    "d2": true,
+    "d3": true,
+    "d4": true,
+    "d5": true,
+    "d6": true,
+    "d7": true,
+    "d8": false,
+    "d9": true,
+    "d10": true,
+    "d11": true,
+    "d12": true,
+    "d13": true,
+    "d14": true,
+    "d15": true,
+    "d16": true,
+    "d17": true,
+    "d18": true
+  },
+  "tp_a": false,
+  "tp_b": false
+}

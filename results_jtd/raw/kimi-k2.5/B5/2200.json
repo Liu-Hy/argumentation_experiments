@@ -1,0 +1,43 @@
+{
+  "tort_id": "2200",
+  "method": "B5",
+  "model": "kimi-k2.5",
+  "raw_output": " ```json\n{\n  \"argument_strengths\": {\n    \"p0\": 0.5,\n    \"p1\": 0.6,\n    \"p2\": 0.7,\n    \"p3\": 0.5,\n    \"d0\": 0.8,\n    \"d1\": 0.4\n  },\n  \"attacks\": [\n    {\"source\": \"d0\", \"target\": \"p0\"},\n    {\"source\": \"d0\", \"target\": \"p2\"},\n    {\"source\": \"d0\", \"target\": \"p3\"},\n    {\"source\": \"d1\", \"target\": \"p3\"}\n  ]\n}\n```",
+  "usage": {
+    "prompt_tokens": 951,
+    "completion_tokens": 4144,
+    "total_tokens": 5095
+  },
+  "latency_s": 166.40155386924744,
+  "parse_success": true,
+  "parse_errors": [],
+  "af": {
+    "attacks": [
+      [
+        "d0",
+        "p0"
+      ],
+      [
+        "d0",
+        "p2"
+      ],
+      [
+        "d0",
+        "p3"
+      ],
+      [
+        "d1",
+        "p3"
+      ]
+    ],
+    "supports": [],
+    "argument_strengths": {
+      "p0": 0.5,
+      "p1": 0.6,
+      "p2": 0.7,
+      "p3": 0.5,
+      "d0": 0.8,
+      "d1": 0.4
+    }
+  }
+}

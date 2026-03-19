@@ -1,0 +1,505 @@
+{
+  "method": "BH",
+  "model": "claude-haiku-4.5",
+  "n_cases": 30,
+  "n_folds": 3,
+  "subsample": 30,
+  "summary_tp_a": {
+    "RE Micro-F1": {
+      "mean": 0.0,
+      "std": 0.0,
+      "per_fold": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "RE Micro-Precision": {
+      "mean": 0.0,
+      "std": 0.0,
+      "per_fold": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "RE Micro-Recall": {
+      "mean": 0.0,
+      "std": 0.0,
+      "per_fold": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "RE Accuracy": {
+      "mean": 0.5119355248665594,
+      "std": 0.07789314285546457,
+      "per_fold": [
+        0.6216216216216216,
+        0.4482758620689655,
+        0.4659090909090909
+      ]
+    },
+    "RE Case-averaged F1": {
+      "mean": 0.0,
+      "std": 0.0,
+      "per_fold": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "RE Plaintiff F1": {
+      "mean": 0.0,
+      "std": 0.0,
+      "per_fold": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "RE Defendant F1": {
+      "mean": 0.0,
+      "std": 0.0,
+      "per_fold": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "TP Accuracy": {
+      "mean": 0.6,
+      "std": 0.0,
+      "per_fold": [
+        0.6,
+        0.6,
+        0.6
+      ]
+    },
+    "TP Macro-F1": {
+      "mean": 0.37499999999999994,
+      "std": 0.0,
+      "per_fold": [
+        0.37499999999999994,
+        0.37499999999999994,
+        0.37499999999999994
+      ]
+    },
+    "TP Affirmed Precision": {
+      "mean": 0.0,
+      "std": 0.0,
+      "per_fold": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "TP Affirmed Recall": {
+      "mean": 0.0,
+      "std": 0.0,
+      "per_fold": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "TP Affirmed F1": {
+      "mean": 0.0,
+      "std": 0.0,
+      "per_fold": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "Joint Accuracy": {
+      "mean": 0.16666666666666666,
+      "std": 0.04714045207910317,
+      "per_fold": [
+        0.1,
+        0.2,
+        0.2
+      ]
+    },
+    "RE->TP Consistency": {
+      "mean": 1.0,
+      "std": 0.0,
+      "per_fold": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    }
+  },
+  "summary_tp_b": {
+    "RE Micro-F1": {
+      "mean": 0.0,
+      "std": 0.0,
+      "per_fold": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "RE Micro-Precision": {
+      "mean": 0.0,
+      "std": 0.0,
+      "per_fold": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "RE Micro-Recall": {
+      "mean": 0.0,
+      "std": 0.0,
+      "per_fold": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "RE Accuracy": {
+      "mean": 0.5119355248665594,
+      "std": 0.07789314285546457,
+      "per_fold": [
+        0.6216216216216216,
+        0.4482758620689655,
+        0.4659090909090909
+      ]
+    },
+    "RE Case-averaged F1": {
+      "mean": 0.0,
+      "std": 0.0,
+      "per_fold": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "RE Plaintiff F1": {
+      "mean": 0.0,
+      "std": 0.0,
+      "per_fold": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "RE Defendant F1": {
+      "mean": 0.0,
+      "std": 0.0,
+      "per_fold": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "TP Accuracy": {
+      "mean": 0.6,
+      "std": 0.0,
+      "per_fold": [
+        0.6,
+        0.6,
+        0.6
+      ]
+    },
+    "TP Macro-F1": {
+      "mean": 0.37499999999999994,
+      "std": 0.0,
+      "per_fold": [
+        0.37499999999999994,
+        0.37499999999999994,
+        0.37499999999999994
+      ]
+    },
+    "TP Affirmed Precision": {
+      "mean": 0.0,
+      "std": 0.0,
+      "per_fold": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "TP Affirmed Recall": {
+      "mean": 0.0,
+      "std": 0.0,
+      "per_fold": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "TP Affirmed F1": {
+      "mean": 0.0,
+      "std": 0.0,
+      "per_fold": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "Joint Accuracy": {
+      "mean": 0.16666666666666666,
+      "std": 0.04714045207910317,
+      "per_fold": [
+        0.1,
+        0.2,
+        0.2
+      ]
+    },
+    "RE->TP Consistency": {
+      "mean": 1.0,
+      "std": 0.0,
+      "per_fold": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    }
+  },
+  "per_fold": [
+    {
+      "tp_a": {
+        "re": {
+          "micro_f1": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "accuracy": 0.6216216216216216,
+          "case_averaged_f1": 0.0,
+          "per_party": {
+            "plaintiff": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "defendant": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          }
+        },
+        "tp": {
+          "accuracy": 0.6,
+          "macro_f1": 0.37499999999999994,
+          "affirmed_precision": 0.0,
+          "affirmed_recall": 0.0,
+          "affirmed_f1": 0.0,
+          "denied_f1": 0.7499999999999999,
+          "strategy": "tp_a"
+        },
+        "joint": {
+          "joint_accuracy": 0.1,
+          "re_tp_consistency": 1.0
+        },
+        "n_cases": 10,
+        "fold": 0,
+        "threshold": 0.3
+      },
+      "tp_b": {
+        "re": {
+          "micro_f1": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "accuracy": 0.6216216216216216,
+          "case_averaged_f1": 0.0,
+          "per_party": {
+            "plaintiff": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "defendant": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          }
+        },
+        "tp": {
+          "accuracy": 0.6,
+          "macro_f1": 0.37499999999999994,
+          "affirmed_precision": 0.0,
+          "affirmed_recall": 0.0,
+          "affirmed_f1": 0.0,
+          "denied_f1": 0.7499999999999999,
+          "strategy": "tp_b"
+        },
+        "joint": {
+          "joint_accuracy": 0.1,
+          "re_tp_consistency": 1.0
+        },
+        "n_cases": 10,
+        "fold": 0,
+        "threshold": 0.3
+      }
+    },
+    {
+      "tp_a": {
+        "re": {
+          "micro_f1": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "accuracy": 0.4482758620689655,
+          "case_averaged_f1": 0.0,
+          "per_party": {
+            "plaintiff": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "defendant": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          }
+        },
+        "tp": {
+          "accuracy": 0.6,
+          "macro_f1": 0.37499999999999994,
+          "affirmed_precision": 0.0,
+          "affirmed_recall": 0.0,
+          "affirmed_f1": 0.0,
+          "denied_f1": 0.7499999999999999,
+          "strategy": "tp_a"
+        },
+        "joint": {
+          "joint_accuracy": 0.2,
+          "re_tp_consistency": 1.0
+        },
+        "n_cases": 10,
+        "fold": 1,
+        "threshold": 0.45
+      },
+      "tp_b": {
+        "re": {
+          "micro_f1": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "accuracy": 0.4482758620689655,
+          "case_averaged_f1": 0.0,
+          "per_party": {
+            "plaintiff": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "defendant": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          }
+        },
+        "tp": {
+          "accuracy": 0.6,
+          "macro_f1": 0.37499999999999994,
+          "affirmed_precision": 0.0,
+          "affirmed_recall": 0.0,
+          "affirmed_f1": 0.0,
+          "denied_f1": 0.7499999999999999,
+          "strategy": "tp_b"
+        },
+        "joint": {
+          "joint_accuracy": 0.2,
+          "re_tp_consistency": 1.0
+        },
+        "n_cases": 10,
+        "fold": 1,
+        "threshold": 0.45
+      }
+    },
+    {
+      "tp_a": {
+        "re": {
+          "micro_f1": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "accuracy": 0.4659090909090909,
+          "case_averaged_f1": 0.0,
+          "per_party": {
+            "plaintiff": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "defendant": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          }
+        },
+        "tp": {
+          "accuracy": 0.6,
+          "macro_f1": 0.37499999999999994,
+          "affirmed_precision": 0.0,
+          "affirmed_recall": 0.0,
+          "affirmed_f1": 0.0,
+          "denied_f1": 0.7499999999999999,
+          "strategy": "tp_a"
+        },
+        "joint": {
+          "joint_accuracy": 0.2,
+          "re_tp_consistency": 1.0
+        },
+        "n_cases": 10,
+        "fold": 2,
+        "threshold": 0.3
+      },
+      "tp_b": {
+        "re": {
+          "micro_f1": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "accuracy": 0.4659090909090909,
+          "case_averaged_f1": 0.0,
+          "per_party": {
+            "plaintiff": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "defendant": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          }
+        },
+        "tp": {
+          "accuracy": 0.6,
+          "macro_f1": 0.37499999999999994,
+          "affirmed_precision": 0.0,
+          "affirmed_recall": 0.0,
+          "affirmed_f1": 0.0,
+          "denied_f1": 0.7499999999999999,
+          "strategy": "tp_b"
+        },
+        "joint": {
+          "joint_accuracy": 0.2,
+          "re_tp_consistency": 1.0
+        },
+        "n_cases": 10,
+        "fold": 2,
+        "threshold": 0.3
+      }
+    }
+  ]
+}

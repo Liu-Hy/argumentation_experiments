@@ -1,0 +1,25 @@
+{
+  "tort_id": "143",
+  "method": "B1",
+  "model": "kimi-k2.5",
+  "step1_raw": " ```json\n{\n  \"attacks\": [\n    {\"source\": \"d0\", \"target\": \"p1\"},\n    {\"source\": \"d1\", \"target\": \"p2\"},\n    {\"source\": \"d2\", \"target\": \"p2\"},\n    {\"source\": \"d3\", \"target\": \"p1\"},\n    {\"source\": \"d4\", \"target\": \"p2\"}\n  ]\n}\n```",
+  "step2_raw": "",
+  "step1_usage": {
+    "prompt_tokens": 1551,
+    "completion_tokens": 4584,
+    "total_tokens": 6135
+  },
+  "step2_usage": {
+    "prompt_tokens": 1658,
+    "completion_tokens": 8192,
+    "total_tokens": 9850
+  },
+  "latency_s": 224.06893372535706,
+  "parse_success": false,
+  "parse_errors": [
+    "Could not extract JSON from output"
+  ],
+  "re_predictions": {},
+  "tp_a": null,
+  "tp_b": null
+}

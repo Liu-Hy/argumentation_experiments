@@ -1,0 +1,92 @@
+{
+  "tort_id": "425",
+  "method": "B4",
+  "model": "kimi-k2.5",
+  "raw_output": "```json\n{\n  \"attacks\": [],\n  \"supports\": [\n    {\"source\": \"u0\", \"target\": \"p1\"},\n    {\"source\": \"u0\", \"target\": \"p2\"},\n    {\"source\": \"u0\", \"target\": \"p3\"},\n    {\"source\": \"u1\", \"target\": \"p0\"},\n    {\"source\": \"u2\", \"target\": \"p2\"},\n    {\"source\": \"u3\", \"target\": \"p4\"},\n    {\"source\": \"u4\", \"target\": \"p4\"},\n    {\"source\": \"u5\", \"target\": \"p4\"},\n    {\"source\": \"u6\", \"target\": \"p4\"},\n    {\"source\": \"u7\", \"target\": \"p0\"},\n    {\"source\": \"u7\", \"target\": \"p3\"},\n    {\"source\": \"u8\", \"target\": \"p4\"},\n    {\"source\": \"u9\", \"target\": \"p4\"},\n    {\"source\": \"p0\", \"target\": \"p3\"},\n    {\"source\": \"p1\", \"target\": \"p3\"},\n    {\"source\": \"p2\", \"target\": \"p3\"},\n    {\"source\": \"p3\", \"target\": \"p4\"},\n    {\"source\": \"p5\", \"target\": \"p6\"}\n  ]\n}\n```",
+  "usage": {
+    "prompt_tokens": 1434,
+    "completion_tokens": 4532,
+    "total_tokens": 5966
+  },
+  "latency_s": 128.41295504570007,
+  "parse_success": true,
+  "parse_errors": [],
+  "af": {
+    "attacks": [],
+    "supports": [
+      [
+        "u0",
+        "p1"
+      ],
+      [
+        "u0",
+        "p2"
+      ],
+      [
+        "u0",
+        "p3"
+      ],
+      [
+        "u1",
+        "p0"
+      ],
+      [
+        "u2",
+        "p2"
+      ],
+      [
+        "u3",
+        "p4"
+      ],
+      [
+        "u4",
+        "p4"
+      ],
+      [
+        "u5",
+        "p4"
+      ],
+      [
+        "u6",
+        "p4"
+      ],
+      [
+        "u7",
+        "p0"
+      ],
+      [
+        "u7",
+        "p3"
+      ],
+      [
+        "u8",
+        "p4"
+      ],
+      [
+        "u9",
+        "p4"
+      ],
+      [
+        "p0",
+        "p3"
+      ],
+      [
+        "p1",
+        "p3"
+      ],
+      [
+        "p2",
+        "p3"
+      ],
+      [
+        "p3",
+        "p4"
+      ],
+      [
+        "p5",
+        "p6"
+      ]
+    ],
+    "argument_strengths": {}
+  }
+}

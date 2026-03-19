@@ -1,0 +1,21 @@
+{
+  "tort_id": "1106",
+  "method": "B6",
+  "model": "gemini-3-flash-preview",
+  "raw_output": "",
+  "usage": {
+    "prompt_tokens": 818,
+    "completion_tokens": 0,
+    "total_tokens": 818
+  },
+  "latency_s": 10.27228569984436,
+  "parse_success": false,
+  "parse_errors": [
+    "Could not extract JSON from output"
+  ],
+  "af": {
+    "attacks": [],
+    "supports": [],
+    "argument_strengths": {}
+  }
+}

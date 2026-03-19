@@ -1,0 +1,48 @@
+{
+  "tort_id": "1317",
+  "method": "B6",
+  "model": "kimi-k2.5",
+  "raw_output": " ```json\n{\n  \"argument_strengths\": {\n    \"u0\": 1.0,\n    \"u1\": 1.0,\n    \"u2\": 1.0,\n    \"p0\": 0.6,\n    \"p1\": 0.7,\n    \"p2\": 0.7,\n    \"p3\": 0.7,\n    \"p4\": 0.6,\n    \"d0\": 0.6,\n    \"d1\": 0.5,\n    \"d2\": 0.6,\n    \"d3\": 0.7\n  },\n  \"attacks\": [\n    {\"source\": \"d0\", \"target\": \"p1\"},\n    {\"source\": \"d1\", \"target\": \"p2\"},\n    {\"source\": \"d2\", \"target\": \"p3\"},\n    {\"source\": \"d3\", \"target\": \"p0\"},\n    {\"source\": \"d0\", \"target\": \"p4\"},\n    {\"source\": \"d1\", \"target\": \"p4\"},\n    {\"source\": \"d2\", \"target\": \"p4\"},\n    {\"source\": \"d3\", \"target\": \"p4\"}\n  ],\n  \"supports\": [\n    {\"source\": \"u0\", \"target\": \"p0\"},\n    {\"source\": \"u0\", \"target\": \"p2\"},\n    {\"source\": \"u2\", \"target\": \"p2\"},\n    {\"source\": \"p0\", \"target\": \"p4\"},\n    {\"source\": \"p1\", \"target\": \"p4\"},\n    {\"source\": \"p2\", \"target\": \"p4\"},\n    {\"source\": \"p3\", \"target\": \"p4\"}\n  ]\n}\n```",
+  "usage": {
+    "prompt_tokens": 636,
+    "completion_tokens": 6556,
+    "total_tokens": 7192
+  },
+  "latency_s": 149.40183901786804,
+  "parse_success": true,
+  "parse_errors": [
+    "Unknown source ID in attack: d0",
+    "Unknown source ID in attack: d1",
+    "Unknown source ID in attack: d2",
+    "Unknown source ID in attack: d3",
+    "Unknown source ID in attack: d0",
+    "Unknown source ID in attack: d1",
+    "Unknown source ID in attack: d2",
+    "Unknown source ID in attack: d3",
+    "Unknown source ID in support: u0",
+    "Unknown source ID in support: u0",
+    "Unknown source ID in support: u2",
+    "Unknown target ID in support: p4",
+    "Unknown source ID in support: p1",
+    "Unknown source ID in support: p2",
+    "Unknown source ID in support: p3",
+    "Unknown argument ID in strengths: u0",
+    "Unknown argument ID in strengths: u1",
+    "Unknown argument ID in strengths: u2",
+    "Unknown argument ID in strengths: p1",
+    "Unknown argument ID in strengths: p2",
+    "Unknown argument ID in strengths: p3",
+    "Unknown argument ID in strengths: p4",
+    "Unknown argument ID in strengths: d0",
+    "Unknown argument ID in strengths: d1",
+    "Unknown argument ID in strengths: d2",
+    "Unknown argument ID in strengths: d3"
+  ],
+  "af": {
+    "attacks": [],
+    "supports": [],
+    "argument_strengths": {
+      "p0": 0.6
+    }
+  }
+}

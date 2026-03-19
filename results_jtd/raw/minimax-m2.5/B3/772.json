@@ -1,0 +1,19 @@
+{
+  "tort_id": "772",
+  "method": "B3",
+  "model": "minimax-m2.5",
+  "raw_output": "{\n  \"attacks\": []\n}",
+  "usage": {
+    "prompt_tokens": 374,
+    "completion_tokens": 553,
+    "total_tokens": 927
+  },
+  "latency_s": 12.104752779006958,
+  "parse_success": true,
+  "parse_errors": [],
+  "af": {
+    "attacks": [],
+    "supports": [],
+    "argument_strengths": {}
+  }
+}
