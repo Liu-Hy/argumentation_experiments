@@ -2,8 +2,8 @@
 # data/
 
 # Experiment results (generated)
-results/
-results_val/
+# results/
+# results_val/
 
 # Python
 __pycache__/
@@ -33,3 +33,5 @@ docs/answer_colleague_2.md
 .env
 /test/
 /test.7z
+/data/CAIL2023/audio_archive/
+
