@@ -145,6 +145,43 @@ def stratified_subsample(
     return sorted(selected)
 
 
+def stratified_train_val_test_split(
+    cases: List[TortCase],
+    val_ratio: float = 0.1,
+    test_ratio: float = 0.1,
+    seed: int = 42,
+) -> Tuple[List[int], List[int], List[int]]:
+    """Stratified train/val/test split, stratified on court_decision.
+
+    Returns (train_indices, val_indices, test_indices).
+    """
+    rng = random.Random(seed)
+
+    pos_indices = [i for i, c in enumerate(cases) if c.court_decision]
+    neg_indices = [i for i, c in enumerate(cases) if not c.court_decision]
+
+    rng.shuffle(pos_indices)
+    rng.shuffle(neg_indices)
+
+    def _split_list(indices, val_r, test_r):
+        n = len(indices)
+        n_test = round(n * test_r)
+        n_val = round(n * val_r)
+        test = indices[:n_test]
+        val = indices[n_test : n_test + n_val]
+        train = indices[n_test + n_val :]
+        return train, val, test
+
+    pos_train, pos_val, pos_test = _split_list(pos_indices, val_ratio, test_ratio)
+    neg_train, neg_val, neg_test = _split_list(neg_indices, val_ratio, test_ratio)
+
+    return (
+        sorted(pos_train + neg_train),
+        sorted(pos_val + neg_val),
+        sorted(pos_test + neg_test),
+    )
+
+
 def format_case_for_prompt(case: TortCase, include_undisputed: bool = True) -> str:
     """Format a case as a structured text block for LLM prompts.
 
